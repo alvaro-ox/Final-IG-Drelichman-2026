@@ -11,8 +11,15 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:ital,wght@0,400;0,600;0,800;0,900;1,400;1,800&family=Permanent+Marker&display=swap"
         rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="src/css/estilos.css">
+    <!-- Vue.js CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- JS compartido y configuración -->
+    <script src="../src/js/globales.js"></script>
+    <!-- Lógica de vista -->
+    <script src="../src/js/vistas/cuidados-comportamiento.js" defer></script>
+    <link rel="stylesheet" href="../src/css/estilos.css">
 
 </head>
 
@@ -34,7 +41,7 @@
         <!-- LENGUAJE CORPORAL -->
         <section class="py-14 md:py-20 px-6 md:px-10 bg-blanco">
             <div class="text-center mb-14 relative z-10">
-                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-negro text-shadow-oxido">El lenguaje del gato
+                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-oxido text-shadow-negro">El lenguaje del gato
                 </h2>
                 <p class="text-[16px] text-gris font-semibold mt-3">Lo que tu gato te dice sin palabras</p>
                 <span class="block text-center text-[24px] mt-2.5 tracking-[6px]">🐾 🐾 🐾</span>
@@ -53,7 +60,7 @@
         <!-- INTEGRACIÓN AL HOGAR -->
         <section class="py-14 md:py-20 px-6 md:px-10 bg-crema">
             <div class="text-center mb-14 relative z-10">
-                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-negro text-shadow-oxido">Integración al hogar
+                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-oxido text-shadow-negro">Integración al hogar
                 </h2>
                 <p class="text-[16px] text-gris font-semibold mt-3">Preguntas frecuentes sobre la llegada del gatito a
                     casa</p>
@@ -79,7 +86,7 @@
         <!-- ERRORES COMUNES -->
         <section class="py-[70px] px-6 md:px-10 bg-negro">
             <div class="text-center mb-14 relative z-10">
-                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-miel text-shadow-oxido">Errores a evitar</h2>
+                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-miel text-shadow-negro">Errores a evitar</h2>
                 <p class="text-[16px] text-gris font-semibold mt-3">Cosas que hacemos con buena intención pero que
                     complican la adaptación</p>
                 <span class="block text-center text-[24px] mt-2.5 tracking-[6px] text-gris">🚫 🚫 🚫</span>
@@ -102,46 +109,6 @@
         <componente-footer></componente-footer>
     </div>
 
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="src/js/globales.js"></script>
-    <script>
-        // Lógica de la página de comportamiento felino
-        createApp({
-            components: {
-                'componente-navbar': Navbar,
-                'componente-footer': Footer,
-                'componente-newsletter': Newsletter,
-            },
-            data() {
-                return {
-                    // Señales del lenguaje corporal del gato
-                    senialesCuerpo: [
-                        { emoji: '😴', titulo: 'Cola en alto', descripcion: 'Señal de felicidad y confianza. Tu gato se siente seguro y contento cuando camina con la cola levantada.' },
-                        { emoji: '👀', titulo: 'Parpadeo lento', descripcion: 'El "beso del gato". Si te mira y parpadea lento, es que te ama. Devolvé el gesto para conectar.' },
-                        { emoji: '😤', titulo: 'Orejas aplastadas', descripcion: 'Miedo, molestia o agresión. Dejalo tranquilo y no lo fuerces a interactuar.' },
-                        { emoji: '🐾', titulo: 'Amasar con las patas', descripcion: 'Comportamiento heredado de la infancia. Es la máxima expresión de comodidad y felicidad.' },
-                        { emoji: '😼', titulo: 'Frotar la cabeza', descripcion: 'Tu gato te está marcando como territorio propio. Es un cumplido enorme: te eligió.' },
-                        { emoji: '🙈', titulo: 'Barriga expuesta', descripcion: 'Señal de confianza total. Pero cuidado: no siempre es una invitación a acariciarla.' },
-                    ],
-                    // Acordeón de integración al hogar
-                    acordeon: [
-                        { pregunta: '¿Cuánto tarda en adaptarse?', respuesta: 'Los primeros 7-14 días son críticos. Algunos gatitos se adaptan en horas; gatos adultos o tímidos pueden tardar hasta 30 días. La paciencia es clave: dejá que el gatito marque los tiempos.', abierto: false },
-                        { pregunta: '¿Puedo tenerlo suelto desde el primer día?', respuesta: 'Lo ideal es empezar con un cuarto o área acotada. Que pueda explorar todo el espacio de a poco, sin abrumarlo. Cuando veas que se siente cómodo, ampliás el territorio gradualmente.', abierto: false },
-                        { pregunta: '¿Cómo lo presento a un perro u otro gato?', respuesta: 'La regla de oro: de a poco y separados al principio. Primero que se huelen por debajo de una puerta. Luego se ven a distancia. Nunca los pongas cara a cara forzadamente. El proceso puede llevar semanas.', abierto: false },
-                        { pregunta: '¿Por qué esconde comida o juguetes?', respuesta: 'Instinto de supervivencia heredado de sus ancestros salvajes. Es completamente normal. No lo retirés ni regañés: es su forma de sentirse seguro.', abierto: false },
-                        { pregunta: '¿Araña los muebles y cómo lo detengo?', respuesta: 'El rascado es instintivo: marca territorio, estira músculos y limpia las uñas. Poné varios rascadores en diferentes lugares y usá spray disuasorio en los muebles preferidos.', abierto: false },
-                    ],
-                    // Errores comunes en la integración
-                    errores: [
-                        { icono: '🙅', error: 'Forzar el contacto', correcto: 'Dejar que sea el gato quien se acerque.' },
-                        { icono: '😱', error: 'Gritar o castigar físicamente', correcto: 'Ignorarlo brevemente o usar un "no" firme y seguir de largo.' },
-                        { icono: '🏃', error: 'Presentarlo a toda la familia de golpe', correcto: 'Primero un solo integrante tranquilo, luego de a poco introduce a los demás.' },
-                        { icono: '🛁', error: 'Bañarlo ni bien llega', correcto: 'Esperar al menos 2 semanas hasta que se adapte al nuevo olor del hogar.' },
-                    ],
-                };
-            },
-        }).mount('#app');
-    </script>
 </body>
 
 </html>

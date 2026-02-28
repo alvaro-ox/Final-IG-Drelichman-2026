@@ -11,8 +11,15 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:ital,wght@0,400;0,600;0,800;0,900;1,400;1,800&family=Permanent+Marker&display=swap"
         rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="src/css/estilos.css">
+    <!-- Vue.js CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- JS compartido y configuración -->
+    <script src="../src/js/globales.js"></script>
+    <!-- Lógica de vista -->
+    <script src="../src/js/vistas/adopcion-proceso.js" defer></script>
+    <link rel="stylesheet" href="../src/css/estilos.css">
 
 </head>
 
@@ -35,7 +42,7 @@
         <!-- LÍNEA DE TIEMPO -->
         <section class="py-14 md:py-20 px-6 md:px-10 bg-blanco">
             <div class="text-center mb-14 relative">
-                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-negro text-shadow-oxido">El camino hacia tu gato
+                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-oxido text-shadow-negro">El camino hacia tu gato
                 </h2>
                 <p class="text-[16px] text-gris font-semibold mt-3">Cada etapa es importante para garantizar el mejor
                     match posible</p>
@@ -65,7 +72,7 @@
         <!-- TIPS PARA LA LLEGADA -->
         <section class="py-14 md:py-20 px-6 md:px-10 bg-crema">
             <div class="text-center mb-14 relative">
-                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-negro text-shadow-oxido">Tips para la llegada
+                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-oxido text-shadow-negro">Tips para la llegada
                 </h2>
                 <p class="text-[16px] text-gris font-semibold mt-3">Preparate para recibir a tu nuevo compañero de la
                     mejor manera</p>
@@ -92,7 +99,7 @@
                 esperando! 🐈</h2>
             <p class="text-[17px] text-white/85 mb-8 font-semibold relative z-10">El primer paso es elegir a tu gatito.
                 Entrá al Gatálogo y encontrá a tu compañero.</p>
-            <a href="catalogo.html"
+            <a href="../catalogo.html"
                 class="bg-blanco text-negro border-[4px] border-negro rounded-2xl px-7 py-3.5 font-nunito font-black text-[16px] shadow-[5px_5px_0_#1C1410] no-underline transition-all duration-150 inline-block hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[8px_8px_0_#1C1410] hover:bg-durazno relative z-10">Ver
                 el Gatálogo completo 🐾</a>
         </section>
@@ -101,68 +108,6 @@
         <componente-footer></componente-footer>
     </div>
 
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="src/js/globales.js"></script>
-    <script>
-        // Lógica de la página del proceso de adopción
-        createApp({
-            components: {
-                'componente-navbar': Navbar,
-                'componente-footer': Footer,
-                'componente-newsletter': Newsletter,
-            },
-            data() {
-                return {
-                    // Pasos del proceso de adopción
-                    pasos: [
-                        {
-                            icono: '🔍',
-                            titulo: 'Explorá el Gatálogo',
-                            descripcion: 'Navegá los perfiles de nuestros gatitos disponibles. Cada ficha tiene fotos, personalidad, edad y condiciones especiales. Tomáte el tiempo que necesitás.',
-                            tiempo: 'Sin límite de tiempo',
-                        },
-                        {
-                            icono: '📝',
-                            titulo: 'Completá el formulario',
-                            descripcion: 'Una vez que elegiste un gatito (o varios que te gustaron), completás nuestro formulario de adopción. Nos contás sobre tu hogar, estilo de vida y expectativas.',
-                            tiempo: '10-15 minutos',
-                        },
-                        {
-                            icono: '📞',
-                            titulo: 'Entrevista con el equipo',
-                            descripcion: 'Nuestro equipo se comunica con vos para charlar sobre el gatito elegido, responder dudas y evaluar juntos si es el match ideal. Es una charla casual y sin presión.',
-                            tiempo: '2-5 días hábiles',
-                        },
-                        {
-                            icono: '🤝',
-                            titulo: 'Encuentro con el gatito',
-                            descripcion: 'Si la entrevista va bien, coordinamos un encuentro con el gatito. Puede ser presencial en la casa de la familia transitoria o por videollamada si estás lejos.',
-                            tiempo: 'Se coordina con la familia transitoria',
-                        },
-                        {
-                            icono: '📄',
-                            titulo: 'Firma del compromiso',
-                            descripcion: 'Una vez que todo está confirmado, firmás el compromiso de adopción. Es un documento sencillo que formaliza tu responsabilidad sobre el bienestar del gatito.',
-                            tiempo: '1 día',
-                        },
-                        {
-                            icono: '🏠',
-                            titulo: '¡Tu gatito llega a casa!',
-                            descripcion: 'El gran día llegó. Te entregamos al gatito con su historia médica, el alimento que estaba comiendo y todos los datos del veterinario de cabecera. ¡A festejar!',
-                            tiempo: 'El proceso completo: 1-2 semanas',
-                        },
-                    ],
-                    // Tips para preparar el hogar
-                    tips: [
-                        { icono: '🛏️', titulo: 'Preparale un rincón', descripcion: 'Tené listo su cama, arenero, comedero y bebedero antes de que llegue. Que el espacio sea tranquilo y seguro.' },
-                        { icono: '🚪', titulo: 'Dejale explorar despacio', descripcion: 'Al llegar, dejalo en un cuarto solo por los primeros días. Que se adapte al olor y al espacio sin agobio.' },
-                        { icono: '🔇', titulo: 'Poco ruido al principio', descripcion: 'Evitá visitas masivas o ruidos fuertes los primeros días. El gatito necesita acostumbrarse a su nuevo ambiente.' },
-                        { icono: '🍽️', titulo: 'Continuá su dieta', descripcion: 'Usá la misma marca y tipo de alimento que comía antes, al menos por las primeras semanas, para evitar problemas digestivos.' },
-                    ],
-                };
-            },
-        }).mount('#app');
-    </script>
 </body>
 
 </html>

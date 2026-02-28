@@ -1,3 +1,4 @@
+window.evitarAutoInicio = true;
 
 //   — "Wordle" 
 

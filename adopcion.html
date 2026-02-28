@@ -11,7 +11,14 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:ital,wght@0,400;0,600;0,800;0,900;1,400;1,800&family=Permanent+Marker&display=swap"
         rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Vue.js CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- JS compartido y configuración -->
+    <script src="src/js/globales.js"></script>
+    <!-- Lógica de vista -->
+    <script src="src/js/vistas/adopcion.js" defer></script>
     <link rel="stylesheet" href="src/css/estilos.css">
 
 </head>
@@ -26,17 +33,16 @@
                 class="absolute text-[300px] opacity-[0.06] -top-10 -right-[30px] pointer-events-none rotate-[20deg] select-none">
                 🐾</div>
             <span
-                class="absolute text-[28px] drop-shadow-[2px_2px_0_rgba(0,0,0,0.2)] pointer-events-none z-10 hidden md:block"
-                style="transform: rotate(10deg); top:15%; left:10%;">✨</span>
+                class="absolute text-[28px] drop-shadow-[2px_2px_0_rgba(0,0,0,0.2)] pointer-events-none z-10 hidden md:block rotate-[10deg] top-[15%] left-[10%]">✨</span>
             <h1 class="font-lilita text-[clamp(44px,6vw,72px)] text-blanco mb-4 relative z-10">Adoptá un gatito 🐈</h1>
             <p class="text-[18px] text-white/85 max-w-[600px] mx-auto mb-8 font-semibold leading-relaxed relative z-10">
                 Cada adopción es una historia que cambia para siempre. Conocé los requisitos y el proceso para darle un
                 hogar a quien más lo necesita.</p>
             <div class="flex gap-4 justify-center flex-wrap relative z-10">
-                <a href="adopcion-requisitos.html"
+                <a href="subpaginas/adopcion-requisitos.html"
                     class="bg-blanco text-negro border-[4px] border-negro rounded-2xl px-7 py-3.5 font-nunito font-black text-[16px] shadow-[5px_5px_0_#1C1410] no-underline transition-all duration-150 inline-block hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[8px_8px_0_#1C1410] hover:bg-durazno">Ver
                     requisitos 📋</a>
-                <a href="adopcion-proceso.html"
+                <a href="subpaginas/adopcion-proceso.html"
                     class="bg-miel text-negro border-[4px] border-negro rounded-2xl px-7 py-3.5 font-nunito font-black text-[16px] shadow-[5px_5px_0_#1C1410] no-underline transition-all duration-150 inline-block hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[8px_8px_0_#1C1410] hover:bg-ambar hover:text-negro">Proceso
                     paso a paso →</a>
             </div>
@@ -45,7 +51,7 @@
         <!-- OPCIONES PRINCIPALES -->
         <section class="py-14 md:py-20 px-6 md:px-10 bg-blanco">
             <div class="text-center mb-14 relative">
-                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-negro text-shadow-oxido">¿Por dónde empezamos?
+                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-oxido text-shadow-negro">¿Por dónde empezamos?
                 </h2>
                 <p class="text-[16px] text-gris font-semibold mt-3">Tenemos toda la info que necesitás para adoptar con
                     confianza</p>
@@ -54,7 +60,7 @@
 
             <div
                 class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(340px,1fr))] gap-8 max-w-[900px] mx-auto">
-                <a href="adopcion-requisitos.html"
+                <a href="subpaginas/adopcion-requisitos.html"
                     class="bg-crema border-[4px] border-negro rounded-[20px] p-8 md:px-8 md:py-10 text-center shadow-[7px_7px_0_#1C1410] no-underline block transition-all duration-200 -rotate-[1.5deg] hover:rotate-0 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[11px_11px_0_#1C1410]">
                     <span class="text-[64px] block mb-5">📋</span>
                     <h2 class="font-lilita text-[28px] text-negro mb-3">Requisitos para adoptar</h2>
@@ -64,7 +70,7 @@
                         class="inline-block bg-miel border-[3px] border-negro rounded-full px-5 py-1.5 font-black text-[13px] text-negro mt-5 shadow-[3px_3px_0_#1C1410]">Ver
                         requisitos →</span>
                 </a>
-                <a href="adopcion-proceso.html"
+                <a href="subpaginas/adopcion-proceso.html"
                     class="bg-crema border-[4px] border-negro rounded-[20px] p-8 md:px-8 md:py-10 text-center shadow-[7px_7px_0_#1C1410] no-underline block transition-all duration-200 rotate-[1deg] hover:rotate-0 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[11px_11px_0_#1C1410]">
                     <span class="text-[64px] block mb-5">🗺️</span>
                     <h2 class="font-lilita text-[28px] text-negro mb-3">Proceso paso a paso</h2>
@@ -80,7 +86,7 @@
         <!-- PREGUNTAS FRECUENTES -->
         <section class="py-14 md:py-20 px-6 md:px-10 bg-crema">
             <div class="text-center mb-14 relative">
-                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-negro text-shadow-oxido">Preguntas frecuentes
+                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-oxido text-shadow-negro">Preguntas frecuentes
                 </h2>
                 <p class="text-[16px] text-gris font-semibold mt-3">Las dudas más comunes que nos hacen las familias
                     adoptantes</p>
@@ -115,50 +121,6 @@
         <componente-footer></componente-footer>
     </div>
 
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="src/js/globales.js"></script>
-    <script>
-        // Lógica de la página de adopción
-        createApp({
-            components: {
-                'componente-navbar': Navbar,
-                'componente-footer': Footer,
-                'componente-newsletter': Newsletter,
-            },
-            data() {
-                return {
-                    // Preguntas frecuentes
-                    faqs: [
-                        {
-                            pregunta: '¿Cuánto tarda el proceso de adopción?',
-                            respuesta: 'El proceso completo suele demorar entre 1 y 2 semanas. Incluye la revisión del formulario, la entrevista, el encuentro con el gatito y la firma del compromiso.',
-                            abierto: false,
-                        },
-                        {
-                            pregunta: '¿Puedo adoptar si vivo en un departamento?',
-                            respuesta: '¡Por supuesto! Los gatos se adaptan muy bien a los departamentos. Lo importante es que el espacio esté seguro: redes en ventanas y balcones, sin peligros para que explore.',
-                            abierto: false,
-                        },
-                        {
-                            pregunta: '¿Los gatitos vienen vacunados y esterilizados?',
-                            respuesta: 'Todos nuestros gatitos están vacunados, desparasitados y, si tienen más de 6 meses, esterilizados. En caso de que sean más chicos, se firma un compromiso de esterilización.',
-                            abierto: false,
-                        },
-                        {
-                            pregunta: '¿Hay algún costo para adoptarlos?',
-                            respuesta: 'La adopción en sí es gratuita. Sin embargo, solicitamos una colaboración voluntaria para ayudar a cubrir los gastos veterinarios de los gatitos en tránsito.',
-                            abierto: false,
-                        },
-                        {
-                            pregunta: '¿Puedo adoptar si tengo otras mascotas?',
-                            respuesta: 'Sí, muchos de nuestros gatitos han sido socializados con otras mascotas. En el perfil de cada uno indicamos si convive bien con perros u otros gatos.',
-                            abierto: false,
-                        },
-                    ],
-                };
-            },
-        }).mount('#app');
-    </script>
 </body>
 
 </html>
