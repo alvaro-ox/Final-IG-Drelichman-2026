@@ -1,0 +1,677 @@
+/* ============================================================
+   GatoHogar — Estilos Globales
+   Paleta de colores basada en el mockup original
+   ============================================================ */
+
+/* ============ VARIABLES DE COLOR ============ */
+:root {
+  --negro: #1C1410;
+  --marron: #3D2E25;
+  --oxido: #C4520A;
+  --ambar: #E07B2A;
+  --miel: #F0A84E;
+  --durazno: #F5C98A;
+  --crema: #FBF0DC;
+  --blanco: #FDFAF5;
+  --gris: #9E8E83;
+
+  /* Tailwind custom colors para uso con CDN */
+  --tw-shadow: 0 0 #0000;
+}
+
+/* ============ RESET Y BASE ============ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--crema);
+  font-family: 'Nunito', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Textura de ruido sutil */
+.textura-ruido {
+  /* content: '';  Ya no es pseudo-elemento */
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* ============ TIPOGRAFÍA ============ */
+h1,
+h2,
+h3 {
+  font-family: 'Lilita One', cursive;
+}
+
+/* ============ MARQUEE ============ */
+.barra-marquee {
+  background: var(--negro);
+  color: var(--miel);
+  padding: 10px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  z-index: 10;
+}
+
+.marquee-interior {
+  display: inline-block;
+  /* Animación eliminada */
+}
+
+.marquee-interior span {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 16px;
+  margin: 0 32px;
+}
+
+.marquee-interior span.gato {
+  color: var(--ambar);
+}
+
+/* ============ NAVEGACIÓN ============ */
+.navbar {
+  background: var(--blanco);
+  border-bottom: 4px solid var(--negro);
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 4px 4px 0 var(--negro);
+}
+
+.logo-nav {
+  font-family: 'Lilita One', cursive;
+  font-size: 28px;
+  color: var(--oxido);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links li a {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--marron);
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 3px solid transparent;
+  border-radius: 100px;
+  transition: all 0.15s;
+  display: block;
+}
+
+.nav-links li a:hover,
+.nav-links li a.activo {
+  border-color: var(--negro);
+  background: var(--miel);
+  transform: rotate(-2deg);
+}
+
+/* Botón CTA de la navbar */
+.nav-cta {
+  background: var(--oxido) !important;
+  color: var(--blanco) !important;
+  border: 3px solid var(--negro) !important;
+  border-radius: 100px !important;
+  padding: 8px 20px !important;
+  font-weight: 900 !important;
+  box-shadow: 3px 3px 0 var(--negro);
+  transition: all 0.15s !important;
+}
+
+.nav-cta:hover {
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 5px 5px 0 var(--negro) !important;
+  background: var(--ambar) !important;
+  color: var(--negro) !important;
+}
+
+/* Menú hamburguesa mobile */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 3px solid var(--negro);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--negro);
+}
+
+/* ============ BOTONES GENERALES ============ */
+.btn-principal {
+  background: var(--oxido);
+  color: var(--blanco);
+  border: 4px solid var(--negro);
+  border-radius: 16px;
+  padding: 14px 28px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 5px 5px 0 var(--negro);
+  transition: all 0.15s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-principal:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0 var(--negro);
+  background: var(--ambar);
+  color: var(--negro);
+}
+
+.btn-secundario {
+  background: var(--blanco);
+  color: var(--negro);
+  border: 4px solid var(--negro);
+  border-radius: 16px;
+  padding: 14px 28px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 5px 5px 0 var(--negro);
+  transition: all 0.15s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-secundario:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0 var(--negro);
+  background: var(--durazno);
+}
+
+/* ============ ICONO / CHIP ============ */
+.chip {
+  background: var(--miel);
+  border: 2px solid var(--negro);
+  border-radius: 100px;
+  padding: 4px 14px;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.chip-oxido {
+  background: var(--oxido);
+  color: var(--blanco);
+}
+
+.chip-durazno {
+  background: var(--durazno);
+}
+
+
+
+
+/* ============ NEWSLETTER ============ */
+.seccion-newsletter {
+  background: var(--miel);
+  border-top: 4px solid var(--negro);
+  border-bottom: 4px solid var(--negro);
+  padding: 72px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter-icono {
+  /* content: '📬'; */
+  position: absolute;
+  font-size: 260px;
+  opacity: 0.05;
+  left: -40px;
+  top: -40px;
+  pointer-events: none;
+}
+
+.seccion-newsletter h2 {
+  font-family: 'Lilita One', cursive;
+  font-size: clamp(28px, 4vw, 48px);
+  color: var(--negro);
+  margin-bottom: 12px;
+}
+
+.seccion-newsletter p {
+  font-size: 16px;
+  color: var(--marron);
+  margin-bottom: 36px;
+  font-weight: 600;
+}
+
+.formulario-email {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.input-email {
+  border: 4px solid var(--negro);
+  border-radius: 14px;
+  padding: 14px 22px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  background: var(--blanco);
+  color: var(--negro);
+  box-shadow: 4px 4px 0 var(--negro);
+  outline: none;
+  width: 300px;
+  max-width: 100%;
+}
+
+.input-email::placeholder {
+  color: var(--gris);
+}
+
+.input-email:focus {
+  background: var(--crema);
+}
+
+/* ============ PIE DE PÁGINA ============ */
+footer {
+  background: var(--negro);
+  padding: 60px 40px 32px;
+  color: var(--crema);
+}
+
+.footer-grilla {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+.footer-logo {
+  font-family: 'Lilita One', cursive;
+  font-size: 36px;
+  color: var(--miel);
+  margin-bottom: 12px;
+}
+
+.footer-descripcion {
+  font-size: 14px;
+  color: var(--gris);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  max-width: 260px;
+}
+
+.fila-sociales {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-social {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--gris);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-decoration: none;
+}
+
+.btn-social:hover {
+  border-color: var(--miel);
+  background: var(--miel);
+  transform: scale(1.15) rotate(-5deg);
+}
+
+.footer-col h4 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--miel);
+  margin-bottom: 16px;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+  color: var(--gris);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.15s;
+  font-weight: 600;
+}
+
+.footer-col ul li a:hover {
+  color: var(--blanco);
+}
+
+.footer-inferior {
+  border-top: 1px solid #3D2E25;
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.footer-inferior p {
+  font-size: 13px;
+  color: var(--gris);
+}
+
+.footer-inferior span {
+  color: var(--oxido);
+}
+
+/* ============ ANIMACIONES ELIMINADAS ============ */
+
+/* ============ STICKERS FLOTANTES ============ */
+.sticker {
+  position: absolute;
+  font-size: 40px;
+  /* animation: mover 3s ease-in-out infinite; Animación eliminada */
+  filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, 0.2));
+  pointer-events: none;
+  transform: rotate(var(--r, 0deg));
+  /* Mantenemos la rotación inicial */
+}
+
+.st1 {
+  top: 10%;
+  left: 5%;
+  --r: -15deg;
+}
+
+.st2 {
+  top: 20%;
+  right: 8%;
+  --r: 10deg;
+  font-size: 28px;
+}
+
+.st3 {
+  bottom: 15%;
+  left: 10%;
+  --r: 5deg;
+}
+
+.st4 {
+  bottom: 10%;
+  right: 5%;
+  --r: -8deg;
+  font-size: 32px;
+}
+
+.st5 {
+  top: 50%;
+  left: 2%;
+  --r: 12deg;
+  font-size: 24px;
+}
+
+/* ============ ETIQUETA HERO ============ */
+.etiqueta-hero {
+  display: inline-block;
+  background: var(--miel);
+  border: 3px solid var(--negro);
+  border-radius: 8px;
+  padding: 6px 16px;
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--negro);
+  box-shadow: 3px 3px 0 var(--negro);
+  transform: rotate(-2deg);
+  margin-bottom: 28px;
+}
+
+/* ============ CABECERA DE PÁGINA (HERO INTERNO) ============ */
+.cabecera-pagina {
+  background: var(--negro);
+  padding: 80px 40px 60px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.cabecera-icono {
+  /* content: '🐾'; */
+  position: absolute;
+  font-size: 300px;
+  opacity: 0.04;
+  top: -60px;
+  right: -40px;
+  pointer-events: none;
+  transform: rotate(20deg);
+}
+
+.cabecera-pagina h1 {
+  font-family: 'Lilita One', cursive;
+  font-size: clamp(40px, 6vw, 72px);
+  color: var(--miel);
+  margin-bottom: 16px;
+}
+
+.cabecera-pagina p {
+  font-size: 18px;
+  color: var(--gris);
+  max-width: 600px;
+  margin: 0 auto;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+/* ============ TARJETAS GENÉRICAS ============ */
+.tarjeta-info {
+  background: var(--blanco);
+  border: 4px solid var(--negro);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 6px 6px 0 var(--negro);
+  transition: all 0.2s;
+}
+
+.tarjeta-info:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--negro);
+}
+
+/* ============ FORMULARIO GENERAL ============ */
+.campo-formulario {
+  margin-bottom: 20px;
+}
+
+.campo-formulario label {
+  display: block;
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--negro);
+  margin-bottom: 6px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.campo-formulario input,
+.campo-formulario select,
+.campo-formulario textarea {
+  width: 100%;
+  border: 3px solid var(--negro);
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  background: var(--blanco);
+  color: var(--negro);
+  box-shadow: 3px 3px 0 var(--negro);
+  outline: none;
+  transition: all 0.15s;
+}
+
+.campo-formulario input:focus,
+.campo-formulario select:focus,
+.campo-formulario textarea:focus {
+  background: var(--crema);
+  box-shadow: 5px 5px 0 var(--negro);
+  transform: translate(-1px, -1px);
+}
+
+/* ============ BADGE / ETIQUETA ============ */
+.badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border: 2px solid var(--negro);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.badge-verde {
+  background: #4CAF50;
+  color: white;
+}
+
+.badge-miel {
+  background: var(--miel);
+  color: var(--negro);
+}
+
+.badge-oxido {
+  background: var(--oxido);
+  color: white;
+}
+
+/* ============ UTILIDADES NUEVAS ============ */
+.text-shadow-oxido {
+  text-shadow: 4px 4px 0 var(--oxido);
+}
+
+.text-shadow-negro {
+  text-shadow: 4px 4px 0 var(--negro);
+}
+
+.text-shadow-miel {
+  text-shadow: 4px 4px 0 var(--miel);
+}
+
+/* ============ RESPONSIVE MOBILE ============ */
+@media (max-width: 1024px) {
+  .footer-grilla {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* Navbar */
+  .navbar {
+    padding: 16px 20px;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-links.abierto {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--blanco);
+    border-bottom: 4px solid var(--negro);
+    padding: 16px 20px 20px;
+    gap: 4px;
+    box-shadow: 0 6px 0 var(--negro);
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  /* Grillas */
+  .banda-stats {
+    gap: 32px;
+    padding: 28px 24px;
+  }
+
+  .grilla-gatos {
+    grid-template-columns: 1fr;
+  }
+
+  .grilla-pasos {
+    grid-template-columns: 1fr;
+  }
+
+  .grilla-testimonios {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grilla {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Secciones */
+  .seccion-proceso,
+  .seccion-testimonios,
+  .seccion-newsletter {
+    padding: 60px 24px;
+  }
+
+  .cabecera-pagina {
+    padding: 60px 24px 40px;
+  }
+
+  footer {
+    padding: 48px 24px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-grilla {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-cta {
+    display: none !important;
+  }
+}

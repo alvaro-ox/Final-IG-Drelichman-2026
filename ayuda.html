@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayudá a los Gatos — GatoHogar</title>
+    <meta name="description"
+        content="Ayudá a GatoHogar con donaciones, voluntariado o apadrinamiento. Cada gesto hace la diferencia.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:ital,wght@0,400;0,600;0,800;0,900;1,400;1,800&family=Permanent+Marker&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="src/css/estilos.css">
+
+</head>
+
+<body>
+    <div id="app">
+        <componente-navbar></componente-navbar>
+
+        <div
+            class="bg-[linear-gradient(135deg,var(--oxido),var(--marron))] py-14 px-6 md:py-20 md:px-10 pb-[60px] relative overflow-hidden text-center">
+            <div
+                class="absolute text-[300px] opacity-[0.06] -top-10 -right-[30px] pointer-events-none rotate-[20deg] select-none">
+                ❤️</div>
+            <h1 class="font-lilita text-[clamp(40px,6vw,72px)] text-blanco mb-4 relative z-10 leading-tight">¡Ayudá a
+                los Gatos! ❤️</h1>
+            <p class="text-[18px] text-white/85 max-w-[650px] mx-auto mb-8 font-semibold leading-relaxed relative z-10">
+                No podés adoptar, pero podés marcar la diferencia de muchas otras formas. Cada gesto cuenta.</p>
+        </div>
+
+        <!-- FORMAS DE AYUDAR -->
+        <section class="py-14 md:py-[80px] px-6 md:px-10 bg-blanco">
+            <div class="text-center mb-14 relative z-10">
+                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-negro text-shadow-oxido">Formas de ayudar</h2>
+                <p class="text-[16px] text-gris font-semibold mt-3">Elegí cómo querés sumarte a la causa</p>
+                <span class="block text-center text-[24px] mt-2.5 tracking-[6px]">❤️ ❤️ ❤️</span>
+            </div>
+
+            <div
+                class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-7 max-w-[1000px] mx-auto">
+                <!-- DONACIÓN -->
+                <div
+                    class="bg-crema border-[4px] border-negro rounded-[20px] py-9 px-7 shadow-[7px_7px_0_#1C1410] text-center transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[11px_11px_0_#1C1410]">
+                    <span class="text-[60px] mb-4 block">💰</span>
+                    <h2 class="font-lilita text-[24px] text-negro mb-3">Donación monetaria</h2>
+                    <p class="text-[14px] text-marron leading-relaxed font-semibold mb-5">Tu aporte se destina
+                        directamente a gastos veterinarios, alimento y el cuidado de los gatitos en tránsito.</p>
+
+                    <!-- Barra de progreso del mes -->
+                    <p class="text-[13px] font-black text-left text-negro mb-1.5">Meta del mes: $80.000</p>
+                    <div
+                        class="bg-crema border-[3px] border-negro rounded-full h-6 overflow-hidden my-3 shadow-[3px_3px_0_#1C1410]">
+                        <div class="h-full bg-oxido rounded-full transition-[width] duration-1500 ease-out"
+                            :style="'width:' + progresoDonacion + '%'"></div>
+                    </div>
+                    <p class="text-[13px] font-black text-gris text-right">{{ donacionRecaudada | moneda }} recaudados
+                        ({{ progresoDonacion }}%)</p>
+
+                    <!-- Montos rápidos -->
+                    <div class="flex gap-2.5 justify-center flex-wrap mt-4 mb-5">
+                        <button v-for="monto in montos" :key="monto"
+                            class="border-[3px] border-negro rounded-xl py-2.5 px-5 font-nunito font-black text-[16px] cursor-pointer shadow-[3px_3px_0_#1C1410] transition-all duration-150 text-negro hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#1C1410]"
+                            :class="[montoSeleccionado === monto ? 'bg-miel -translate-x-0.5 -translate-y-0.5 shadow-[5px_5px_0_#1C1410]' : 'bg-crema']"
+                            @click="montoSeleccionado = monto">
+                            ${{ monto.toLocaleString('es-AR') }}
+                        </button>
+                    </div>
+
+                    <button v-if="!donado"
+                        class="block w-full bg-oxido text-blanco border-[3px] border-negro rounded-xl py-3 px-5 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro truncate"
+                        @click="donar">
+                        Donar ${{ montoSeleccionado.toLocaleString('es-AR') }} ❤️
+                    </button>
+                    <div v-else class="font-lilita text-[20px] text-oxido py-3">
+                        ¡Gracias por tu donación! 🐾✨
+                    </div>
+                </div>
+
+                <!-- VOLUNTARIADO -->
+                <div
+                    class="bg-crema border-[4px] border-negro rounded-[20px] py-9 px-7 shadow-[7px_7px_0_#1C1410] text-center transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[11px_11px_0_#1C1410]">
+                    <span class="text-[60px] mb-4 block">🙋</span>
+                    <h2 class="font-lilita text-[24px] text-negro mb-3">Voluntariado</h2>
+                    <p class="text-[14px] text-marron leading-relaxed font-semibold mb-5">Sumate como voluntario y ayudá
+                        con la socialización de gatitos, traslados, eventos de adopción y difusión.</p>
+                    <ul class="text-left mb-5">
+                        <li v-for="act in actividades" :key="act"
+                            class="mb-2 text-[14px] text-marron font-semibold flex gap-2 items-start">
+                            <span class="shrink-0">🐾</span> {{ act }}
+                        </li>
+                    </ul>
+                    <a href="contacto.html"
+                        class="block w-full text-center bg-oxido text-blanco border-[3px] border-negro rounded-xl py-3 px-5 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro truncate">Quiero
+                        ser voluntario 🙋</a>
+                </div>
+
+                <!-- APADRINAMIENTO -->
+                <div
+                    class="bg-crema border-[4px] border-negro rounded-[20px] py-9 px-7 shadow-[7px_7px_0_#1C1410] text-center transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[11px_11px_0_#1C1410]">
+                    <span class="text-[60px] mb-4 block">🌟</span>
+                    <h2 class="font-lilita text-[24px] text-negro mb-3">Apadrinamiento</h2>
+                    <p class="text-[14px] text-marron leading-relaxed font-semibold mb-5">Elegí un gatito que todavía no
+                        tiene familia y cubrí sus gastos mensuales mientras espera su hogar definitivo.</p>
+                    <div class="bg-blanco border-[3px] border-negro rounded-xl p-5 mb-5 shadow-[3px_3px_0_#1C1410]">
+                        <div class="text-[48px] text-center mb-2">🙀</div>
+                        <div class="font-lilita text-[18px] text-center text-negro">Sombra 🖤</div>
+                        <div class="text-[12px] text-gris text-center font-bold">Macho · 5 años · Lleva 3 meses en
+                            tránsito</div>
+                    </div>
+                    <a href="contacto.html"
+                        class="block w-full text-center bg-oxido text-blanco border-[3px] border-negro rounded-xl py-3 px-5 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro truncate">Apadrinar
+                        a Sombra 💙</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ESTADÍSTICAS DEL RESCATE -->
+        <div class="banda-stats">
+            <div class="stat-item">
+                <div class="stat-numero">87</div>
+                <div class="stat-etiqueta">Gatitos en tránsito</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-numero">34</div>
+                <div class="stat-etiqueta">Familias transitoiras</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-numero">$240K</div>
+                <div class="stat-etiqueta">Gastado en vets este año</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-numero">12</div>
+                <div class="stat-etiqueta">Donantes activos</div>
+            </div>
+        </div>
+
+        <componente-newsletter></componente-newsletter>
+        <componente-footer></componente-footer>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="src/js/globales.js"></script>
+    <script>
+        // Lógica de la página de ayuda y donaciones
+        createApp({
+            components: {
+                'componente-navbar': Navbar,
+                'componente-footer': Footer,
+                'componente-newsletter': Newsletter,
+            },
+            data() {
+                return {
+                    donado: false,
+                    // Meta de donación del mes (en pesos)
+                    donacionRecaudada: 52000,
+                    montoSeleccionado: 500,
+                    // Montos rápidos de donación
+                    montos: [200, 500, 1000, 2000],
+                    // Actividades de voluntariado
+                    actividades: [
+                        'Socialización de gatitos tímidos',
+                        'Traslados a veterinarios',
+                        'Eventos de adopción presenciales',
+                        'Difusión en redes sociales',
+                        'Fotografía de los gatitos',
+                        'Visitas de seguimiento post-adopción',
+                    ],
+                };
+            },
+            computed: {
+                // Calcula el porcentaje de la meta de donación
+                progresoDonacion() {
+                    return Math.round((this.donacionRecaudada / 80000) * 100);
+                },
+            },
+            methods: {
+                // Simula una donación (solo frontend)
+                donar() {
+                    this.donacionRecaudada += this.montoSeleccionado;
+                    this.donado = true;
+                    setTimeout(() => { this.donado = false; }, 4000);
+                },
+            },
+        }).mount('#app');
+    </script>
+</body>
+
+</html>

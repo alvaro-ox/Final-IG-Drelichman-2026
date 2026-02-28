@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créditos — GatoHogar</title>
+    <meta name="description" content="Créditos del proyecto GatoHogar. Trabajo final de Informática General.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:ital,wght@0,400;0,600;0,800;0,900;1,400;1,800&family=Permanent+Marker&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="src/css/estilos.css">
+
+</head>
+
+<body>
+    <div id="app">
+        <!-- Navbar oculta para darle todo el protagonismo a la tarjeta -->
+        <componente-navbar></componente-navbar>
+
+        <div class="min-h-screen bg-negro flex items-center justify-center py-[60px] px-6 relative overflow-hidden">
+            <div
+                class="absolute text-[500px] opacity-[0.03] -top-[100px] -right-[100px] pointer-events-none rotate-[25deg] select-none">
+                🐾</div>
+            <!-- Stickers de fondo -->
+            <span class="sticker st1" style="color:var(--miel); opacity:0.15;">⭐</span>
+            <span class="sticker st3" style="color:var(--ambar); opacity:0.15;">🌿</span>
+
+            <div
+                class="bg-blanco border-[5px] border-negro rounded-[28px] py-10 px-7 sm:py-[60px] sm:px-12 shadow-[12px_12px_0_var(--miel)] max-w-[600px] w-full text-center relative">
+                <!-- Sello -->
+                <div
+                    class="hidden sm:flex absolute -top-6 -right-6 bg-oxido text-blanco border-[4px] border-negro rounded-full w-[88px] h-[88px] items-center justify-center font-[Permanent_Marker] text-[11px] text-center rotate-[15deg] shadow-[4px_4px_0_#1C1410] leading-tight">
+                    Trabajo<br>Final<br>2026</div>
+
+                <!-- Logo del proyecto -->
+                <div
+                    class="font-lilita text-[40px] sm:text-[52px] text-oxido mb-1 flex items-center justify-center gap-2">
+                    GatoHogar <span>🐱</span>
+                </div>
+                <div class="font-[Permanent_Marker] text-[18px] text-gris mb-9">Adoptá · No compres</div>
+
+                <hr class="border-none border-t-[3px] border-dashed border-durazno my-8">
+
+                <!-- Datos del autor -->
+                <div class="font-lilita text-[30px] sm:text-[40px] text-negro mb-2">{{ nombre }}</div>
+
+                <p class="text-[16px] text-marron font-bold mb-1.5"><strong
+                        class="text-negro font-black">Materia:</strong> {{ materia }}</p>
+                <p class="text-[16px] text-marron font-bold mb-1.5"><strong
+                        class="text-negro font-black">Comisión:</strong> {{ comision }}</p>
+                <p class="text-[16px] text-marron font-bold mb-1.5"><strong class="text-negro font-black">Año:</strong>
+                    {{ anio }} &nbsp;·&nbsp; <strong class="text-negro font-black">Turno:</strong> {{ turno }}</p>
+                <p class="text-[16px] text-marron font-bold mb-1.5"><strong
+                        class="text-negro font-black">Docente:</strong> {{ docente }}</p>
+
+                <hr class="border-none border-t-[3px] border-dashed border-durazno my-8">
+
+                <!-- Tecnologías utilizadas -->
+                <p class="text-[13px] font-black uppercase tracking-[0.1em] text-gris mb-3">Hecho con</p>
+                <div class="flex gap-2.5 justify-center flex-wrap mt-7 mb-8">
+                    <span
+                        class="bg-crema border-[3px] border-negro rounded-full py-1.5 px-4 text-[13px] font-black text-negro shadow-[3px_3px_0_#1C1410]">📝
+                        HTML5</span>
+                    <span
+                        class="bg-crema border-[3px] border-negro rounded-full py-1.5 px-4 text-[13px] font-black text-negro shadow-[3px_3px_0_#1C1410]">🎨
+                        CSS3</span>
+                    <span
+                        class="bg-crema border-[3px] border-negro rounded-full py-1.5 px-4 text-[13px] font-black text-negro shadow-[3px_3px_0_#1C1410]">⚡
+                        Vue.js 3</span>
+                    <span
+                        class="bg-crema border-[3px] border-negro rounded-full py-1.5 px-4 text-[13px] font-black text-negro shadow-[3px_3px_0_#1C1410]">💨
+                        Tailwind CSS</span>
+                    <span
+                        class="bg-crema border-[3px] border-negro rounded-full py-1.5 px-4 text-[13px] font-black text-negro shadow-[3px_3px_0_#1C1410]">💛
+                        JavaScript</span>
+                </div>
+
+                <p class="text-[16px] font-bold mb-1.5 text-gris text-sm">Todos los frameworks vía CDN · Sin Node.js</p>
+
+                <hr class="border-none border-t-[3px] border-dashed border-durazno my-8">
+
+                <div class="font-[Permanent_Marker] text-[20px] text-oxido italic mt-2">"Cada gato merece un hogar" 🐾
+                </div>
+
+                <a href="index.html"
+                    class="inline-block bg-oxido text-blanco border-[3px] border-negro rounded-xl py-3 px-6 font-nunito font-black text-[16px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 text-center hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro truncate mt-7">Ver
+                    el sitio 🐈</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="src/js/globales.js"></script>
+    <script>
+        // Datos del autor del proyecto
+        createApp({
+            components: {
+                'componente-navbar': Navbar,
+            },
+            data() {
+                return {
+                    nombre: 'Drelichman',
+                    materia: 'Informática General',
+                    comision: 'FIG1',
+                    anio: 2026,
+                    turno: 'Noche',
+                    docente: 'Drelichman',
+                };
+            },
+        }).mount('#app');
+    </script>
+</body>
+
+</html>
