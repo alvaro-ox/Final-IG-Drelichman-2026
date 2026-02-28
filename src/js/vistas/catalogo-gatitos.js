@@ -5,8 +5,7 @@ createApp({
     components: {
         'componente-navbar': Navbar,
         'componente-footer': Footer,
-        'componente-newsletter': Newsletter,
-    },
+        },
     data() {
         return {
             // Filtra gatitos (0–1 año) directamente desde la base de datos central

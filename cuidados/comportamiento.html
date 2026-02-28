@@ -27,7 +27,7 @@
     <div id="app">
         <componente-navbar></componente-navbar>
 
-        <div
+        <header
             class="py-14 px-6 md:py-20 md:px-10 pb-[60px] relative overflow-hidden text-center bg-[linear-gradient(135deg,#9C27B0,#6A1B9A)]">
             <div
                 class="absolute text-[300px] opacity-[0.06] -top-10 -right-[30px] pointer-events-none rotate-[20deg] select-none">
@@ -36,7 +36,7 @@
                 Comportamiento Felino 🧠</h1>
             <p class="text-[18px] text-white/85 max-w-[650px] mx-auto mb-8 font-semibold leading-relaxed relative z-10">
                 Entender a tu gato es el primer paso para una convivencia increíble. Aprendé a "hablar gato".</p>
-        </div>
+        </header>
 
         <!-- LENGUAJE CORPORAL -->
         <section class="py-14 md:py-20 px-6 md:px-10 bg-blanco">
@@ -48,12 +48,13 @@
             </div>
             <div
                 class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-5 max-w-[1000px] mx-auto">
-                <div class="bg-crema border-[3px] border-negro rounded-2xl p-5 shadow-[4px_4px_0_#1C1410] transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410]"
+                <article
+                    class="bg-crema border-[3px] border-negro rounded-2xl p-5 shadow-[4px_4px_0_#1C1410] transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410]"
                     v-for="(sig, i) in senialesCuerpo" :key="i">
                     <span class="text-[36px] mb-2.5 block">{{ sig.emoji }}</span>
                     <h4 class="font-lilita text-[17px] text-negro mb-1.5">{{ sig.titulo }}</h4>
                     <p class="text-[13px] text-marron leading-relaxed font-semibold">{{ sig.descripcion }}</p>
-                </div>
+                </article>
             </div>
         </section>
 
@@ -68,18 +69,20 @@
             </div>
 
             <div>
-                <div class="bg-blanco border-[4px] border-negro rounded-2xl mb-4 shadow-[5px_5px_0_#1C1410] max-w-[800px] mx-auto overflow-hidden cursor-pointer transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[7px_7px_0_#1C1410]"
+                <article
+                    class="bg-blanco border-[4px] border-negro rounded-2xl mb-4 shadow-[5px_5px_0_#1C1410] max-w-[800px] mx-auto overflow-hidden cursor-pointer transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[7px_7px_0_#1C1410]"
                     v-for="(item, i) in acordeon" :key="i" @click="item.abierto = !item.abierto">
-                    <div
+                    <section
                         class="p-5 md:px-6 md:py-5 flex justify-between items-center font-lilita text-[18px] md:text-[20px] text-negro">
                         <span>{{ item.pregunta }}</span>
                         <span>{{ item.abierto ? '▲' : '▼' }}</span>
-                    </div>
-                    <div class="px-5 pb-5 md:px-6 text-[14px] md:text-[15px] text-marron leading-relaxed font-semibold"
+                    </section>
+                    <section
+                        class="px-5 pb-5 md:px-6 text-[14px] md:text-[15px] text-marron leading-relaxed font-semibold"
                         v-show="item.abierto">
                         {{ item.respuesta }}
-                    </div>
-                </div>
+                    </section>
+                </article>
             </div>
         </section>
 
@@ -93,7 +96,7 @@
             </div>
             <div
                 class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-7 max-w-[900px] mx-auto">
-                <div v-for="(err, i) in errores" :key="i"
+                <article v-for="(err, i) in errores" :key="i"
                     class="bg-marron border-[3px] border-miel rounded-[20px] p-7 shadow-[5px_5px_0_var(--miel)] relative transition-all duration-200 hover:-translate-y-1 hover:rotate-0"
                     :class="[i % 2 === 0 ? '-rotate-[1.5deg]' : 'rotate-[1deg]']">
                     <div class="text-[36px] mb-2.5">{{ err.icono }}</div>
@@ -101,11 +104,10 @@
                         NO: {{ err.error }}</h4>
                     <p class="text-[15px] text-durazno leading-relaxed not-italic font-semibold">✅ SÍ: {{ err.correcto
                         }}</p>
-                </div>
+                </article>
             </div>
         </section>
 
-        <componente-newsletter></componente-newsletter>
         <componente-footer></componente-footer>
     </div>
 

@@ -5,7 +5,6 @@ createApp({
     components: {
         'componente-navbar': Navbar,
         'componente-footer': Footer,
-        'componente-newsletter': Newsletter,
     },
     data() {
         return {
@@ -20,6 +19,7 @@ createApp({
             // Filtrados directamente desde la base de datos central
             gatosAdultos: GATOS.filter(g => g.edad === 'adulto'),
             gatosSenior: GATOS.filter(g => g.edad === 'senior'),
+            PREFIJO_RUTA_GLOBAL,
         };
     },
 }).mount('#app');

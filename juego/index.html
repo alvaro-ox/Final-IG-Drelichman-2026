@@ -27,7 +27,7 @@
     <div id="app">
         <componente-navbar></componente-navbar>
 
-        <div class="min-h-[calc(100vh-120px)] bg-crema py-10 px-5 flex flex-col items-center">
+        <main class="min-h-[calc(100vh-120px)] bg-crema py-10 px-5 flex flex-col items-center">
             <!-- Título -->
             <div class="font-[Permanent_Marker] text-[clamp(28px,5vw,44px)] text-oxido text-center mb-1.5">🐾 Wordle
                 Felino</div>
@@ -65,7 +65,7 @@
             </div>
 
             <!-- Leyenda -->
-            <div class="flex gap-4 flex-wrap justify-center mb-5">
+            <aside class="flex gap-4 flex-wrap justify-center mb-5" aria-label="Leyenda">
                 <div class="flex items-center gap-1.5 text-[13px] font-bold text-negro">
                     <div
                         class="w-7 h-7 border-[3px] border-negro rounded-md flex items-center justify-center text-[10px] font-black text-white bg-[#4CAF50]">
@@ -84,7 +84,7 @@
                         C</div>
                     <span>No está en la palabra</span>
                 </div>
-            </div>
+            </aside>
 
             <!-- Teclado virtual -->
             <div class="flex flex-col gap-2 items-center mb-6" v-if="!juegoTerminado">
@@ -111,7 +111,7 @@
                 <button
                     class="inline-block bg-oxido text-blanco border-[3px] border-negro rounded-xl py-2.5 px-5 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 text-center hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro max-w-full truncate"
                     @click="reiniciarJuego">Jugar de nuevo 🔄</button>
-                <a href="..//"
+                <a href="../catalogo/index.html"
                     class="inline-block bg-crema text-negro border-[3px] border-negro rounded-xl py-2.5 px-5 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 text-center hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-miel max-w-full truncate">Ver
                     al {{ palabraSecreta }} real 🐱</a>
             </div>
@@ -120,7 +120,7 @@
             <div class="mt-5 text-[14px] font-extrabold text-gris" v-if="!juegoTerminado">
                 Intento {{ intentoActual + 1 }} de {{ maxIntentos }}
             </div>
-        </div>
+        </main>
 
         <componente-footer></componente-footer>
     </div>

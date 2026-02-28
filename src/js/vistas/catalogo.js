@@ -5,7 +5,7 @@ createApp({
     components: {
         'componente-navbar': Navbar,
         'componente-footer': Footer,
-        'componente-newsletter': Newsletter,
+        'componente-galeria': GaleriaModal,
     },
     data() {
         return {
@@ -20,21 +20,27 @@ createApp({
                 { valor: 'macho', etiqueta: '♂ Machos' },
                 { valor: 'hembra', etiqueta: '♀ Hembras' },
             ],
-            // Referencia a la base de datos centralizada
             gatos: GATOS,
+            // Galería modal
+            galeriaVisible: false,
+            galeriaIndice: 0,
+            PREFIJO_RUTA_GLOBAL,
         };
     },
     computed: {
-        // Filtra los gatos según el filtro activo
         gatosFiltrados() {
             if (this.filtroActivo === 'todos') return this.gatos;
             return this.gatos.filter(g => g.edad === this.filtroActivo || g.sexo === this.filtroActivo);
         },
     },
     methods: {
-        // Muestra el modal de consulta para un gato
         consultarAdopcion(gato) {
             this.gatoSeleccionado = gato;
+        },
+        abrirGaleria(indice) {
+            // En catálogo usamos el índice dentro de gatosFiltrados
+            this.galeriaIndice = indice;
+            this.galeriaVisible = true;
         },
     },
 }).mount('#app');

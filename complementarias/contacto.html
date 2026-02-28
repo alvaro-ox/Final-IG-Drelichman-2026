@@ -27,7 +27,7 @@
     <div id="app">
         <componente-navbar></componente-navbar>
 
-        <div class="bg-negro py-14 px-6 md:py-20 md:px-10 pb-[60px] relative overflow-hidden text-center">
+        <header class="bg-negro py-14 px-6 md:py-20 md:px-10 pb-[60px] relative overflow-hidden text-center">
             <div
                 class="absolute text-[300px] opacity-[0.06] -top-10 -right-[30px] pointer-events-none rotate-[20deg] select-none">
                 📬</div>
@@ -35,13 +35,13 @@
             </h1>
             <p class="text-[18px] text-white/85 max-w-[650px] mx-auto mb-8 font-semibold leading-relaxed relative z-10">
                 ¿Tenés una consulta, querés reportar un gato o simplemente saludar? ¡Estamos acá!</p>
-        </div>
+        </header>
 
         <section class="bg-crema">
             <div
                 class="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-8 md:gap-12 max-w-[1000px] mx-auto py-10 px-6 md:py-20 md:px-10">
                 <!-- INFORMACIÓN DE CONTACTO -->
-                <div>
+                <address>
                     <h2 class="font-lilita text-[32px] text-negro mb-5">¿Cómo llegamos?</h2>
                     <p class="text-[16px] text-marron leading-relaxed font-semibold mb-8">Respondemos consultas de lunes
                         a viernes de 10h a 20h. Los fines de semana también estamos, pero un poco más lentos 🐾.</p>
@@ -90,10 +90,10 @@
                             <span class="text-gris font-semibold">Lun-Vie: 10h-20h / Sáb-Dom: 12h-18h</span>
                         </div>
                     </div>
-                </div>
+                </address>
 
                 <!-- FORMULARIO -->
-                <div class="bg-blanco border-[4px] border-negro rounded-3xl p-7 md:p-10 shadow-[8px_8px_0_#1C1410]">
+                <section class="bg-blanco border-[4px] border-negro rounded-3xl p-7 md:p-10 shadow-[8px_8px_0_#1C1410]">
                     <h2 class="font-lilita text-[26px] text-negro mb-7">Escribinos ✉️</h2>
 
                     <div v-if="!enviado">
@@ -157,11 +157,10 @@
                             class="inline-block bg-crema text-negro border-[3px] border-negro rounded-xl py-3 px-5 font-nunito font-black text-[16px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 text-center hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-miel truncate">Enviar
                             otro mensaje</button>
                     </div>
-                </div>
+                </section>
             </div>
         </section>
 
-        <componente-newsletter></componente-newsletter>
         <componente-footer></componente-footer>
     </div>
 

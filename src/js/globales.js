@@ -1,3 +1,7 @@
+// Configuración global de rutas
+const scriptTagGlobal = document.querySelector('script[src*="globales.js"]');
+const PREFIJO_RUTA_GLOBAL = scriptTagGlobal && scriptTagGlobal.getAttribute('src').startsWith('../') ? '../' : '';
+
 /**
  * GatoHogar — Lógica JavaScript compartida con Vue.js
  * Navbar, footer y componentes comunes
@@ -112,12 +116,6 @@ const Footer = {
         <div>
           <div class="font-lilita text-[36px] text-miel mb-3">GatoHogar 🐱</div>
           <p class="text-[14px] text-gris leading-relaxed mb-5 max-w-[260px]">Conectamos gatos con sus familias para siempre. Porque cada gatito merece un hogar lleno de amor, snacks y sol en la ventana.</p>
-          <div class="flex gap-2.5">
-            <a href="#" class="w-10 h-10 border-[3px] border-gris rounded-[10px] flex items-center justify-center text-[18px] cursor-pointer transition-all duration-150 no-underline hover:border-miel hover:bg-miel hover:scale-110 hover:-rotate-6">📸</a>
-            <a href="#" class="w-10 h-10 border-[3px] border-gris rounded-[10px] flex items-center justify-center text-[18px] cursor-pointer transition-all duration-150 no-underline hover:border-miel hover:bg-miel hover:scale-110 hover:-rotate-6">🐦</a>
-            <a href="#" class="w-10 h-10 border-[3px] border-gris rounded-[10px] flex items-center justify-center text-[18px] cursor-pointer transition-all duration-150 no-underline hover:border-miel hover:bg-miel hover:scale-110 hover:-rotate-6">📘</a>
-            <a href="#" class="w-10 h-10 border-[3px] border-gris rounded-[10px] flex items-center justify-center text-[18px] cursor-pointer transition-all duration-150 no-underline hover:border-miel hover:bg-miel hover:scale-110 hover:-rotate-6">🎵</a>
-          </div>
         </div>
         <div>
           <h4 class="font-nunito font-black text-[14px] tracking-widest uppercase text-miel mb-4">Adoptar</h4>
@@ -156,43 +154,88 @@ const Footer = {
   `,
 };
 
-// Componente de newsletter reutilizable
-const Newsletter = {
-  data() {
-    return {
-      correo: '',
-      enviado: false,
-    };
+
+
+
+// ============ COMPONENTE GALERÍA MODAL ============
+const GaleriaModal = {
+  props: {
+    gatos: { type: Array, required: true },
+    indice: { type: Number, required: true },
+    visible: { type: Boolean, required: true },
   },
-  methods: {
-    // Simula el envío del formulario de newsletter
-    suscribirse() {
-      if (this.correo && this.correo.includes('@')) {
-        this.enviado = true;
-        this.correo = '';
-        setTimeout(() => { this.enviado = false; }, 4000);
-      }
+  emits: ['cerrar', 'anterior', 'siguiente'],
+  computed: {
+    gatoActual() {
+      return this.gatos[this.indice] || null;
+    },
+    hayAnterior() {
+      return this.indice > 0;
+    },
+    haySiguiente() {
+      return this.indice < this.gatos.length - 1;
     },
   },
   template: `
-    <section class="bg-miel border-y-[4px] border-negro py-[72px] px-10 text-center relative overflow-hidden before:content-['📬'] before:absolute before:text-[260px] before:opacity-5 before:-left-10 before:-top-10 before:pointer-events-none">
-      <h2 class="font-lilita text-[clamp(28px,4vw,48px)] text-negro mb-3">¿Querés saber cuando llegan nuevos gatitos? 📬</h2>
-      <p class="text-[16px] text-marron font-semibold mb-9">Suscribite y sé el primero en enterarte. No spam, solo gatitos.</p>
-      <div v-if="!enviado" class="flex gap-3 justify-center flex-wrap">
-        <input
-          class="w-[300px] max-w-full border-[4px] border-negro rounded-[14px] px-[22px] py-[14px] font-nunito text-[16px] font-bold bg-blanco text-negro shadow-[4px_4px_0_#1C1410] outline-none placeholder:text-gris focus:bg-crema"
-          type="email"
-          v-model="correo"
-          placeholder="tu@email.com"
-          @keyup.enter="suscribirse"
-        >
-        <button class="bg-oxido text-blanco border-[4px] border-negro rounded-2xl px-7 py-3.5 font-nunito font-black text-[16px] cursor-pointer shadow-[5px_5px_0_#1C1410] transition-all duration-150 inline-block hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[8px_8px_0_#1C1410] hover:bg-ambar hover:text-negro" @click="suscribirse">¡Avisame! 🐾</button>
+    <teleport to="body">
+      <div v-if="visible && gatoActual"
+        class="fixed inset-0 z-[2000] flex items-center justify-center"
+        @click.self="$emit('cerrar')">
+        <!-- Fondo oscuro -->
+        <div class="absolute inset-0 bg-negro/80 backdrop-blur-sm"></div>
+        <!-- Tarjeta modal -->
+        <div class="relative z-10 bg-crema border-[4px] border-negro rounded-[24px] shadow-[12px_12px_0_#1C1410] w-[95vw] max-w-[860px] mx-2 overflow-hidden flex flex-col" style="max-height:92vh">
+          <!-- Imagen -->
+          <div class="relative bg-negro w-full overflow-hidden flex-1" style="min-height:240px;max-height:70vh">
+            <img
+              :src="PREFIJO_RUTA_GLOBAL + gatoActual.imagen"
+              :alt="gatoActual.nombre"
+              class="w-full h-full object-contain"
+            >
+            <!-- Botón cerrar -->
+            <button
+              @click="$emit('cerrar')"
+              class="absolute top-3 right-3 bg-blanco border-[3px] border-negro rounded-full w-10 h-10 flex items-center justify-center font-black text-[18px] cursor-pointer shadow-[3px_3px_0_#1C1410] hover:bg-ambar transition-all duration-150 z-10">
+              ✕
+            </button>
+            <!-- Navegación: Anterior -->
+            <button
+              v-if="hayAnterior"
+              @click="$emit('anterior')"
+              class="absolute left-4 top-1/2 -translate-y-1/2 bg-miel text-negro border-[4px] border-negro rounded-2xl w-14 h-14 flex items-center justify-center font-black text-[24px] cursor-pointer shadow-[5px_5px_0_#1C1410] hover:bg-ambar hover:-translate-x-1 hover:-translate-y-[calc(50%+4px)] hover:shadow-[8px_8px_0_#1C1410] transition-all duration-150 z-10">
+              ‹
+            </button>
+            <!-- Navegación: Siguiente -->
+            <button
+              v-if="haySiguiente"
+              @click="$emit('siguiente')"
+              class="absolute right-4 top-1/2 -translate-y-1/2 bg-miel text-negro border-[4px] border-negro rounded-2xl w-14 h-14 flex items-center justify-center font-black text-[24px] cursor-pointer shadow-[5px_5px_0_#1C1410] hover:bg-ambar hover:translate-x-1 hover:-translate-y-[calc(50%-4px)] hover:shadow-[8px_8px_0_#1C1410] transition-all duration-150 z-10">
+              ›
+            </button>
+          </div>
+          <!-- Info del gato -->
+          <div class="p-4 md:p-6 text-center">
+            <h2 class="font-lilita text-[30px] text-negro mb-1">{{ gatoActual.nombre }}</h2>
+            <p class="text-[13px] text-gris font-bold mb-3">{{ gatoActual.meta }}</p>
+            <!-- Indicadores de posición -->
+            <div class="flex justify-center gap-2">
+              <span
+                v-for="(g, i) in gatos" :key="i"
+                class="w-2.5 h-2.5 rounded-full border-2 border-negro transition-all duration-150 cursor-pointer"
+                :class="i === indice ? 'bg-oxido' : 'bg-gris/30'"
+                @click="$emit('ir', i)">
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div v-else class="font-nunito font-black text-[24px] text-negro">
-        ¡Listo! Te avisamos cuando lleguen nuevos gatitos 🐾✨
-      </div>
-    </section>
+    </teleport>
   `,
+  data() {
+    return {
+      PREFIJO_RUTA_GLOBAL,
+    };
+  },
 };
 
 // ============ AUTO-INICIALIZACIÓN (OPCIONAL) ============
@@ -206,7 +249,6 @@ document.addEventListener('DOMContentLoaded', () => {
       components: {
         'componente-navbar': Navbar,
         'componente-footer': Footer,
-        'componente-newsletter': Newsletter,
       },
     }).mount('#app');
   }

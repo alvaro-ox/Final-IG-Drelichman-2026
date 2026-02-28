@@ -5,8 +5,7 @@ createApp({
     components: {
         'componente-navbar': Navbar,
         'componente-footer': Footer,
-        'componente-newsletter': Newsletter,
-    },
+        },
     data() {
         return {
             // Tips rápidos de cuidado

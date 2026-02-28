@@ -28,16 +28,16 @@
         <componente-navbar></componente-navbar>
 
         <!-- HERO -->
-        <div class="bg-oxido py-14 px-6 md:py-20 md:px-10 pb-[60px] relative overflow-hidden text-center">
+        <header class="bg-oxido py-14 px-6 md:py-20 md:px-10 pb-[60px] relative overflow-hidden text-center">
             <div
                 class="absolute text-[300px] opacity-[0.06] -top-10 -right-[30px] pointer-events-none rotate-[20deg] select-none">
                 🗺️</div>
             <h1 class="font-lilita text-[clamp(40px,6vw,72px)] text-blanco mb-4 relative z-10 leading-tight">Proceso
                 paso a paso 🗺️</h1>
             <p class="text-[18px] text-white/85 max-w-[650px] mx-auto mb-8 font-semibold leading-relaxed relative z-10">
-                El camino desde que te enamorás de un gatito hasta que lo abrazás en tu casa. Simple, transparente y
+                El camino desde que te enamorarás de un gatito hasta que lo abrazás en tu casa. Simple, transparente y
                 lleno de amor.</p>
-        </div>
+        </header>
 
         <!-- LÍNEA DE TIEMPO -->
         <section class="py-14 md:py-20 px-6 md:px-10 bg-blanco">
@@ -55,7 +55,7 @@
                     <div
                         class="bg-oxido border-[4px] border-negro rounded-full w-[60px] h-[60px] md:w-[80px] md:h-[80px] flex items-center justify-center font-lilita text-[22px] md:text-[28px] text-blanco shadow-[4px_4px_0_#1C1410] shrink-0 relative z-10">
                         {{ i + 1 }}</div>
-                    <div
+                    <article
                         class="bg-crema border-[4px] border-negro rounded-[20px] p-5 md:p-7 shadow-[6px_6px_0_#1C1410] flex-1 transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[8px_8px_0_#1C1410]">
                         <h3 class="font-lilita text-[20px] md:text-[22px] text-negro mb-2.5 flex items-center gap-2.5">
                             {{ paso.icono }} {{ paso.titulo }}</h3>
@@ -64,7 +64,7 @@
                         <span
                             class="inline-block bg-miel border-2 border-negro rounded-full px-3 py-1 text-[12px] font-black text-negro mt-3">⏱
                             {{ paso.tiempo }}</span>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -81,12 +81,13 @@
 
             <div
                 class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-6 max-w-[1000px] mx-auto">
-                <div class="bg-blanco border-[3px] border-negro rounded-2xl p-6 text-center shadow-[5px_5px_0_#1C1410] transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[7px_7px_0_#1C1410]"
+                <article
+                    class="bg-blanco border-[3px] border-negro rounded-2xl p-6 text-center shadow-[5px_5px_0_#1C1410] transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[7px_7px_0_#1C1410]"
                     v-for="(tip, i) in tips" :key="i">
                     <span class="text-[40px] block mb-3">{{ tip.icono }}</span>
                     <h4 class="font-lilita text-[17px] text-negro mb-2">{{ tip.titulo }}</h4>
                     <p class="text-[13px] text-marron font-semibold leading-relaxed">{{ tip.descripcion }}</p>
-                </div>
+                </article>
             </div>
         </section>
 
@@ -99,12 +100,11 @@
                 esperando! 🐈</h2>
             <p class="text-[17px] text-white/85 mb-8 font-semibold relative z-10">El primer paso es elegir a tu gatito.
                 Entrá al Gatálogo y encontrá a tu compañero.</p>
-            <a href="..//"
+            <a href="../catalogo/index.html"
                 class="bg-blanco text-negro border-[4px] border-negro rounded-2xl px-7 py-3.5 font-nunito font-black text-[16px] shadow-[5px_5px_0_#1C1410] no-underline transition-all duration-150 inline-block hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[8px_8px_0_#1C1410] hover:bg-durazno relative z-10">Ver
                 el Gatálogo completo 🐾</a>
         </section>
 
-        <componente-newsletter></componente-newsletter>
         <componente-footer></componente-footer>
     </div>
 

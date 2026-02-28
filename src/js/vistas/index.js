@@ -5,12 +5,21 @@ createApp({
     components: {
         'componente-navbar': Navbar,
         'componente-footer': Footer,
-        'componente-newsletter': Newsletter,
+        'componente-galeria': GaleriaModal,
     },
     data() {
         return {
-            // Mostrar los gatos actuales como destacados en el home
+            PREFIJO_RUTA_GLOBAL,
             gatitosDestacados: GATOS,
+            // Galería modal
+            galeriaVisible: false,
+            galeriaIndice: 0,
         };
+    },
+    methods: {
+        abrirGaleria(indice) {
+            this.galeriaIndice = indice;
+            this.galeriaVisible = true;
+        },
     },
 }).mount('#app');

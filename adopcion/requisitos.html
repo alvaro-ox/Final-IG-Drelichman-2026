@@ -27,7 +27,7 @@
         <componente-navbar></componente-navbar>
 
         <!-- HERO -->
-        <div class="bg-oxido py-14 px-6 md:py-20 md:px-10 pb-[60px] relative overflow-hidden text-center">
+        <header class="bg-oxido py-14 px-6 md:py-20 md:px-10 pb-[60px] relative overflow-hidden text-center">
             <div
                 class="absolute text-[300px] opacity-[0.06] -top-10 -right-[30px] pointer-events-none rotate-[20deg] select-none">
                 📋</div>
@@ -36,7 +36,7 @@
             <p class="text-[18px] text-white/85 max-w-[650px] mx-auto mb-8 font-semibold leading-relaxed relative z-10">
                 Para nosotros, la adopción es un compromiso de por vida. Por eso pedimos algunas condiciones básicas que
                 garantizan el bienestar del gatito.</p>
-        </div>
+        </header>
 
         <!-- REQUISITOS -->
         <section class="py-14 md:py-20 px-6 md:px-10 bg-blanco">
@@ -48,7 +48,7 @@
 
             <div
                 class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-7 max-w-[1100px] mx-auto">
-                <div v-for="(req, i) in requisitos" :key="i"
+                <article v-for="(req, i) in requisitos" :key="i"
                     class="bg-crema border-[4px] border-negro rounded-[20px] p-7 shadow-[6px_6px_0_#1C1410] relative transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[9px_9px_0_#1C1410] hover:rotate-0"
                     :class="[i % 2 === 0 ? '-rotate-[1deg]' : 'rotate-[1deg]']">
                     <div
@@ -57,7 +57,7 @@
                     <span class="text-[48px] block mb-3">{{ req.icono }}</span>
                     <h3 class="font-lilita text-[20px] text-negro mb-2.5">{{ req.titulo }}</h3>
                     <p class="text-[14px] text-marron font-semibold leading-relaxed">{{ req.descripcion }}</p>
-                </div>
+                </article>
             </div>
         </section>
 
@@ -72,14 +72,14 @@
             </div>
 
             <div class="max-w-[700px] mx-auto">
-                <div class="flex items-start gap-4 py-5 border-b border-marron last:border-b-0"
+                <article class="flex items-start gap-4 py-5 border-b border-marron last:border-b-0"
                     v-for="(c, i) in compromisos" :key="i">
                     <span class="text-[32px] shrink-0">{{ c.icono }}</span>
-                    <div>
+                    <section>
                         <h4 class="font-lilita text-[18px] text-miel mb-1.5">{{ c.titulo }}</h4>
                         <p class="text-[14px] text-gris font-semibold leading-relaxed">{{ c.descripcion }}</p>
-                    </div>
-                </div>
+                    </section>
+                </article>
             </div>
         </section>
 
@@ -90,16 +90,15 @@
             <p class="text-[17px] text-marron mb-8 font-semibold relative z-10">¡Entonces el próximo paso es conocer a
                 tu futuro compañero peludo!</p>
             <div class="flex gap-4 justify-center flex-wrap relative z-10">
-                <a href="..//"
+                <a href="index.html"
                     class="bg-blanco text-negro border-[4px] border-negro rounded-2xl px-7 py-3.5 font-nunito font-black text-[16px] shadow-[5px_5px_0_#1C1410] no-underline transition-all duration-150 inline-block hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[7px_7px_0_#1C1410] hover:bg-durazno text-[15px]">←
                     Volver a Adoptar</a>
-                <a href="..//"
+                <a href="../catalogo/index.html"
                     class="bg-oxido text-blanco border-[4px] border-negro rounded-2xl px-7 py-3.5 font-nunito font-black text-[16px] shadow-[5px_5px_0_#1C1410] no-underline transition-all duration-150 inline-block hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[8px_8px_0_#1C1410] hover:bg-ambar hover:text-negro">Ver
                     gatitos disponibles 🐾</a>
             </div>
         </section>
 
-        <componente-newsletter></componente-newsletter>
         <componente-footer></componente-footer>
     </div>
 </body>

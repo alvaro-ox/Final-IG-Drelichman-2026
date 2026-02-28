@@ -23,7 +23,6 @@
     <script src="../src/js/vistas/catalogo.js" defer></script>
     <link rel="stylesheet" href="../src/css/estilos.css">
 
-
 </head>
 
 <body>
@@ -31,7 +30,7 @@
         <componente-navbar></componente-navbar>
 
         <!-- HERO -->
-        <div class="bg-marron py-14 px-6 md:py-20 md:px-10 pb-[60px] relative overflow-hidden text-center">
+        <header class="bg-marron py-14 px-6 md:py-20 md:px-10 pb-[60px] relative overflow-hidden text-center">
             <div
                 class="absolute text-[300px] opacity-[0.06] -top-10 -right-[30px] pointer-events-none rotate-[20deg] select-none">
                 📖</div>
@@ -40,19 +39,16 @@
             <p class="text-[18px] text-white/85 max-w-[650px] mx-auto mb-8 font-semibold leading-relaxed relative z-10">
                 Más de 200 gatitos esperan conocerte. Cada uno tiene su personalidad única. ¿Cuál te roba el corazón?
             </p>
-        </div>
+        </header>
 
         <!-- SUBCATEGORÍAS -->
-        <div class="pt-10 px-6 md:px-10 bg-crema flex gap-4 justify-center flex-wrap">
-            <a href="subpaginas/catalogo-gatitos.html"
-                class="bg-blanco border-[4px] border-negro rounded-[20px] py-5 px-7 no-underline flex items-center gap-3 shadow-[5px_5px_0_#1C1410] transition-all duration-200 font-lilita text-[18px] text-negro hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[8px_8px_0_#1C1410] hover:bg-miel">
-                🐾 <span>Gatitos (0-1 año)</span>
-            </a>
-            <a href="subpaginas/catalogo-adultos.html"
+        <nav aria-label="Subcategorías del catálogo"
+            class="pt-10 px-6 md:px-10 bg-crema flex gap-4 justify-center flex-wrap">
+            <a href="adultos.html"
                 class="bg-blanco border-[4px] border-negro rounded-[20px] py-5 px-7 no-underline flex items-center gap-3 shadow-[5px_5px_0_#1C1410] transition-all duration-200 font-lilita text-[18px] text-negro hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[8px_8px_0_#1C1410] hover:bg-miel">
                 🐱 <span>Adultos y Seniors</span>
             </a>
-        </div>
+        </nav>
 
         <!-- BARRA DE FILTROS -->
         <div
@@ -70,17 +66,18 @@
             <div
                 class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-8 max-w-[1200px] mx-auto relative z-10">
                 <template v-if="gatosFiltrados.length > 0">
-                    <div v-for="(gato, i) in gatosFiltrados" :key="gato.nombre"
+                    <article v-for="(gato, i) in gatosFiltrados" :key="gato.nombre"
                         class="bg-crema border-[4px] border-negro rounded-[20px] overflow-hidden shadow-[6px_6px_0_#1C1410] transition-all duration-200 relative hover:rotate-0 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_#1C1410] hover:z-20"
                         :class="[i % 2 === 0 ? 'rotate-[1deg]' : '-rotate-[1.5deg]']">
-                        <div class="h-[220px] relative overflow-hidden bg-crema group">
-                            <img :src="gato.imagen" :alt="gato.nombre"
+                        <div class="h-[220px] relative overflow-hidden bg-crema group cursor-pointer"
+                            @click="abrirGaleria(i)">
+                            <img :src="PREFIJO_RUTA_GLOBAL + gato.imagen" :alt="gato.nombre"
                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         </div>
-                        <div class="p-5">
-                            <div class="font-lilita text-[24px] text-negro mb-1.5 flex items-center gap-2">{{
-                                gato.nombre }}</div>
-                            <div class="text-[13px] text-gris font-bold mb-2.5">{{ gato.meta }}</div>
+                        <section class="p-5">
+                            <p class="font-lilita text-[24px] text-negro mb-1.5 flex items-center gap-2">{{
+                                gato.nombre }}</p>
+                            <p class="text-[13px] text-gris font-bold mb-2.5">{{ gato.meta }}</p>
                             <p class="text-[14px] text-marron leading-relaxed mb-4">{{ gato.descripcion }}</p>
                             <div class="flex gap-1.5 flex-wrap mb-4">
                                 <span
@@ -94,8 +91,8 @@
                                 @click="consultarAdopcion(gato)">
                                 ¡Quiero adoptarlo! 🐾
                             </button>
-                        </div>
-                    </div>
+                        </section>
+                    </article>
                 </template>
                 <div v-else class="text-center p-14 font-lilita text-[32px] text-gris col-span-full">
                     😿 No hay gatitos con ese filtro por ahora...
@@ -128,7 +125,12 @@
             </div>
         </div>
 
-        <componente-newsletter></componente-newsletter>
+        <!-- Galería modal de imágenes -->
+        <componente-galeria :gatos="gatosFiltrados" :indice="galeriaIndice" :visible="galeriaVisible"
+            @cerrar="galeriaVisible = false" @anterior="galeriaIndice > 0 && galeriaIndice--"
+            @siguiente="galeriaIndice < gatosFiltrados.length - 1 && galeriaIndice++" @ir="(i) => galeriaIndice = i">
+        </componente-galeria>
+
         <componente-footer></componente-footer>
     </div>
 

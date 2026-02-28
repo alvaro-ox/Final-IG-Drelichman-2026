@@ -26,7 +26,7 @@
     <div id="app">
         <componente-navbar></componente-navbar>
 
-        <div
+        <header
             class="bg-[linear-gradient(135deg,var(--oxido),var(--marron))] py-14 px-6 md:py-20 md:px-10 pb-[60px] relative overflow-hidden text-center">
             <div
                 class="absolute text-[300px] opacity-[0.06] -top-10 -right-[30px] pointer-events-none rotate-[20deg] select-none">
@@ -35,7 +35,7 @@
                 los Gatos! ❤️</h1>
             <p class="text-[18px] text-white/85 max-w-[650px] mx-auto mb-8 font-semibold leading-relaxed relative z-10">
                 No podés adoptar, pero podés marcar la diferencia de muchas otras formas. Cada gesto cuenta.</p>
-        </div>
+        </header>
 
         <!-- FORMAS DE AYUDAR -->
         <section class="py-14 md:py-[80px] px-6 md:px-10 bg-blanco">
@@ -48,7 +48,7 @@
             <div
                 class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-7 max-w-[1000px] mx-auto">
                 <!-- DONACIÓN -->
-                <div
+                <article
                     class="bg-crema border-[4px] border-negro rounded-[20px] py-9 px-7 shadow-[7px_7px_0_#1C1410] text-center transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[11px_11px_0_#1C1410]">
                     <span class="text-[60px] mb-4 block">💰</span>
                     <h2 class="font-lilita text-[24px] text-negro mb-3">Donación monetaria</h2>
@@ -57,23 +57,23 @@
 
                     <!-- Barra de progreso del mes -->
                     <p class="text-[13px] font-black text-left text-negro mb-1.5">Meta del mes: $80.000</p>
-                    <div
+                    <section
                         class="bg-crema border-[3px] border-negro rounded-full h-6 overflow-hidden my-3 shadow-[3px_3px_0_#1C1410]">
                         <div class="h-full bg-oxido rounded-full transition-[width] duration-1500 ease-out"
                             :style="'width:' + progresoDonacion + '%'"></div>
-                    </div>
+                    </section>
                     <p class="text-[13px] font-black text-gris text-right">{{ donacionRecaudada | moneda }} recaudados
                         ({{ progresoDonacion }}%)</p>
 
                     <!-- Montos rápidos -->
-                    <div class="flex gap-2.5 justify-center flex-wrap mt-4 mb-5">
+                    <section class="flex gap-2.5 justify-center flex-wrap mt-4 mb-5">
                         <button v-for="monto in montos" :key="monto"
                             class="border-[3px] border-negro rounded-xl py-2.5 px-5 font-nunito font-black text-[16px] cursor-pointer shadow-[3px_3px_0_#1C1410] transition-all duration-150 text-negro hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#1C1410]"
                             :class="[montoSeleccionado === monto ? 'bg-miel -translate-x-0.5 -translate-y-0.5 shadow-[5px_5px_0_#1C1410]' : 'bg-crema']"
                             @click="montoSeleccionado = monto">
                             ${{ monto.toLocaleString('es-AR') }}
                         </button>
-                    </div>
+                    </section>
 
                     <button v-if="!donado"
                         class="block w-full bg-oxido text-blanco border-[3px] border-negro rounded-xl py-3 px-5 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro truncate"
@@ -83,10 +83,10 @@
                     <div v-else class="font-lilita text-[20px] text-oxido py-3">
                         ¡Gracias por tu donación! 🐾✨
                     </div>
-                </div>
+                </article>
 
                 <!-- VOLUNTARIADO -->
-                <div
+                <article
                     class="bg-crema border-[4px] border-negro rounded-[20px] py-9 px-7 shadow-[7px_7px_0_#1C1410] text-center transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[11px_11px_0_#1C1410]">
                     <span class="text-[60px] mb-4 block">🙋</span>
                     <h2 class="font-lilita text-[24px] text-negro mb-3">Voluntariado</h2>
@@ -98,13 +98,13 @@
                             <span class="shrink-0">🐾</span> {{ act }}
                         </li>
                     </ul>
-                    <a href="..//"
+                    <a href="../complementarias/contacto.html"
                         class="block w-full text-center bg-oxido text-blanco border-[3px] border-negro rounded-xl py-3 px-5 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro truncate">Quiero
                         ser voluntario 🙋</a>
-                </div>
+                </article>
 
                 <!-- APADRINAMIENTO -->
-                <div
+                <article
                     class="bg-crema border-[4px] border-negro rounded-[20px] py-9 px-7 shadow-[7px_7px_0_#1C1410] text-center transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[11px_11px_0_#1C1410]">
                     <span class="text-[60px] mb-4 block">🌟</span>
                     <h2 class="font-lilita text-[24px] text-negro mb-3">Apadrinamiento</h2>
@@ -112,38 +112,37 @@
                         tiene familia y cubrí sus gastos mensuales mientras espera su hogar definitivo.</p>
                     <div class="bg-blanco border-[3px] border-negro rounded-xl p-5 mb-5 shadow-[3px_3px_0_#1C1410]">
                         <div class="text-[48px] text-center mb-2">🙀</div>
-                        <div class="font-lilita text-[18px] text-center text-negro">Sombra 🖤</div>
-                        <div class="text-[12px] text-gris text-center font-bold">Macho · 5 años · Lleva 3 meses en
-                            tránsito</div>
+                        <p class="font-lilita text-[18px] text-center text-negro">Sombra 🖤</p>
+                        <p class="text-[12px] text-gris text-center font-bold">Macho · 5 años · Lleva 3 meses en
+                            tránsito</p>
                     </div>
-                    <a href="..//"
+                    <a href="../catalogo/index.html"
                         class="block w-full text-center bg-oxido text-blanco border-[3px] border-negro rounded-xl py-3 px-5 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro truncate">Apadrinar
                         a Sombra 💙</a>
-                </div>
+                </article>
             </div>
         </section>
 
         <!-- ESTADÍSTICAS DEL RESCATE -->
-        <div class="banda-stats">
-            <div class="stat-item">
-                <div class="stat-numero">87</div>
-                <div class="stat-etiqueta">Gatitos en tránsito</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-numero">34</div>
-                <div class="stat-etiqueta">Familias transitoiras</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-numero">$240K</div>
-                <div class="stat-etiqueta">Gastado en vets este año</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-numero">12</div>
-                <div class="stat-etiqueta">Donantes activos</div>
-            </div>
-        </div>
+        <section class="banda-stats" aria-label="Estadísticas del rescate">
+            <article class="stat-item">
+                <p class="stat-numero">87</p>
+                <p class="stat-etiqueta">Gatitos en tránsito</p>
+            </article>
+            <article class="stat-item">
+                <p class="stat-numero">34</p>
+                <p class="stat-etiqueta">Familias transitoiras</p>
+            </article>
+            <article class="stat-item">
+                <p class="stat-numero">$240K</p>
+                <p class="stat-etiqueta">Gastado en vets este año</p>
+            </article>
+            <article class="stat-item">
+                <p class="stat-numero">12</p>
+                <p class="stat-etiqueta">Donantes activos</p>
+            </article>
+        </section>
 
-        <componente-newsletter></componente-newsletter>
         <componente-footer></componente-footer>
     </div>
 

@@ -5,8 +5,7 @@ createApp({
     components: {
         'componente-navbar': Navbar,
         'componente-footer': Footer,
-        'componente-newsletter': Newsletter,
-    },
+        },
     data() {
         return {
             // Señales del lenguaje corporal del gato
