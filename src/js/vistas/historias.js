@@ -10,6 +10,13 @@ createApp({
     data() {
         return {
             categoriaActiva: 'todas',
+            categorias: [
+                { valor: 'todas', etiqueta: '💕 Todas' },
+                { valor: 'gatito', etiqueta: '🍼 Cachorritos' },
+                { valor: 'adulto', etiqueta: '🐱 Adultos' },
+                { valor: 'senior', etiqueta: '💛 Seniors' },
+                { valor: 'especial', etiqueta: '🎗️ Casos especiales' },
+            ],
             // Galería de historias de éxito
             historias: [
                 {

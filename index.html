@@ -14,6 +14,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="src/js/globales.js"></script>
+    <script src="src/js/datos-gatos.js"></script>
+    <script src="src/js/vistas/index.js" defer></script>
     <link rel="stylesheet" href="src/css/estilos.css">
 
 
@@ -64,10 +66,10 @@
                     llenas de amor.
                 </p>
                 <div class="flex gap-4 flex-wrap justify-center md:justify-start px-4 md:px-0">
-                    <a href="catalogo.html"
+                    <a href="catalogo/index.html"
                         class="bg-oxido text-blanco border-[4px] border-negro rounded-2xl px-7 md:px-8 py-3.5 md:py-4 font-nunito font-black text-[16px] md:text-[18px] shadow-[5px_5px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[8px_8px_0_#1C1410] hover:bg-ambar hover:text-negro">Ver
                         gatitos 🐈</a>
-                    <a href="subpaginas/adopcion-proceso.html"
+                    <a href="adopcion/index.html"
                         class="bg-blanco text-negro border-[4px] border-negro rounded-2xl px-7 md:px-8 py-3.5 md:py-4 font-nunito font-black text-[16px] md:text-[18px] shadow-[5px_5px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[8px_8px_0_#1C1410] hover:bg-durazno">¿Cómo
                         adoptar? →</a>
                 </div>
@@ -129,181 +131,32 @@
 
             <div
                 class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] justify-items-center sm:justify-items-stretch gap-8 max-w-[1200px] mx-auto">
-                <!-- Gato 1 -->
-                <div
-                    class="bg-crema border-[4px] border-negro rounded-[20px] overflow-hidden shadow-[6px_6px_0_#1C1410] transition-all duration-200 relative -rotate-[1.5deg] hover:rotate-0 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_#1C1410] hover:z-10 w-full max-w-[340px] sm:max-w-none">
+                <div v-for="(gato, i) in gatitosDestacados" :key="gato.nombre"
+                    class="bg-crema border-[4px] border-negro rounded-[20px] overflow-hidden shadow-[6px_6px_0_#1C1410] transition-all duration-200 relative hover:rotate-0 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_#1C1410] hover:z-10 w-full max-w-[340px] sm:max-w-none"
+                    :class="[i % 2 === 0 ? '-rotate-[1.5deg]' : 'rotate-[1deg]']">
                     <div
-                        class="h-[180px] flex items-center justify-center text-[80px] relative overflow-hidden bg-[linear-gradient(135deg,#E07B2A,#F0A84E)]">
-                        🐈
-                        <div
-                            class="absolute top-3 left-3 text-[11px] font-black uppercase tracking-widest px-3 py-1 border-[2.5px] border-negro rounded-full shadow-[2px_2px_0_#1C1410] bg-[#4CAF50] text-white">
-                            Disponible</div>
+                        class="h-[220px] relative overflow-hidden bg-crema group text-[80px] flex items-center justify-center">
+                        <template v-if="gato.imagen">
+                            <img :src="gato.imagen" :alt="gato.nombre"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        </template>
+                        <template v-else>
+                            {{ gato.emoji }}
+                        </template>
                     </div>
                     <div class="p-5">
-                        <div class="font-lilita text-[24px] text-negro mb-1.5 flex items-center gap-2">Naranja 🍊</div>
-                        <div class="text-[13px] text-gris font-bold mb-2.5">Macho · 3 años · Castrado</div>
-                        <p class="text-[14px] text-marron leading-relaxed mb-4">El rey del sofá. Le encanta el sol de la
-                            tarde y te va a reclamar mimo constantemente. Ronronea como un motor.</p>
+                        <div class="font-lilita text-[24px] text-negro mb-1.5 flex items-center gap-2">{{ gato.nombre }}
+                        </div>
+                        <div class="text-[13px] text-gris font-bold mb-2.5">{{ gato.meta }}</div>
+                        <p class="text-[14px] text-marron leading-relaxed mb-4">{{ gato.descripcion }}</p>
                         <div class="flex gap-1.5 flex-wrap mb-4">
                             <span
-                                class="bg-durazno border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-extrabold text-negro">Cariñoso</span>
-                            <span
-                                class="bg-durazno border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-extrabold text-negro">Tranquilo</span>
-                            <span
-                                class="bg-negro border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-extrabold text-miel">Interior</span>
+                                class="bg-durazno border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-extrabold text-negro"
+                                v-for="tag in gato.tags" :key="tag"
+                                :class="{ 'bg-negro text-miel': tag.startsWith('⚡') || tag.startsWith('🏠') }">{{ tag
+                                }}</span>
                         </div>
-                        <a href="subpaginas/catalogo-adultos.html"
-                            class="block w-full text-center bg-oxido text-blanco border-[3px] border-negro rounded-xl p-3 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro">¡Quiero
-                            adoptarlo! 🐾</a>
-                    </div>
-                </div>
-
-                <!-- Gato 2 -->
-                <div
-                    class="bg-crema border-[4px] border-negro rounded-[20px] overflow-hidden shadow-[6px_6px_0_#1C1410] transition-all duration-200 relative rotate-[1deg] hover:rotate-0 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_#1C1410] hover:z-10 w-full max-w-[340px] sm:max-w-none">
-                    <div
-                        class="h-[180px] flex items-center justify-center text-[80px] relative overflow-hidden bg-[linear-gradient(135deg,#C4520A,#E07B2A)]">
-                        🐈‍⬛
-                        <div
-                            class="absolute top-3 left-3 text-[11px] font-black uppercase tracking-widest px-3 py-1 border-[2.5px] border-negro rounded-full shadow-[2px_2px_0_#1C1410] bg-oxido text-white">
-                            ¡Nuevo!</div>
-                    </div>
-                    <div class="p-5">
-                        <div class="font-lilita text-[24px] text-negro mb-1.5 flex items-center gap-2">Noche 🌙</div>
-                        <div class="text-[13px] text-gris font-bold mb-2.5">Hembra · 1 año · Esterilizada</div>
-                        <p class="text-[14px] text-marron leading-relaxed mb-4">Misteriosa y elegante. Llega al galope
-                            cuando escucha la bolsa de snacks. Muy juguetona con plumas y hebras.</p>
-                        <div class="flex gap-1.5 flex-wrap mb-4">
-                            <span
-                                class="bg-durazno border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-extrabold text-negro">Juguetona</span>
-                            <span
-                                class="bg-durazno border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-extrabold text-negro">Activa</span>
-                            <span
-                                class="bg-negro border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-extrabold text-miel">Sin
-                                niños chicos</span>
-                        </div>
-                        <a href="subpaginas/catalogo-gatitos.html"
-                            class="block w-full text-center bg-oxido text-blanco border-[3px] border-negro rounded-xl p-3 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro">¡Quiero
-                            adoptarla! 🐾</a>
-                    </div>
-                </div>
-
-                <!-- Gato 3 -->
-                <div
-                    class="bg-crema border-[4px] border-negro rounded-[20px] overflow-hidden shadow-[6px_6px_0_#1C1410] transition-all duration-200 relative -rotate-[1.5deg] hover:rotate-0 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_#1C1410] hover:z-10 w-full max-w-[340px] sm:max-w-none">
-                    <div
-                        class="h-[180px] flex items-center justify-center text-[80px] relative overflow-hidden bg-[linear-gradient(135deg,#F5C98A,#FBF0DC)]">
-                        😺
-                        <div
-                            class="absolute top-3 left-3 text-[11px] font-black uppercase tracking-widest px-3 py-1 border-[2.5px] border-negro rounded-full shadow-[2px_2px_0_#1C1410] bg-[#4CAF50] text-white">
-                            Disponible</div>
-                    </div>
-                    <div class="p-5">
-                        <div class="font-lilita text-[24px] text-negro mb-1.5 flex items-center gap-2">Canela 🍂</div>
-                        <div class="text-[13px] text-gris font-bold mb-2.5">Hembra · 4 años · Esterilizada</div>
-                        <p class="text-[14px] text-marron leading-relaxed mb-4">Calico pura y orgullosa. Tiene un pelaje
-                            increíble y una personalidad aún más increíble. Le gusta la compañía tranquila.</p>
-                        <div class="flex gap-1.5 flex-wrap mb-4">
-                            <span
-                                class="bg-durazno border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-extrabold text-negro">Tranquila</span>
-                            <span
-                                class="bg-durazno border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-extrabold text-negro">Calico</span>
-                            <span
-                                class="bg-negro border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-extrabold text-miel">Adulta
-                                mayor</span>
-                        </div>
-                        <a href="subpaginas/catalogo-adultos.html"
-                            class="block w-full text-center bg-oxido text-blanco border-[3px] border-negro rounded-xl p-3 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro">¡Quiero
-                            adoptarla! 🐾</a>
-                    </div>
-                </div>
-
-                <!-- Gato 4 -->
-                <div
-                    class="bg-crema border-[4px] border-negro rounded-[20px] overflow-hidden shadow-[6px_6px_0_#1C1410] transition-all duration-200 relative rotate-[1deg] hover:rotate-0 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_#1C1410] hover:z-10 w-full max-w-[340px] sm:max-w-none">
-                    <div
-                        class="h-[180px] flex items-center justify-center text-[80px] relative overflow-hidden bg-[linear-gradient(135deg,#3D2E25,#9E8E83)]">
-                        🐱
-                        <div
-                            class="absolute top-3 left-3 text-[11px] font-black uppercase tracking-widest px-3 py-1 border-[2.5px] border-negro rounded-full shadow-[2px_2px_0_#1C1410] bg-miel text-negro">
-                            Reservado</div>
-                    </div>
-                    <div class="p-5">
-                        <div class="font-lilita text-[24px] text-negro mb-1.5 flex items-center gap-2">Tormenta ⚡</div>
-                        <div class="text-[13px] text-gris font-bold mb-2.5">Macho · 8 meses · Sin castrar</div>
-                        <p class="text-[14px] text-marron leading-relaxed mb-4">Pura energía. Salta, corre, escala todo
-                            lo que puede. Necesita juego y estimulación. ¡Un compañero de aventuras!</p>
-                        <div class="flex gap-1.5 flex-wrap mb-4">
-                            <span
-                                class="bg-durazno border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-extrabold text-negro">Energético</span>
-                            <span
-                                class="bg-durazno border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-extrabold text-negro">Curioso</span>
-                            <span
-                                class="bg-negro border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-extrabold text-miel">Cachorrito</span>
-                        </div>
-                        <button
-                            class="block w-full text-center bg-gris text-blanco border-[3px] border-negro rounded-xl p-3 font-nunito font-black text-[15px] cursor-not-allowed shadow-[4px_4px_0_#1C1410]">Reservado
-                            🔒</button>
-                    </div>
-                </div>
-
-                <!-- Gato 5 -->
-                <div
-                    class="bg-crema border-[4px] border-negro rounded-[20px] overflow-hidden shadow-[6px_6px_0_#1C1410] transition-all duration-200 relative -rotate-[1.5deg] hover:rotate-0 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_#1C1410] hover:z-10 w-full max-w-[340px] sm:max-w-none">
-                    <div
-                        class="h-[180px] flex items-center justify-center text-[80px] relative overflow-hidden bg-[linear-gradient(135deg,#F0A84E,#F5C98A)]">
-                        😸
-                        <div
-                            class="absolute top-3 left-3 text-[11px] font-black uppercase tracking-widest px-3 py-1 border-[2.5px] border-negro rounded-full shadow-[2px_2px_0_#1C1410] bg-[#4CAF50] text-white">
-                            Disponible</div>
-                    </div>
-                    <div class="p-5">
-                        <div class="font-lilita text-[24px] text-negro mb-1.5 flex items-center gap-2">Galleta 🍪</div>
-                        <div class="text-[13px] text-gris font-bold mb-2.5">Hembra · 2 años · Esterilizada</div>
-                        <p class="text-[14px] text-marron leading-relaxed mb-4">Ama a los humanos, los perros y hasta
-                            las visitas. Duerme abrazada y te despierta con ronroneos. La gata más social.</p>
-                        <div class="flex gap-1.5 flex-wrap mb-4">
-                            <span
-                                class="bg-durazno border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-extrabold text-negro">Sociable</span>
-                            <span
-                                class="bg-durazno border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-extrabold text-negro">Con
-                                perros ✓</span>
-                            <span
-                                class="bg-negro border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-extrabold text-miel">Con
-                                niños ✓</span>
-                        </div>
-                        <a href="subpaginas/catalogo-adultos.html"
-                            class="block w-full text-center bg-oxido text-blanco border-[3px] border-negro rounded-xl p-3 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro">¡Quiero
-                            adoptarla! 🐾</a>
-                    </div>
-                </div>
-
-                <!-- Gato 6 -->
-                <div
-                    class="bg-crema border-[4px] border-negro rounded-[20px] overflow-hidden shadow-[6px_6px_0_#1C1410] transition-all duration-200 relative rotate-[1deg] hover:rotate-0 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_#1C1410] hover:z-10 w-full max-w-[340px] sm:max-w-none">
-                    <div
-                        class="h-[180px] flex items-center justify-center text-[80px] relative overflow-hidden bg-[linear-gradient(135deg,#1C1410,#3D2E25)]">
-                        🙀
-                        <div
-                            class="absolute top-3 left-3 text-[11px] font-black uppercase tracking-widest px-3 py-1 border-[2.5px] border-negro rounded-full shadow-[2px_2px_0_#1C1410] bg-oxido text-white">
-                            ¡Nuevo!</div>
-                    </div>
-                    <div class="p-5">
-                        <div class="font-lilita text-[24px] text-negro mb-1.5 flex items-center gap-2">Sombra 🖤</div>
-                        <div class="text-[13px] text-gris font-bold mb-2.5">Macho · 5 años · Castrado</div>
-                        <p class="text-[14px] text-marron leading-relaxed mb-4">Tardó en confiar pero cuando lo hace, te
-                            elige para siempre. Busca una persona paciente que entienda que el amor llega a su tiempo.
-                        </p>
-                        <div class="flex gap-1.5 flex-wrap mb-4">
-                            <span
-                                class="bg-durazno border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-extrabold text-negro">Tímido</span>
-                            <span
-                                class="bg-durazno border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-extrabold text-negro">Leal</span>
-                            <span
-                                class="bg-negro border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-extrabold text-miel">Hogar
-                                tranquilo</span>
-                        </div>
-                        <a href="subpaginas/catalogo-adultos.html"
+                        <a href="contacto/index.html"
                             class="block w-full text-center bg-oxido text-blanco border-[3px] border-negro rounded-xl p-3 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro">¡Quiero
                             adoptarlo! 🐾</a>
                     </div>
@@ -311,7 +164,7 @@
             </div>
 
             <div class="text-center mt-14">
-                <a href="catalogo.html"
+                <a href="catalogo/index.html"
                     class="bg-oxido text-blanco border-[4px] border-negro rounded-2xl px-7 py-3.5 font-nunito font-black text-[16px] shadow-[5px_5px_0_#1C1410] no-underline transition-all duration-150 inline-block hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[8px_8px_0_#1C1410] hover:bg-ambar hover:text-negro">Ver
                     todos los gatitos 🐾</a>
             </div>
@@ -373,7 +226,7 @@
             </div>
         </section>
 
-        <!-- TESTIMONIOS -->
+        <!-- TESTIMONIOS
         <section class="bg-negro py-14 md:py-20 px-6 md:px-10 relative overflow-hidden">
             <div
                 class="absolute text-[300px] opacity-[0.03] -bottom-[60px] -right-[60px] pointer-events-none select-none">
@@ -435,7 +288,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <!-- NEWSLETTER -->
         <componente-newsletter></componente-newsletter>
@@ -444,10 +297,6 @@
         <componente-footer></componente-footer>
     </div>
 
-    <!-- Vue.js CDN -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <!-- JS compartido -->
-    <script src="src/js/globales.js"></script>
 </body>
 
 </html>

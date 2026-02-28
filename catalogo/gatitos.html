@@ -54,15 +54,33 @@
 
             <div
                 class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-8 max-w-[1200px] mx-auto relative z-10">
-                <div v-for="(gato, i) in gatitos" :key="gato.nombre"
+                <template v-if="gatitos.length === 0">
+                    <div class="col-span-full py-20 text-center">
+                        <div class="text-[80px] mb-5">😿</div>
+                        <h3 class="font-lilita text-[32px] text-marron mb-4">¡Oops! Por ahora no tenemos gatitos bebés
+                        </h3>
+                        <p class="text-[18px] text-marron max-w-[500px] mx-auto mb-8 font-semibold">
+                            Pero no te preocupes, nuestros gatos adultos y seniors tienen el mismo amor (y menos
+                            travesuras) para dar.
+                        </p>
+                        <a href="catalogo-adultos.html"
+                            class="inline-block bg-oxido text-blanco border-[4px] border-negro rounded-2xl px-8 py-4 font-nunito font-black text-[18px] shadow-[5px_5px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[8px_8px_0_#1C1410] hover:bg-ambar hover:text-negro">
+                            Ver adultos y seniors →
+                        </a>
+                    </div>
+                </template>
+                <div v-else v-for="(gato, i) in gatitos" :key="gato.nombre"
                     class="bg-crema border-[4px] border-negro rounded-[20px] overflow-hidden shadow-[6px_6px_0_#1C1410] transition-all duration-200 relative hover:rotate-0 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_#1C1410] hover:z-20"
                     :class="[i % 2 === 0 ? 'rotate-[1deg]' : '-rotate-[1.5deg]']">
-                    <div class="h-[180px] flex items-center justify-center text-[80px] relative overflow-hidden"
-                        :class="'grad-' + ((i % 6) + 1)">
-                        {{ gato.emoji }}
-                        <div class="absolute top-3 left-3 text-[11px] font-black uppercase tracking-[0.08em] px-3 py-1 border-[2.5px] border-negro rounded-full shadow-[2px_2px_0_#1C1410]"
-                            :class="{'bg-[#4CAF50] text-white': gato.estado === 'disponible', 'bg-miel text-negro': gato.estado === 'reservado', 'bg-oxido text-white': gato.estado === 'nuevo'}">
-                            {{ gato.etiqueta }}</div>
+                    <div
+                        class="h-[220px] relative overflow-hidden bg-crema group text-[80px] flex items-center justify-center">
+                        <template v-if="gato.imagen">
+                            <img :src="'../' + gato.imagen" :alt="gato.nombre"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        </template>
+                        <template v-else>
+                            {{ gato.emoji }}
+                        </template>
                     </div>
                     <div class="p-5">
                         <div class="font-lilita text-[24px] text-negro mb-1.5 flex items-center gap-2">{{ gato.nombre }}
@@ -76,7 +94,7 @@
                                 :class="{ 'bg-negro text-miel': tag.startsWith('⚡') || tag.startsWith('🏠') }">{{ tag
                                 }}</span>
                         </div>
-                        <a href="../contacto.html"
+                        <a href="..//"
                             class="block text-center w-full bg-oxido text-blanco border-[3px] border-negro rounded-xl p-3 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro max-w-full truncate">¡Quiero
                             adoptarlo! 🐾</a>
                     </div>

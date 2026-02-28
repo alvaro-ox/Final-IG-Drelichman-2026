@@ -62,12 +62,15 @@
                 <div v-for="(gato, i) in gatosAdultos" :key="gato.nombre"
                     class="bg-crema border-[4px] border-negro rounded-[20px] overflow-hidden shadow-[6px_6px_0_#1C1410] transition-all duration-200 relative hover:rotate-0 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_#1C1410] hover:z-20"
                     :class="[i % 2 === 0 ? 'rotate-[1deg]' : '-rotate-[1.5deg]']">
-                    <div class="h-[180px] flex items-center justify-center text-[80px] relative overflow-hidden"
-                        :class="'grad-' + ((i % 6) + 1)">
-                        {{ gato.emoji }}
-                        <div class="absolute top-3 left-3 text-[11px] font-black uppercase tracking-[0.08em] px-3 py-1 border-[2.5px] border-negro rounded-full shadow-[2px_2px_0_#1C1410]"
-                            :class="{'bg-[#4CAF50] text-white': gato.estado === 'disponible', 'bg-miel text-negro': gato.estado === 'reservado', 'bg-oxido text-white': gato.estado === 'nuevo'}">
-                            {{ gato.etiqueta }}</div>
+                    <div
+                        class="h-[220px] relative overflow-hidden bg-crema group text-[80px] flex items-center justify-center">
+                        <template v-if="gato.imagen">
+                            <img :src="'../' + gato.imagen" :alt="gato.nombre"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        </template>
+                        <template v-else>
+                            {{ gato.emoji }}
+                        </template>
                     </div>
                     <div class="p-5">
                         <div class="font-lilita text-[24px] text-negro mb-1.5 flex items-center gap-2">{{ gato.nombre }}
@@ -103,10 +106,16 @@
                     class="bg-crema border-[4px] border-negro rounded-[20px] overflow-hidden shadow-[6px_6px_0_#1C1410] transition-all duration-200 relative hover:rotate-0 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_#1C1410] hover:z-20"
                     :class="[i % 2 === 0 ? '-rotate-[1.5deg]' : 'rotate-[1deg]']">
                     <div
-                        class="h-[180px] flex items-center justify-center text-[80px] relative overflow-hidden bg-[linear-gradient(45deg,var(--miel),var(--durazno))]">
-                        {{ gato.emoji }}
+                        class="h-[220px] relative overflow-hidden bg-crema group text-[80px] flex items-center justify-center">
+                        <template v-if="gato.imagen">
+                            <img :src="'../' + gato.imagen" :alt="gato.nombre"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        </template>
+                        <template v-else>
+                            {{ gato.emoji }}
+                        </template>
                         <div
-                            class="absolute top-3 left-3 text-[11px] font-black uppercase tracking-[0.08em] px-3 py-1 border-[2.5px] border-negro rounded-full shadow-[2px_2px_0_#1C1410] bg-[#4CAF50] text-white">
+                            class="absolute top-3 left-3 text-[11px] font-black uppercase tracking-[0.08em] px-3 py-1 border-[2.5px] border-negro rounded-full shadow-[2px_2px_0_#1C1410] z-10 bg-[#4CAF50] text-white">
                             Disponible</div>
                     </div>
                     <div class="p-5">
@@ -119,7 +128,7 @@
                                 class="bg-durazno border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-black"
                                 v-for="tag in gato.tags" :key="tag">{{ tag }}</span>
                         </div>
-                        <a href="../contacto.html"
+                        <a href="..//"
                             class="block text-center w-full bg-oxido text-blanco border-[3px] border-negro rounded-xl p-3 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro max-w-full truncate">¡Quiero
                             adoptarlo! 🐾</a>
                     </div>

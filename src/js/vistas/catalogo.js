@@ -14,7 +14,6 @@ createApp({
             // Opciones de filtrado
             filtros: [
                 { valor: 'todos', etiqueta: '🐾 Todos' },
-                { valor: 'disponible', etiqueta: '✅ Disponibles' },
                 { valor: 'gatito', etiqueta: '🍼 Gatitos' },
                 { valor: 'adulto', etiqueta: '🐱 Adultos' },
                 { valor: 'senior', etiqueta: '💛 Seniors' },
@@ -29,7 +28,6 @@ createApp({
         // Filtra los gatos según el filtro activo
         gatosFiltrados() {
             if (this.filtroActivo === 'todos') return this.gatos;
-            if (this.filtroActivo === 'disponible') return this.gatos.filter(g => g.estado === 'disponible' || g.estado === 'nuevo');
             return this.gatos.filter(g => g.edad === this.filtroActivo || g.sexo === this.filtroActivo);
         },
     },

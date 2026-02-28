@@ -36,11 +36,15 @@ const datosSitio = {
 // Componente navbar reutilizable
 const Navbar = {
   data() {
-    const enSubpagina = window.location.pathname.includes('/subpaginas/');
-    const prefijoRuta = enSubpagina ? '../' : '';
+    const scriptTag = document.querySelector('script[src*="globales.js"]');
+    const prefijoRuta = scriptTag && scriptTag.getAttribute('src').startsWith('../') ? '../' : '';
+    const pathSegments = window.location.pathname.split('/');
+    const paginaActual = pathSegments.pop() || 'index.html';
+    const carpetaActual = pathSegments.pop() || '';
     return {
       menuAbierto: false,
-      paginaActual: window.location.pathname.split('/').pop() || 'index.html',
+      paginaActual,
+      carpetaActual,
       prefijoRuta,
     };
   },
@@ -50,8 +54,9 @@ const Navbar = {
       this.menuAbierto = !this.menuAbierto;
     },
     // Verifica si el link es el activo
-    esActivo(href) {
-      return this.paginaActual === href;
+    esActivo(carpeta) {
+      if (carpeta === 'index.html') return this.paginaActual === 'index.html' && this.carpetaActual !== 'adopcion' && this.carpetaActual !== 'catalogo' && this.carpetaActual !== 'cuidados' && this.carpetaActual !== 'historias' && this.carpetaActual !== 'ayuda' && this.carpetaActual !== 'juego' && this.carpetaActual !== 'contacto';
+      return this.carpetaActual === carpeta;
     },
   },
   template: `
@@ -81,13 +86,13 @@ const Navbar = {
         <button class="md:hidden bg-transparent border-[3px] border-negro rounded-[10px] px-3 py-2 text-[20px] cursor-pointer text-negro" @click="alternarMenu" aria-label="Menú">☰</button>
 
         <ul class="hidden md:flex gap-2 list-none items-center m-0 p-0" :class="{ '!flex absolute top-full left-0 right-0 flex-col bg-blanco border-b-[4px] border-negro p-5 gap-1 shadow-[0_6px_0_#1C1410]': menuAbierto }">
-          <li><a :href="prefijoRuta + 'adopcion.html'" class="font-nunito font-extrabold text-[14px] text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('adopcion.html') || esActivo('adopcion-requisitos.html') || esActivo('adopcion-proceso.html') }">Adoptá</a></li>
-          <li><a :href="prefijoRuta + 'catalogo.html'" class="font-nunito font-extrabold text-[14px] text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('catalogo.html') || esActivo('catalogo-gatitos.html') || esActivo('catalogo-adultos.html') }">Gatálogo</a></li>
-          <li><a :href="prefijoRuta + 'cuidados.html'" class="font-nunito font-extrabold text-[14px] text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('cuidados.html') || esActivo('cuidados-salud.html') || esActivo('cuidados-comportamiento.html') }">Cuidados</a></li>
-          <li><a :href="prefijoRuta + 'historias.html'" class="font-nunito font-extrabold text-[14px] text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('historias.html') }">Historias</a></li>
-          <li><a :href="prefijoRuta + 'ayuda.html'" class="font-nunito font-extrabold text-[14px] text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('ayuda.html') }">Ayuda</a></li>
-          <li><a :href="prefijoRuta + 'juega.html'" class="font-nunito font-extrabold text-[14px] text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('juega.html') }">¡Juega!</a></li>
-          <li class="hidden sm:block"><a :href="prefijoRuta + 'catalogo.html'" class="font-nunito font-black text-[14px] text-blanco bg-oxido no-underline py-2 px-5 border-[3px] border-negro rounded-full shadow-[3px_3px_0_#1C1410] transition-all duration-150 inline-block hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[5px_5px_0_#1C1410] hover:bg-ambar hover:text-negro">¡Quiero adoptar! 🐾</a></li>
+          <li><a :href="prefijoRuta + 'adopcion/index.html'" class="font-nunito font-extrabold text-[14px] text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('adopcion') }">Adoptá</a></li>
+          <li><a :href="prefijoRuta + 'catalogo/index.html'" class="font-nunito font-extrabold text-[14px] text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('catalogo') }">Gatálogo</a></li>
+          <li><a :href="prefijoRuta + 'cuidados/index.html'" class="font-nunito font-extrabold text-[14px] text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('cuidados') }">Cuidados</a></li>
+          <li><a :href="prefijoRuta + 'historias/index.html'" class="font-nunito font-extrabold text-[14px] text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('historias') }">Historias</a></li>
+          <li><a :href="prefijoRuta + 'ayuda/index.html'" class="font-nunito font-extrabold text-[14px] text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('ayuda') }">Ayuda</a></li>
+          <li><a :href="prefijoRuta + 'juego/index.html'" class="font-nunito font-extrabold text-[14px] text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('juego') }">¡Juega!</a></li>
+          <li class="hidden sm:block"><a :href="prefijoRuta + 'catalogo/index.html'" class="font-nunito font-black text-[14px] text-blanco bg-oxido no-underline py-2 px-5 border-[3px] border-negro rounded-full shadow-[3px_3px_0_#1C1410] transition-all duration-150 inline-block hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[5px_5px_0_#1C1410] hover:bg-ambar hover:text-negro">¡Quiero adoptar! 🐾</a></li>
         </ul>
       </nav>
     </div>
@@ -97,8 +102,8 @@ const Navbar = {
 // Componente footer reutilizable
 const Footer = {
   data() {
-    const enSubpagina = window.location.pathname.includes('/subpaginas/');
-    const prefijoRuta = enSubpagina ? '../' : '';
+    const scriptTag = document.querySelector('script[src*="globales.js"]');
+    const prefijoRuta = scriptTag && scriptTag.getAttribute('src').startsWith('../') ? '../' : '';
     return { prefijoRuta };
   },
   template: `
@@ -117,29 +122,29 @@ const Footer = {
         <div>
           <h4 class="font-nunito font-black text-[14px] tracking-widest uppercase text-miel mb-4">Adoptar</h4>
           <ul class="list-none p-0 m-0">
-            <li class="mb-2"><a :href="prefijoRuta + 'catalogo.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Ver gatitos</a></li>
-            <li class="mb-2"><a :href="prefijoRuta + 'adopcion.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Cómo funciona</a></li>
-            <li class="mb-2"><a :href="prefijoRuta + 'subpaginas/adopcion-requisitos.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Requisitos</a></li>
-            <li class="mb-2"><a :href="prefijoRuta + 'subpaginas/adopcion-proceso.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Paso a paso</a></li>
-            <li class="mb-2"><a :href="prefijoRuta + 'contacto.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Contacto</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'catalogo/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Ver gatitos</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'adopcion/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Cómo funciona</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'adopcion/requisitos.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Requisitos</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'adopcion/proceso.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Paso a paso</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'contacto/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Contacto</a></li>
           </ul>
         </div>
         <div>
           <h4 class="font-nunito font-black text-[14px] tracking-widest uppercase text-miel mb-4">Ayudar</h4>
           <ul class="list-none p-0 m-0">
-            <li class="mb-2"><a :href="prefijoRuta + 'ayuda.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Donar</a></li>
-            <li class="mb-2"><a :href="prefijoRuta + 'ayuda.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Voluntariado</a></li>
-            <li class="mb-2"><a :href="prefijoRuta + 'contacto.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Reportar un gato</a></li>
-            <li class="mb-2"><a :href="prefijoRuta + 'ayuda.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Apadrinar</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'ayuda/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Donar</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'ayuda/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Voluntariado</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'contacto/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Reportar un gato</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'ayuda/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Apadrinar</a></li>
           </ul>
         </div>
         <div>
           <h4 class="font-nunito font-black text-[14px] tracking-widest uppercase text-miel mb-4">GatoHogar</h4>
           <ul class="list-none p-0 m-0">
-            <li class="mb-2"><a :href="prefijoRuta + 'historias.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Historias</a></li>
-            <li class="mb-2"><a :href="prefijoRuta + 'juega.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">¡Juega!</a></li>
-            <li class="mb-2"><a :href="prefijoRuta + 'contacto.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Contacto</a></li>
-            <li class="mb-2"><a :href="prefijoRuta + 'creditos.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Créditos</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'historias/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Historias</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'juego/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">¡Juega!</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'contacto/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Contacto</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'creditos/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Créditos</a></li>
           </ul>
         </div>
       </div>
