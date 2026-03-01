@@ -8,13 +8,14 @@ createApp({
     },
     data() {
         return {
+            vacunaAbierta: null, // Control de estado para el acordeón en vista móvil
             // Calendario de vacunación felina
             vacunas: [
                 { edad: '8 semanas', vacuna: 'Triple Felina (FPV + FHV + FCV)', descripcion: 'Protege contra panleucopenia, herpesvirus y calicivirus.', frecuencia: 'Primera dosis' },
                 { edad: '12 semanas', vacuna: 'Triple Felina (Refuerzo)', descripcion: 'Segunda dosis para fortalecer la inmunidad.', frecuencia: 'Refuerzo' },
                 { edad: '16 semanas', vacuna: 'Antirrábica', descripcion: 'Obligatoria en muchas provincias. Protege también a las personas.', frecuencia: 'Anual' },
                 { edad: '1 año', vacuna: 'Triple Felina + Rabia', descripcion: 'Refuerzo anual de todas las vacunas básicas.', frecuencia: 'Anual' },
-                { edad: 'Adulto', vacuna: 'FeLV (opcional)', descripcion: 'Leucemia felina. Recomendada si tiene acceso al exterior o convive con otros gatos.', frecuencia: 'Anual' },
+                { edad: 'Cachorro/Adulto', vacuna: 'FeLV (opcional)', descripcion: 'Leucemia felina. Recomendada si tiene acceso al exterior o convive con otros gatos.', frecuencia: 'Anual' },
             ],
             // Pasos del plan de desparasitación
             pasos_desparasitacion: [

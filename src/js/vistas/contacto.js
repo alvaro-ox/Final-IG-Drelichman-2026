@@ -12,6 +12,7 @@ createApp({
 
         return {
             enviado: false,
+            enviando: false,
             errorMensaje: '',
             gatos: GATOS,
             nombreLimpio,
@@ -58,7 +59,7 @@ createApp({
         },
     },
     methods: {
-        enviarFormulario() {
+        async enviarFormulario() {
             if (!this.formularioValido) {
                 this.errorMensaje = 'Por favor completá todos los campos obligatorios.';
                 return;
@@ -79,8 +80,44 @@ createApp({
                 this.errorMensaje = 'El código postal debe tener exactamente 4 números.';
                 return;
             }
+
             this.errorMensaje = '';
-            this.enviado = true;
+            this.enviando = true;
+
+            // Credenciales de EmailJS del proyecto
+            const EMAILJS_SERVICE_ID = 'service_hc46ajk';
+            const EMAILJS_TEMPLATE_ID = 'template_fpr5f92';
+            const EMAILJS_PUBLIC_KEY = '5bbUGOA5bM_adXg5L';
+
+            try {
+                emailjs.init({
+                    publicKey: EMAILJS_PUBLIC_KEY,
+                });
+
+                // Preparamos los parámetros exactos que se inyectarán en la plantilla de EmailJS.
+                // Asegurate de que las variables {{...}} en tu plantilla coincidan con estas keys.
+                const templateParams = {
+                    nombre: this.formulario.nombre,
+                    apellido: this.formulario.apellido,
+                    user_email: this.formulario.email,
+                    telefono: `(${this.formulario.codigoArea}) ${this.formulario.telefono}`,
+                    direccion: this.formulario.direccion,
+                    codigo_postal: this.formulario.codigoPostal,
+                    gato_elegido: this.formulario.gatoElegido,
+                    tiene_otras_mascotas: this.formulario.tieneOtrasMascotas ? 'Sí' : 'No',
+                    tiene_patio: this.formulario.tienePatio ? 'Sí' : 'No',
+                    tuviste_gatos: this.formulario.tuvisteGatos ? 'Sí' : 'No',
+                    mensaje: this.formulario.mensaje || 'Ninguno'
+                };
+
+                await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+                this.enviado = true;
+            } catch (error) {
+                console.error("Error al enviar email:", error);
+                this.errorMensaje = 'Hubo un error al enviar el correo. Por favor, verificá la consola para más detalles.';
+            } finally {
+                this.enviando = false;
+            }
         },
         reiniciarFormulario() {
             this.enviado = false;

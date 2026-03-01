@@ -48,8 +48,9 @@
                 <span class="block text-center text-2xl mt-2.5 tracking-[6px]">💉 💉 💉</span>
             </div>
 
-            <div class="min-w-[37.5rem]">
-                <table class="w-full max-w-[50rem] mx-auto border-separate border-spacing-y-3">
+            <!-- Versión Desktop: Tabla -->
+            <div class="hidden md:block overflow-x-auto pb-4">
+                <table class="w-full max-w-[50rem] mx-auto border-separate border-spacing-y-3 min-w-[37.5rem]">
                     <thead>
                         <tr>
                             <th
@@ -69,20 +70,53 @@
                     <tbody>
                         <tr v-for="(vac, i) in vacunas" :key="i">
                             <td
-                                class="bg-blanco px-5 py-3.5 border-y-[3px] border-l-[3px] border-y-negro border-l-negro rounded-l-xl font-black text-negro text-sm align-middle">
+                                class="bg-blanco px-5 py-3.5 border-y-[3px] border-l-[3px] border-y-negro border-l-negro rounded-l-xl font-black text-negro text-sm align-middle shadow-[3px_3px_0_#1C1410] md:shadow-[4px_4px_0_#1C1410]">
                                 {{ vac.edad }}</td>
                             <td
-                                class="bg-blanco px-5 py-3.5 border-y-[3px] border-negro text-marron font-semibold text-sm align-middle">
+                                class="bg-blanco px-5 py-3.5 border-y-[3px] border-negro text-marron font-semibold text-sm align-middle shadow-[3px_3px_0_#1C1410] md:shadow-[4px_4px_0_#1C1410]">
                                 {{ vac.vacuna }}</td>
                             <td
-                                class="bg-blanco px-5 py-3.5 border-y-[3px] border-negro text-marron font-semibold text-sm align-middle">
+                                class="bg-blanco px-5 py-3.5 border-y-[3px] border-negro text-marron font-semibold text-sm align-middle shadow-[3px_3px_0_#1C1410] md:shadow-[4px_4px_0_#1C1410]">
                                 {{ vac.descripcion }}</td>
                             <td
-                                class="bg-blanco px-5 py-3.5 border-y-[3px] border-r-[3px] border-y-negro border-r-negro rounded-r-xl text-marron font-semibold text-sm align-middle">
+                                class="bg-blanco px-5 py-3.5 border-y-[3px] border-r-[3px] border-y-negro border-r-negro rounded-r-xl text-marron font-semibold text-sm align-middle shadow-[3px_3px_0_#1C1410] md:shadow-[4px_4px_0_#1C1410]">
                                 {{ vac.frecuencia }}</td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+
+            <!-- Versión Mobile: Acordeón -->
+            <div class="md:hidden flex flex-col gap-3">
+                <div v-for="(vac, i) in vacunas" :key="'acc-'+i"
+                    class="bg-blanco border-[3px] border-negro rounded-xl overflow-hidden shadow-[3px_3px_0_#1C1410] transition-all duration-200">
+                    <button @click="vacunaAbierta = vacunaAbierta === i ? null : i"
+                        class="w-full flex justify-between items-center p-4 bg-crema focus:outline-none hover:bg-miel transition-colors text-left">
+                        <span class="font-lilita text-lg text-negro">{{ vac.vacuna }}</span>
+                        <span class="text-oxido font-black text-xl transition-transform duration-200 shrink-0"
+                            :class="{'rotate-180': vacunaAbierta === i}">▼</span>
+                    </button>
+                    <!-- Contenido expansible -->
+                    <div v-show="vacunaAbierta === i"
+                        class="p-4 bg-blanco border-t-[3px] border-negro text-sm leading-relaxed text-left flex flex-col gap-3">
+                        <div>
+                            <strong
+                                class="font-nunito font-extrabold text-gris text-xs uppercase tracking-wider block mb-0.5">Edad:</strong>
+                            <span class="font-nunito font-bold text-negro text-base block">{{ vac.edad }}</span>
+                        </div>
+                        <div>
+                            <strong
+                                class="font-nunito font-extrabold text-gris text-xs uppercase tracking-wider block mb-0.5">¿Para
+                                qué sirve?:</strong>
+                            <span class="font-nunito font-bold text-negro text-base block">{{ vac.descripcion }}</span>
+                        </div>
+                        <div>
+                            <strong
+                                class="font-nunito font-extrabold text-gris text-xs uppercase tracking-wider block mb-0.5">Frecuencia:</strong>
+                            <span class="font-nunito font-bold text-negro text-base block">{{ vac.frecuencia }}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 

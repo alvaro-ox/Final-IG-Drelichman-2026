@@ -19,6 +19,8 @@
     <script src="../src/js/globales.js"></script>
     <!-- Base de datos de gatos -->
     <script src="../src/js/datos-gatos.js"></script>
+    <!-- EmailJS CDN -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <!-- Lógica de validación -->
     <script src="../src/js/vistas/validacion-contacto.js"></script>
     <script src="../src/js/vistas/contacto.js" defer></script>
@@ -106,7 +108,7 @@
                 <section class="bg-blanco border-[4px] border-negro rounded-3xl p-7 md:p-10 shadow-[8px_8px_0_#1C1410]">
 
                     <!-- FORMULARIO activo -->
-                    <div v-if="!enviado">
+                    <form v-if="!enviado" @submit.prevent="enviarFormulario" novalidate>
                         <h2 class="font-lilita text-[1.625rem] text-negro mb-7">Solicitud de adopción 🐾</h2>
 
                         <!-- DATOS PERSONALES -->
@@ -316,17 +318,17 @@
                         </fieldset>
 
                         <!-- BOTÓN ENVIAR -->
-                        <button
+                        <button type="submit"
                             class="block w-full bg-oxido text-blanco border-[3px] border-negro rounded-xl py-3.5 px-5 font-nunito font-black text-lg cursor-pointer shadow-[4px_4px_0_#1C1410] transition-all duration-150 text-center hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro"
-                            @click="enviarFormulario" :disabled="!formularioValido"
-                            :class="!formularioValido ? 'opacity-50 cursor-not-allowed hover:bg-oxido hover:translate-x-0 hover:translate-y-0 hover:shadow-[4px_4px_0_#1C1410] hover:text-white' : ''">
-                            Enviar solicitud de adopción 🐾
+                            :disabled="!formularioValido || enviando"
+                            :class="(!formularioValido || enviando) ? 'opacity-50 cursor-not-allowed hover:bg-oxido hover:translate-x-0 hover:translate-y-0 hover:shadow-[4px_4px_0_#1C1410] hover:text-white' : ''">
+                            {{ enviando ? 'Enviando solicitud...' : 'Enviar solicitud de adopción 🐾' }}
                         </button>
                         <p v-if="errorMensaje" class="text-oxido text-[0.8125rem] font-extrabold mt-3 text-center">{{
                             errorMensaje }}</p>
                         <p class="text-xs text-gris font-semibold text-center mt-3">Los campos marcados con <span
                                 class="text-oxido font-black">*</span> son obligatorios</p>
-                    </div>
+                    </form>
 
                     <!-- CONFIRMACIÓN DE ENVÍO -->
                     <div v-else class="text-center py-10">
