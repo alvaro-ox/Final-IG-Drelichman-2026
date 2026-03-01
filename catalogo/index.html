@@ -30,13 +30,14 @@
         <componente-navbar></componente-navbar>
 
         <!-- HERO -->
-        <header class="bg-marron py-14 px-6 md:py-20 md:px-10 pb-[60px] relative overflow-hidden text-center">
+        <header class="bg-marron py-14 px-6 md:py-20 md:px-10 pb-[3.75rem] relative overflow-hidden text-center">
             <div
-                class="absolute text-[300px] opacity-[0.06] -top-10 -right-[30px] pointer-events-none rotate-[20deg] select-none">
+                class="absolute text-[18.75rem] opacity-[0.06] -top-10 -right-[30px] pointer-events-none rotate-[20deg] select-none">
                 📖</div>
-            <h1 class="font-lilita text-[clamp(40px,6vw,72px)] text-miel mb-4 relative z-10 leading-tight">El Gatálogo
+            <h1 class="font-lilita text-[clamp(2.5rem,6vw,4.5rem)] text-miel mb-4 relative z-10 leading-tight">El
+                Gatálogo
                 📖</h1>
-            <p class="text-[18px] text-white/85 max-w-[650px] mx-auto mb-8 font-semibold leading-relaxed relative z-10">
+            <p class="text-lg text-white/85 max-w-[40.625rem] mx-auto mb-8 font-semibold leading-relaxed relative z-10">
                 Más de 200 gatitos esperan conocerte. Cada uno tiene su personalidad única. ¿Cuál te roba el corazón?
             </p>
         </header>
@@ -45,7 +46,7 @@
         <nav aria-label="Subcategorías del catálogo"
             class="pt-10 px-6 md:px-10 bg-crema flex gap-4 justify-center flex-wrap">
             <a href="adultos.html"
-                class="bg-blanco border-[4px] border-negro rounded-[20px] py-5 px-7 no-underline flex items-center gap-3 shadow-[5px_5px_0_#1C1410] transition-all duration-200 font-lilita text-[18px] text-negro hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[8px_8px_0_#1C1410] hover:bg-miel">
+                class="bg-blanco border-[4px] border-negro rounded-[20px] py-5 px-7 no-underline flex items-center gap-3 shadow-[5px_5px_0_#1C1410] transition-all duration-200 font-lilita text-lg text-negro hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[8px_8px_0_#1C1410] hover:bg-miel">
                 🐱 <span>Adultos y Seniors</span>
             </a>
         </nav>
@@ -53,9 +54,9 @@
         <!-- BARRA DE FILTROS -->
         <div
             class="bg-blanco border-b-[4px] border-negro py-4 md:py-5 px-5 md:px-10 flex gap-3 flex-wrap items-center relative z-50 shadow-[0_4px_0_#1C1410]">
-            <span class="font-black text-[14px] text-negro">Filtrar por:</span>
+            <span class="font-black text-[16px] text-negro">Filtrar por:</span>
             <button v-for="filtro in filtros" :key="filtro.valor"
-                class="bg-crema border-[3px] border-negro rounded-full px-5 py-2 font-nunito font-black text-[14px] text-negro cursor-pointer shadow-[3px_3px_0_#1C1410] transition-all duration-150 hover:bg-miel hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#1C1410] [&.activo]:bg-miel [&.activo]:-translate-x-0.5 [&.activo]:-translate-y-0.5 [&.activo]:shadow-[5px_5px_0_#1C1410]"
+                class="bg-crema border-[3px] border-negro rounded-full px-5 py-2 font-nunito font-black text-[16px] text-negro cursor-pointer shadow-[3px_3px_0_#1C1410] transition-all duration-150 hover:bg-miel hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#1C1410] [&.activo]:bg-miel [&.activo]:-translate-x-0.5 [&.activo]:-translate-y-0.5 [&.activo]:shadow-[5px_5px_0_#1C1410]"
                 :class="{ activo: filtroActivo === filtro.valor }" @click="filtroActivo = filtro.valor">
                 {{ filtro.etiqueta }}
             </button>
@@ -64,72 +65,40 @@
         <!-- GRILLA DE GATITOS -->
         <section class="py-10 md:py-14 px-6 md:px-10 bg-crema">
             <div
-                class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-8 max-w-[1200px] mx-auto relative z-10">
+                class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(17.5rem,1fr))] gap-8 max-w-[75rem] mx-auto relative z-10">
                 <template v-if="gatosFiltrados.length > 0">
                     <article v-for="(gato, i) in gatosFiltrados" :key="gato.nombre"
                         class="bg-crema border-[4px] border-negro rounded-[20px] overflow-hidden shadow-[6px_6px_0_#1C1410] transition-all duration-200 relative hover:rotate-0 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_#1C1410] hover:z-20"
                         :class="[i % 2 === 0 ? 'rotate-[1deg]' : '-rotate-[1.5deg]']">
-                        <div class="h-[220px] relative overflow-hidden bg-crema group cursor-pointer"
-                            @click="abrirGaleria(i)">
+                        <div class="h-[13.75rem] relative overflow-hidden bg-crema group">
                             <img :src="PREFIJO_RUTA_GLOBAL + gato.imagen" :alt="gato.nombre"
                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                         </div>
                         <section class="p-5">
-                            <p class="font-lilita text-[24px] text-negro mb-1.5 flex items-center gap-2">{{
+                            <p class="font-lilita text-2xl text-negro mb-1.5 flex items-center gap-2">{{
                                 gato.nombre }}</p>
-                            <p class="text-[13px] text-gris font-bold mb-2.5">{{ gato.meta }}</p>
-                            <p class="text-[14px] text-marron leading-relaxed mb-4">{{ gato.descripcion }}</p>
+                            <p class="text-[0.8125rem] text-gris font-bold mb-2.5">{{ gato.meta }}</p>
+                            <p class="text-sm text-marron leading-relaxed mb-4">{{ gato.descripcion }}</p>
                             <div class="flex gap-1.5 flex-wrap mb-4">
                                 <span
-                                    class="bg-durazno border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-black"
+                                    class="bg-durazno border-2 border-negro rounded-md px-2.5 py-0.5 text-xs font-black"
                                     v-for="tag in gato.tags" :key="tag"
                                     :class="{ 'bg-negro text-miel': tag.startsWith('⚡') || tag.startsWith('🏠') }">{{
                                     tag }}</span>
                             </div>
-                            <button
-                                class="block w-full text-center bg-oxido text-blanco border-[3px] border-negro rounded-xl p-3 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro"
-                                @click="consultarAdopcion(gato)">
-                                ¡Quiero adoptarlo! 🐾
-                            </button>
+                            <a :href="'detalle.html?gato=' + encodeURIComponent(gato.nombre)"
+                                class="block w-full text-center bg-oxido text-blanco border-[3px] border-negro rounded-xl p-3 font-nunito font-black text-[0.9375rem] no-underline shadow-[4px_4px_0_#1C1410] transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro">
+                                Ver ficha 🐾
+                            </a>
                         </section>
                     </article>
                 </template>
-                <div v-else class="text-center p-14 font-lilita text-[32px] text-gris col-span-full">
+                <div v-else class="text-center p-14 font-lilita text-[2rem] text-gris col-span-full">
                     😿 No hay gatitos con ese filtro por ahora...
                 </div>
             </div>
         </section>
 
-        <!-- MODAL DE CONSULTA -->
-        <div v-if="gatoSeleccionado" class="fixed inset-0 bg-black/70 z-[1000] flex items-center justify-center p-5"
-            @click.self="gatoSeleccionado = null">
-            <div
-                class="bg-blanco border-[4px] border-negro rounded-[24px] p-10 max-w-[480px] w-full shadow-[10px_10px_0_#1C1410] rotate-[1deg]">
-                <div class="text-center text-[64px] mb-3">{{ gatoSeleccionado.emoji }}</div>
-                <h2 class="font-lilita text-[28px] text-center mb-2">{{ gatoSeleccionado.nombre }}</h2>
-                <p class="text-center text-gris font-bold mb-6">{{ gatoSeleccionado.meta }}</p>
-                <p class="text-[15px] text-marron leading-relaxed mb-6 font-semibold">
-                    Para iniciar el proceso de adopción, hacé clic en el botón de abajo para ir al formulario de
-                    contacto.</p>
-                <div class="flex flex-col gap-3">
-                    <a href="..//"
-                        class="w-full text-center bg-oxido text-blanco border-[4px] border-negro rounded-2xl px-7 py-3 font-nunito font-black text-[15px] shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro">Consultar
-                        adopción 🐾</a>
-                    <a :href="gatoSeleccionado.link" target="_blank"
-                        class="w-full text-center bg-miel text-negro border-[4px] border-negro rounded-2xl px-7 py-3 font-nunito font-black text-[15px] shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar">Ver
-                        publicación 📸</a>
-                    <button @click="gatoSeleccionado = null"
-                        class="w-full text-center bg-blanco text-negro border-[4px] border-negro rounded-2xl px-7 py-3 font-nunito font-black text-[15px] shadow-[4px_4px_0_#1C1410] cursor-pointer transition-all duration-150 hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[6px_6px_0_#1C1410] hover:bg-durazno">Seguir
-                        mirando</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Galería modal de imágenes -->
-        <componente-galeria :gatos="gatosFiltrados" :indice="galeriaIndice" :visible="galeriaVisible"
-            @cerrar="galeriaVisible = false" @anterior="galeriaIndice > 0 && galeriaIndice--"
-            @siguiente="galeriaIndice < gatosFiltrados.length - 1 && galeriaIndice++" @ir="(i) => galeriaIndice = i">
-        </componente-galeria>
 
         <componente-footer></componente-footer>
     </div>

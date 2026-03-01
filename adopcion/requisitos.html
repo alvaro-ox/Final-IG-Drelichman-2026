@@ -27,13 +27,14 @@
         <componente-navbar></componente-navbar>
 
         <!-- HERO -->
-        <header class="bg-oxido py-14 px-6 md:py-20 md:px-10 pb-[60px] relative overflow-hidden text-center">
+        <header class="bg-oxido py-14 px-6 md:py-20 md:px-10 pb-[3.75rem] relative overflow-hidden text-center">
             <div
-                class="absolute text-[300px] opacity-[0.06] -top-10 -right-[30px] pointer-events-none rotate-[20deg] select-none">
+                class="absolute text-[18.75rem] opacity-[0.06] -top-10 -right-[30px] pointer-events-none rotate-[20deg] select-none">
                 📋</div>
-            <h1 class="font-lilita text-[clamp(40px,6vw,72px)] text-blanco mb-4 relative z-10 leading-tight">Requisitos
+            <h1 class="font-lilita text-[clamp(2.5rem,6vw,4.5rem)] text-blanco mb-4 relative z-10 leading-tight">
+                Requisitos
                 para adoptar 📋</h1>
-            <p class="text-[18px] text-white/85 max-w-[650px] mx-auto mb-8 font-semibold leading-relaxed relative z-10">
+            <p class="text-lg text-white/85 max-w-[40.625rem] mx-auto mb-8 font-semibold leading-relaxed relative z-10">
                 Para nosotros, la adopción es un compromiso de por vida. Por eso pedimos algunas condiciones básicas que
                 garantizan el bienestar del gatito.</p>
         </header>
@@ -41,22 +42,22 @@
         <!-- REQUISITOS -->
         <section class="py-14 md:py-20 px-6 md:px-10 bg-blanco">
             <div class="text-center mb-14 relative">
-                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-oxido text-shadow-negro">¿Qué necesitás?</h2>
-                <p class="text-[16px] text-gris font-semibold mt-3">Condiciones básicas para ser familia adoptante</p>
-                <span class="block text-center text-[24px] mt-2.5 tracking-[6px]">🐾 🐾 🐾</span>
+                <h2 class="font-lilita text-[clamp(2rem,5vw,3.5rem)] text-oxido text-shadow-negro">¿Qué necesitás?</h2>
+                <p class="text-base text-gris font-semibold mt-3">Condiciones básicas para ser familia adoptante</p>
+                <span class="block text-center text-2xl mt-2.5 tracking-[6px]">🐾 🐾 🐾</span>
             </div>
 
             <div
-                class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-7 max-w-[1100px] mx-auto">
+                class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(17.5rem,1fr))] gap-7 max-w-[68.75rem] mx-auto">
                 <article v-for="(req, i) in requisitos" :key="i"
                     class="bg-crema border-[4px] border-negro rounded-[20px] p-7 shadow-[6px_6px_0_#1C1410] relative transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[9px_9px_0_#1C1410] hover:rotate-0"
                     :class="[i % 2 === 0 ? '-rotate-[1deg]' : 'rotate-[1deg]']">
                     <div
-                        class="absolute -top-3 right-5 bg-miel border-[3px] border-negro rounded-full px-3.5 py-0.5 text-[12px] font-black text-negro shadow-[2px_2px_0_#1C1410]">
+                        class="absolute -top-3 right-5 bg-miel border-[3px] border-negro rounded-full px-3.5 py-0.5 text-xs font-black text-negro shadow-[2px_2px_0_#1C1410]">
                         {{ req.tipo }}</div>
-                    <span class="text-[48px] block mb-3">{{ req.icono }}</span>
-                    <h3 class="font-lilita text-[20px] text-negro mb-2.5">{{ req.titulo }}</h3>
-                    <p class="text-[14px] text-marron font-semibold leading-relaxed">{{ req.descripcion }}</p>
+                    <span class="text-[3rem] block mb-3">{{ req.icono }}</span>
+                    <h3 class="font-lilita text-xl text-negro mb-2.5">{{ req.titulo }}</h3>
+                    <p class="text-sm text-marron font-semibold leading-relaxed">{{ req.descripcion }}</p>
                 </article>
             </div>
         </section>
@@ -64,20 +65,20 @@
         <!-- COMPROMISO DE ADOPCIÓN -->
         <section class="bg-negro py-14 md:py-20 px-6 md:px-10">
             <div class="text-center mb-14 relative z-10">
-                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-miel text-shadow-negro">El compromiso de
+                <h2 class="font-lilita text-[clamp(2rem,5vw,3.5rem)] text-miel text-shadow-negro">El compromiso de
                     adopción</h2>
-                <p class="text-[16px] text-gris font-semibold mt-3">Al adoptar, te comprometés a respetar estos puntos
+                <p class="text-base text-gris font-semibold mt-3">Al adoptar, te comprometés a respetar estos puntos
                 </p>
-                <span class="block text-center text-[24px] mt-2.5 tracking-[6px] text-gris">❤️ ❤️ ❤️</span>
+                <span class="block text-center text-2xl mt-2.5 tracking-[6px] text-gris">❤️ ❤️ ❤️</span>
             </div>
 
-            <div class="max-w-[700px] mx-auto">
+            <div class="max-w-[43.75rem] mx-auto">
                 <article class="flex items-start gap-4 py-5 border-b border-marron last:border-b-0"
                     v-for="(c, i) in compromisos" :key="i">
-                    <span class="text-[32px] shrink-0">{{ c.icono }}</span>
+                    <span class="text-[2rem] shrink-0">{{ c.icono }}</span>
                     <section>
-                        <h4 class="font-lilita text-[18px] text-miel mb-1.5">{{ c.titulo }}</h4>
-                        <p class="text-[14px] text-gris font-semibold leading-relaxed">{{ c.descripcion }}</p>
+                        <h4 class="font-lilita text-lg text-miel mb-1.5">{{ c.titulo }}</h4>
+                        <p class="text-sm text-gris font-semibold leading-relaxed">{{ c.descripcion }}</p>
                     </section>
                 </article>
             </div>
@@ -85,16 +86,18 @@
 
         <!-- CTA -->
         <section class="py-14 md:py-20 px-6 md:px-10 text-center bg-crema relative overflow-hidden">
-            <h2 class="font-lilita text-[clamp(28px,4vw,48px)] text-negro mb-4 relative z-10">¿Cumplís los requisitos?
+            <h2 class="font-lilita text-[clamp(1.75rem,4vw,3rem)] text-negro mb-4 relative z-10">¿Cumplís los
+                requisitos?
                 🎉</h2>
-            <p class="text-[17px] text-marron mb-8 font-semibold relative z-10">¡Entonces el próximo paso es conocer a
+            <p class="text-[1.0625rem] text-marron mb-8 font-semibold relative z-10">¡Entonces el próximo paso es
+                conocer a
                 tu futuro compañero peludo!</p>
             <div class="flex gap-4 justify-center flex-wrap relative z-10">
                 <a href="index.html"
-                    class="bg-blanco text-negro border-[4px] border-negro rounded-2xl px-7 py-3.5 font-nunito font-black text-[16px] shadow-[5px_5px_0_#1C1410] no-underline transition-all duration-150 inline-block hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[7px_7px_0_#1C1410] hover:bg-durazno text-[15px]">←
+                    class="bg-blanco text-negro border-[4px] border-negro rounded-2xl px-7 py-3.5 font-nunito font-black text-[0.9375rem] shadow-[5px_5px_0_#1C1410] no-underline transition-all duration-150 inline-block hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[7px_7px_0_#1C1410] hover:bg-durazno">←
                     Volver a Adoptar</a>
                 <a href="../catalogo/index.html"
-                    class="bg-oxido text-blanco border-[4px] border-negro rounded-2xl px-7 py-3.5 font-nunito font-black text-[16px] shadow-[5px_5px_0_#1C1410] no-underline transition-all duration-150 inline-block hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[8px_8px_0_#1C1410] hover:bg-ambar hover:text-negro">Ver
+                    class="bg-oxido text-blanco border-[4px] border-negro rounded-2xl px-7 py-3.5 font-nunito font-black text-base shadow-[5px_5px_0_#1C1410] no-underline transition-all duration-150 inline-block hover:-translate-x-[3px] hover:-translate-y-[3px] hover:shadow-[8px_8px_0_#1C1410] hover:bg-ambar hover:text-negro">Ver
                     gatitos disponibles 🐾</a>
             </div>
         </section>

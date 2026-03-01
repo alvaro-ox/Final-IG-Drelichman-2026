@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto — GatoHogar</title>
+    <title>Formulario de Adopción — GatoHogar</title>
     <meta name="description"
-        content="Contactá a GatoHogar para consultas sobre adopción, tránsito, donaciones o reportar un gato perdido.">
+        content="Completá el formulario para iniciar el proceso de adopción en GatoHogar. Elegí tu gatito y contanos un poco sobre vos.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:ital,wght@0,400;0,600;0,800;0,900;1,400;1,800&family=Permanent+Marker&display=swap"
@@ -17,145 +17,335 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <!-- JS compartido y configuración -->
     <script src="../src/js/globales.js"></script>
-    <!-- Lógica de vista -->
+    <!-- Base de datos de gatos -->
+    <script src="../src/js/datos-gatos.js"></script>
+    <!-- Lógica de validación -->
+    <script src="../src/js/vistas/validacion-contacto.js"></script>
     <script src="../src/js/vistas/contacto.js" defer></script>
     <link rel="stylesheet" href="../src/css/estilos.css">
-
 </head>
 
 <body>
     <div id="app">
         <componente-navbar></componente-navbar>
 
-        <header class="bg-negro py-14 px-6 md:py-20 md:px-10 pb-[60px] relative overflow-hidden text-center">
+        <!-- HEADER -->
+        <header class="bg-negro py-14 px-6 md:py-20 md:px-10 pb-[3.75rem] relative overflow-hidden text-center">
             <div
-                class="absolute text-[300px] opacity-[0.06] -top-10 -right-[30px] pointer-events-none rotate-[20deg] select-none">
-                📬</div>
-            <h1 class="font-lilita text-[clamp(40px,6vw,72px)] text-blanco mb-4 relative z-10 leading-tight">Contacto 📬
+                class="absolute text-[18.75rem] opacity-[0.06] -top-10 -right-[30px] pointer-events-none rotate-[20deg] select-none">
+                🐾</div>
+            <h1 class="font-lilita text-[clamp(2.5rem,6vw,4.5rem)] text-blanco mb-4 relative z-10 leading-tight">
+                Formulario de Adopción 🐾
             </h1>
-            <p class="text-[18px] text-white/85 max-w-[650px] mx-auto mb-8 font-semibold leading-relaxed relative z-10">
-                ¿Tenés una consulta, querés reportar un gato o simplemente saludar? ¡Estamos acá!</p>
+            <p class="text-lg text-white/85 max-w-[40.625rem] mx-auto mb-0 font-semibold leading-relaxed relative z-10">
+                Contanos un poco sobre vos para que podamos acompañarte en el proceso. ¡Cada dato ayuda a encontrar el
+                match perfecto!</p>
         </header>
 
-        <section class="bg-crema">
-            <div
-                class="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-8 md:gap-12 max-w-[1000px] mx-auto py-10 px-6 md:py-20 md:px-10">
-                <!-- INFORMACIÓN DE CONTACTO -->
-                <address>
-                    <h2 class="font-lilita text-[32px] text-negro mb-5">¿Cómo llegamos?</h2>
-                    <p class="text-[16px] text-marron leading-relaxed font-semibold mb-8">Respondemos consultas de lunes
-                        a viernes de 10h a 20h. Los fines de semana también estamos, pero un poco más lentos 🐾.</p>
+        <section class="bg-crema py-10 md:py-16 px-5 md:px-10">
+            <div class="max-w-[62rem] mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.6fr] gap-10 md:gap-14 items-start">
 
-                    <div
-                        class="flex items-center gap-3.5 mb-5 py-4 px-5 bg-blanco border-[3px] border-negro rounded-xl shadow-[4px_4px_0_#1C1410] transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410]">
-                        <span class="text-[28px] shrink-0">📧</span>
-                        <div class="text-[14px]">
-                            <strong class="block font-black text-negro mb-0.5">Email</strong>
-                            <span class="text-gris font-semibold">hola@gatohogar.com.ar</span>
+                <!-- PANEL LATERAL: INFORMACIÓN Y CONTACTO -->
+                <aside>
+                    <h2 class="font-lilita text-[2rem] text-negro mb-4">¿Cómo funciona?</h2>
+                    <p class="text-base text-marron font-semibold leading-relaxed mb-7">
+                        Completá el formulario y nos ponemos en contacto con vos para coordinar los detalles. El proceso
+                        es simple, transparente y lleno de amor. 🐱
+                    </p>
+
+                    <!-- Pasos rápidos -->
+                    <div class="flex flex-col gap-4 mb-8">
+                        <div
+                            class="flex items-center gap-4 py-4 px-5 bg-blanco border-[3px] border-negro rounded-xl shadow-[4px_4px_0_#1C1410]">
+                            <span class="text-[1.75rem] shrink-0">📝</span>
+                            <div class="text-sm">
+                                <strong class="block font-black text-negro mb-0.5">1. Completá el formulario</strong>
+                                <span class="text-gris font-semibold">Elegí el gato y contanos sobre tu hogar</span>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center gap-4 py-4 px-5 bg-blanco border-[3px] border-negro rounded-xl shadow-[4px_4px_0_#1C1410]">
+                            <span class="text-[1.75rem] shrink-0">📞</span>
+                            <div class="text-sm">
+                                <strong class="block font-black text-negro mb-0.5">2. Te contactamos</strong>
+                                <span class="text-gris font-semibold">En 1-2 días hábiles a tu email</span>
+                            </div>
+                        </div>
+                        <div
+                            class="flex items-center gap-4 py-4 px-5 bg-blanco border-[3px] border-negro rounded-xl shadow-[4px_4px_0_#1C1410]">
+                            <span class="text-[1.75rem] shrink-0">🏠</span>
+                            <div class="text-sm">
+                                <strong class="block font-black text-negro mb-0.5">3. Coordinamos la entrega</strong>
+                                <span class="text-gris font-semibold">¡Tu nuevo compañero llega a casa!</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div
-                        class="flex items-center gap-3.5 mb-5 py-4 px-5 bg-blanco border-[3px] border-negro rounded-xl shadow-[4px_4px_0_#1C1410] transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410]">
-                        <span class="text-[28px] shrink-0">📸</span>
-                        <div class="text-[14px]">
-                            <strong class="block font-black text-negro mb-0.5">Instagram</strong>
-                            <span class="text-gris font-semibold">@gatohogar.ar</span>
+                    <!-- Datos de contacto directo -->
+                    <address class="not-italic">
+                        <div
+                            class="flex items-center gap-3.5 py-4 px-5 bg-blanco border-[3px] border-negro rounded-xl shadow-[4px_4px_0_#1C1410] mb-4 transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410]">
+                            <span class="text-[1.75rem] shrink-0">📧</span>
+                            <div class="text-sm">
+                                <strong class="block font-black text-negro mb-0.5">Email</strong>
+                                <span class="text-gris font-semibold">hola@gatohogar.com.ar</span>
+                            </div>
                         </div>
-                    </div>
-
-                    <div
-                        class="flex items-center gap-3.5 mb-5 py-4 px-5 bg-blanco border-[3px] border-negro rounded-xl shadow-[4px_4px_0_#1C1410] transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410]">
-                        <span class="text-[28px] shrink-0">📘</span>
-                        <div class="text-[14px]">
-                            <strong class="block font-black text-negro mb-0.5">Facebook</strong>
-                            <span class="text-gris font-semibold">/GatoHogar</span>
+                        <div
+                            class="flex items-center gap-3.5 py-4 px-5 bg-blanco border-[3px] border-negro rounded-xl shadow-[4px_4px_0_#1C1410] transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410]">
+                            <span class="text-[1.75rem] shrink-0">⏰</span>
+                            <div class="text-sm">
+                                <strong class="block font-black text-negro mb-0.5">Horario de atención</strong>
+                                <span class="text-gris font-semibold">Lun-Vie: 10h-20h / Sáb-Dom: 12h-18h</span>
+                            </div>
                         </div>
-                    </div>
+                    </address>
+                </aside>
 
-                    <div
-                        class="flex items-center gap-3.5 mb-5 py-4 px-5 bg-blanco border-[3px] border-negro rounded-xl shadow-[4px_4px_0_#1C1410] transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410]">
-                        <span class="text-[28px] shrink-0">📍</span>
-                        <div class="text-[14px]">
-                            <strong class="block font-black text-negro mb-0.5">Zona de cobertura</strong>
-                            <span class="text-gris font-semibold">Buenos Aires, GBA, Córdoba y Rosario</span>
-                        </div>
-                    </div>
-
-                    <div
-                        class="flex items-center gap-3.5 mb-5 py-4 px-5 bg-blanco border-[3px] border-negro rounded-xl shadow-[4px_4px_0_#1C1410] transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410]">
-                        <span class="text-[28px] shrink-0">⏰</span>
-                        <div class="text-[14px]">
-                            <strong class="block font-black text-negro mb-0.5">Horario de atención</strong>
-                            <span class="text-gris font-semibold">Lun-Vie: 10h-20h / Sáb-Dom: 12h-18h</span>
-                        </div>
-                    </div>
-                </address>
-
-                <!-- FORMULARIO -->
+                <!-- FORMULARIO DE ADOPCIÓN -->
                 <section class="bg-blanco border-[4px] border-negro rounded-3xl p-7 md:p-10 shadow-[8px_8px_0_#1C1410]">
-                    <h2 class="font-lilita text-[26px] text-negro mb-7">Escribinos ✉️</h2>
 
+                    <!-- FORMULARIO activo -->
                     <div v-if="!enviado">
-                        <div class="mb-5 relative">
-                            <label for="nombre"
-                                class="block font-lilita text-[18px] text-negro mb-2 tracking-wide pl-1">Tu
-                                nombre</label>
-                            <input type="text" id="nombre" v-model="formulario.nombre" placeholder="María García"
-                                class="w-full bg-crema border-[3px] border-negro rounded-xl py-3 px-4 font-nunito font-semibold text-[16px] text-negro transition-all duration-200 outline-none focus:bg-blanco focus:-translate-x-0.5 focus:-translate-y-0.5 focus:shadow-[4px_4px_0_#1C1410] placeholder:text-gris placeholder:font-bold"
-                                required>
-                        </div>
-                        <div class="mb-5 relative">
-                            <label for="email"
-                                class="block font-lilita text-[18px] text-negro mb-2 tracking-wide pl-1">Email</label>
-                            <input type="email" id="email" v-model="formulario.email" placeholder="tu@email.com"
-                                class="w-full bg-crema border-[3px] border-negro rounded-xl py-3 px-4 font-nunito font-semibold text-[16px] text-negro transition-all duration-200 outline-none focus:bg-blanco focus:-translate-x-0.5 focus:-translate-y-0.5 focus:shadow-[4px_4px_0_#1C1410] placeholder:text-gris placeholder:font-bold"
-                                required>
-                        </div>
-                        <div class="mb-5 relative">
-                            <label for="asunto"
-                                class="block font-lilita text-[18px] text-negro mb-2 tracking-wide pl-1">Asunto</label>
-                            <select id="asunto" v-model="formulario.asunto"
-                                class="w-full select-custom bg-crema border-[3px] border-negro rounded-xl py-3 px-4 font-nunito font-semibold text-[16px] text-negro transition-all duration-200 outline-none focus:bg-blanco focus:-translate-x-0.5 focus:-translate-y-0.5 focus:shadow-[4px_4px_0_#1C1410] appearance-none">
-                                <option value="">Elegí un asunto...</option>
-                                <option value="adopcion">Consulta de adopción</option>
-                                <option value="transito">Quiero hacer tránsito</option>
-                                <option value="donacion">Donación o apadrinamiento</option>
-                                <option value="gato-perdido">Reportar un gato perdido</option>
-                                <option value="historia">Compartir mi historia</option>
-                                <option value="otro">Otro</option>
-                            </select>
-                        </div>
-                        <div class="mb-5 relative">
-                            <label for="mensaje"
-                                class="block font-lilita text-[18px] text-negro mb-2 tracking-wide pl-1">Mensaje</label>
-                            <textarea id="mensaje" v-model="formulario.mensaje" rows="5"
-                                class="w-full bg-crema border-[3px] border-negro rounded-xl py-3 px-4 font-nunito font-semibold text-[16px] text-negro resize-y min-h-[120px] transition-all duration-200 outline-none focus:bg-blanco focus:-translate-x-0.5 focus:-translate-y-0.5 focus:shadow-[4px_4px_0_#1C1410] placeholder:text-gris placeholder:font-bold"
-                                placeholder="Contanos todo lo que necesitás..."></textarea>
-                        </div>
+                        <h2 class="font-lilita text-[1.625rem] text-negro mb-7">Solicitud de adopción 🐾</h2>
+
+                        <!-- DATOS PERSONALES -->
+                        <fieldset class="mb-8 border-0 p-0">
+                            <legend class="font-lilita text-lg text-oxido mb-4 flex items-center gap-2">
+                                <span
+                                    class="inline-block bg-oxido text-blanco rounded-full w-7 h-7 text-sm flex items-center justify-center font-nunito font-black">1</span>
+                                Tus datos personales
+                            </legend>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label for="nombre"
+                                        class="block font-lilita text-base text-negro mb-1.5 pl-1">Nombre <span
+                                            class="text-oxido">*</span></label>
+                                    <input type="text" id="nombre" v-model="formulario.nombre" placeholder="María"
+                                        class="w-full bg-crema border-[3px] border-negro rounded-xl py-3 px-4 font-nunito font-semibold text-base text-negro transition-all duration-200 outline-none focus:bg-blanco focus:-translate-x-0.5 focus:-translate-y-0.5 focus:shadow-[4px_4px_0_#1C1410] placeholder:text-gris"
+                                        required>
+                                </div>
+                                <div>
+                                    <label for="apellido"
+                                        class="block font-lilita text-base text-negro mb-1.5 pl-1">Apellido <span
+                                            class="text-oxido">*</span></label>
+                                    <input type="text" id="apellido" v-model="formulario.apellido" placeholder="García"
+                                        class="w-full bg-crema border-[3px] border-negro rounded-xl py-3 px-4 font-nunito font-semibold text-base text-negro transition-all duration-200 outline-none focus:bg-blanco focus:-translate-x-0.5 focus:-translate-y-0.5 focus:shadow-[4px_4px_0_#1C1410] placeholder:text-gris"
+                                        required>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label for="email" class="block font-lilita text-base text-negro mb-1.5 pl-1">Email
+                                        <span class="text-oxido">*</span></label>
+                                    <input type="email" id="email" v-model="formulario.email" placeholder="tu@email.com"
+                                        class="w-full bg-crema border-[3px] border-negro rounded-xl py-3 px-4 font-nunito font-semibold text-base text-negro transition-all duration-200 outline-none focus:bg-blanco focus:-translate-x-0.5 focus:-translate-y-0.5 focus:shadow-[4px_4px_0_#1C1410] placeholder:text-gris"
+                                        required>
+                                </div>
+                                <div>
+                                    <label class="block font-lilita text-base text-negro mb-1.5 pl-1">Teléfono <span
+                                            class="text-oxido">*</span></label>
+                                    <div class="grid grid-cols-[1fr_2.5fr] gap-2">
+                                        <input type="text" id="codigoArea" v-model="formulario.codigoArea"
+                                            placeholder="11"
+                                            class="w-full bg-crema border-[3px] border-negro rounded-xl py-3 px-3 font-nunito font-semibold text-base text-negro transition-all duration-200 outline-none focus:bg-blanco focus:-translate-x-0.5 focus:-translate-y-0.5 focus:shadow-[4px_4px_0_#1C1410] placeholder:text-gris"
+                                            maxlength="4" required>
+                                        <input type="tel" id="telefono" v-model="formulario.telefono"
+                                            placeholder="12345678"
+                                            class="w-full bg-crema border-[3px] border-negro rounded-xl py-3 px-4 font-nunito font-semibold text-base text-negro transition-all duration-200 outline-none focus:bg-blanco focus:-translate-x-0.5 focus:-translate-y-0.5 focus:shadow-[4px_4px_0_#1C1410] placeholder:text-gris"
+                                            maxlength="8" required>
+                                    </div>
+                                    <p class="text-[10px] text-gris font-bold mt-1 pl-1">Cód. Área (2-4) + Número (8)
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-4">
+                                <div class="col-span-1 sm:col-span-3">
+                                    <label for="direccion"
+                                        class="block font-lilita text-base text-negro mb-1.5 pl-1">Dirección <span
+                                            class="text-oxido">*</span></label>
+                                    <input type="text" id="direccion" v-model="formulario.direccion"
+                                        placeholder="Av. Corrientes 1234, Buenos Aires"
+                                        class="w-full bg-crema border-[3px] border-negro rounded-xl py-3 px-4 font-nunito font-semibold text-base text-negro transition-all duration-200 outline-none focus:bg-blanco focus:-translate-x-0.5 focus:-translate-y-0.5 focus:shadow-[4px_4px_0_#1C1410] placeholder:text-gris"
+                                        required>
+                                </div>
+                                <div class="col-span-1">
+                                    <label for="codigoPostal"
+                                        class="block font-lilita text-base text-negro mb-1.5 pl-1">CP <span
+                                            class="text-oxido">*</span></label>
+                                    <input type="text" id="codigoPostal" v-model="formulario.codigoPostal"
+                                        placeholder="1425" maxlength="4"
+                                        class="w-full bg-crema border-[3px] border-negro rounded-xl py-3 px-4 font-nunito font-semibold text-base text-negro transition-all duration-200 outline-none focus:bg-blanco focus:-translate-x-0.5 focus:-translate-y-0.5 focus:shadow-[4px_4px_0_#1C1410] placeholder:text-gris"
+                                        required>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- ELECCIÓN DEL GATO (RADIO) -->
+                        <fieldset class="mb-8 border-0 p-0">
+                            <legend class="font-lilita text-lg text-oxido mb-4 flex items-center gap-2">
+                                <span
+                                    class="inline-block bg-oxido text-blanco rounded-full w-7 h-7 text-sm flex items-center justify-center font-nunito font-black">2</span>
+                                ¿Qué gatito querés adoptar? <span class="text-oxido ml-1">*</span>
+                            </legend>
+
+                            <div class="flex flex-col gap-3">
+                                <label v-for="gato in gatos" :key="gato.nombre"
+                                    class="flex items-center gap-4 py-3.5 px-4 bg-crema border-[3px] border-negro rounded-xl cursor-pointer transition-all duration-150 hover:bg-miel hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_#1C1410]"
+                                    :class="formulario.gatoElegido === nombreLimpio(gato.nombre) ? 'bg-miel shadow-[4px_4px_0_#1C1410] -translate-x-0.5 -translate-y-0.5' : ''">
+                                    <input type="radio" :id="'gato-' + nombreLimpio(gato.nombre)" name="gatoElegido"
+                                        :value="nombreLimpio(gato.nombre)" v-model="formulario.gatoElegido"
+                                        class="accent-[#C4520A] w-5 h-5 shrink-0">
+                                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                                        <span class="text-2xl shrink-0">{{ gato.emoji }}</span>
+                                        <div class="min-w-0">
+                                            <span class="font-lilita text-base text-negro block">{{ gato.nombre
+                                                }}</span>
+                                            <span class="text-[0.75rem] text-gris font-bold block truncate">{{ gato.meta
+                                                }}</span>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <!-- PERFIL ADOPTANTE (CHECKBOXES SI/NO) -->
+                        <fieldset class="mb-8 border-0 p-0">
+                            <legend class="font-lilita text-lg text-oxido mb-4 flex items-center gap-2">
+                                <span
+                                    class="inline-block bg-oxido text-blanco rounded-full w-7 h-7 text-sm flex items-center justify-center font-nunito font-black">3</span>
+                                Sobre tu hogar <span class="text-oxido ml-1">*</span>
+                            </legend>
+                            <p class="text-sm text-gris font-semibold mb-4">Respondé sí o no en cada pregunta. No hay
+                                respuestas incorrectas, ¡nos ayudan a acompañarte mejor!</p>
+
+                            <div class="flex flex-col gap-4">
+                                <!-- Pregunta 1 -->
+                                <div class="bg-crema border-[3px] border-negro rounded-xl p-4">
+                                    <p class="font-nunito font-black text-base text-negro mb-3">🐶 ¿Tenés otras
+                                        mascotas?</p>
+                                    <div class="flex gap-3">
+                                        <label
+                                            class="flex items-center gap-2.5 cursor-pointer py-2 px-4 rounded-xl border-[2px] border-negro font-nunito font-black text-sm transition-all duration-150"
+                                            :class="formulario.tieneOtrasMascotas === true ? 'bg-negro text-blanco' : 'bg-blanco text-negro hover:bg-durazno'">
+                                            <input type="checkbox" id="mascotas-si" name="tieneOtrasMascotas"
+                                                :checked="formulario.tieneOtrasMascotas === true"
+                                                @change="formulario.tieneOtrasMascotas = true"
+                                                class="w-4 h-4 accent-[#C4520A]">
+                                            Sí
+                                        </label>
+                                        <label
+                                            class="flex items-center gap-2.5 cursor-pointer py-2 px-4 rounded-xl border-[2px] border-negro font-nunito font-black text-sm transition-all duration-150"
+                                            :class="formulario.tieneOtrasMascotas === false ? 'bg-negro text-blanco' : 'bg-blanco text-negro hover:bg-durazno'">
+                                            <input type="checkbox" id="mascotas-no" name="tieneOtrasMascotas"
+                                                :checked="formulario.tieneOtrasMascotas === false"
+                                                @change="formulario.tieneOtrasMascotas = false"
+                                                class="w-4 h-4 accent-[#C4520A]">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Pregunta 2 -->
+                                <div class="bg-crema border-[3px] border-negro rounded-xl p-4">
+                                    <p class="font-nunito font-black text-base text-negro mb-3">🌿 ¿Tenés patio o
+                                        espacio exterior?</p>
+                                    <div class="flex gap-3">
+                                        <label
+                                            class="flex items-center gap-2.5 cursor-pointer py-2 px-4 rounded-xl border-[2px] border-negro font-nunito font-black text-sm transition-all duration-150"
+                                            :class="formulario.tienePatio === true ? 'bg-negro text-blanco' : 'bg-blanco text-negro hover:bg-durazno'">
+                                            <input type="checkbox" id="patio-si" name="tienePatio"
+                                                :checked="formulario.tienePatio === true"
+                                                @change="formulario.tienePatio = true" class="w-4 h-4 accent-[#C4520A]">
+                                            Sí
+                                        </label>
+                                        <label
+                                            class="flex items-center gap-2.5 cursor-pointer py-2 px-4 rounded-xl border-[2px] border-negro font-nunito font-black text-sm transition-all duration-150"
+                                            :class="formulario.tienePatio === false ? 'bg-negro text-blanco' : 'bg-blanco text-negro hover:bg-durazno'">
+                                            <input type="checkbox" id="patio-no" name="tienePatio"
+                                                :checked="formulario.tienePatio === false"
+                                                @change="formulario.tienePatio = false"
+                                                class="w-4 h-4 accent-[#C4520A]">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Pregunta 3 -->
+                                <div class="bg-crema border-[3px] border-negro rounded-xl p-4">
+                                    <p class="font-nunito font-black text-base text-negro mb-3">🐱 ¿Ya tuviste gatos
+                                        antes?</p>
+                                    <div class="flex gap-3">
+                                        <label
+                                            class="flex items-center gap-2.5 cursor-pointer py-2 px-4 rounded-xl border-[2px] border-negro font-nunito font-black text-sm transition-all duration-150"
+                                            :class="formulario.tuvisteGatos === true ? 'bg-negro text-blanco' : 'bg-blanco text-negro hover:bg-durazno'">
+                                            <input type="checkbox" id="gatos-si" name="tuvisteGatos"
+                                                :checked="formulario.tuvisteGatos === true"
+                                                @change="formulario.tuvisteGatos = true"
+                                                class="w-4 h-4 accent-[#C4520A]">
+                                            Sí
+                                        </label>
+                                        <label
+                                            class="flex items-center gap-2.5 cursor-pointer py-2 px-4 rounded-xl border-[2px] border-negro font-nunito font-black text-sm transition-all duration-150"
+                                            :class="formulario.tuvisteGatos === false ? 'bg-negro text-blanco' : 'bg-blanco text-negro hover:bg-durazno'">
+                                            <input type="checkbox" id="gatos-no" name="tuvisteGatos"
+                                                :checked="formulario.tuvisteGatos === false"
+                                                @change="formulario.tuvisteGatos = false"
+                                                class="w-4 h-4 accent-[#C4520A]">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- COMENTARIOS ADICIONALES (opcional) -->
+                        <fieldset class="mb-8 border-0 p-0">
+                            <legend class="font-lilita text-lg text-oxido mb-4 flex items-center gap-2">
+                                <span
+                                    class="inline-block bg-crema text-negro border-[2px] border-negro rounded-full w-7 h-7 text-sm flex items-center justify-center font-nunito font-black">4</span>
+                                Comentarios adicionales
+                                <span class="font-nunito text-sm text-gris font-bold">(opcional)</span>
+                            </legend>
+                            <textarea id="mensaje" v-model="formulario.mensaje" rows="4"
+                                class="w-full bg-crema border-[3px] border-negro rounded-xl py-3 px-4 font-nunito font-semibold text-base text-negro resize-y min-h-[6rem] transition-all duration-200 outline-none focus:bg-blanco focus:-translate-x-0.5 focus:-translate-y-0.5 focus:shadow-[4px_4px_0_#1C1410] placeholder:text-gris placeholder:font-bold"
+                                placeholder="¿Algo más que quieras contarnos? Situación de vivienda, horarios, etc."></textarea>
+                        </fieldset>
+
+                        <!-- BOTÓN ENVIAR -->
                         <button
-                            class="block w-full bg-oxido text-blanco border-[3px] border-negro rounded-xl py-3 px-5 font-nunito font-black text-[16px] sm:text-[18px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 text-center hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro truncate"
+                            class="block w-full bg-oxido text-blanco border-[3px] border-negro rounded-xl py-3.5 px-5 font-nunito font-black text-lg cursor-pointer shadow-[4px_4px_0_#1C1410] transition-all duration-150 text-center hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro"
                             @click="enviarFormulario" :disabled="!formularioValido"
-                            :class="!formularioValido ? 'opacity-50 cursor-not-allowed hover:bg-oxido hover:-translate-x-0 hover:-translate-y-0 hover:shadow-[4px_4px_0_#1C1410] hover:text-white' : ''">
-                            Enviar mensaje 🐾
+                            :class="!formularioValido ? 'opacity-50 cursor-not-allowed hover:bg-oxido hover:translate-x-0 hover:translate-y-0 hover:shadow-[4px_4px_0_#1C1410] hover:text-white' : ''">
+                            Enviar solicitud de adopción 🐾
                         </button>
-                        <p v-if="errorMensaje" class="text-oxido text-[13px] font-extrabold mt-3">{{
+                        <p v-if="errorMensaje" class="text-oxido text-[0.8125rem] font-extrabold mt-3 text-center">{{
                             errorMensaje }}</p>
+                        <p class="text-xs text-gris font-semibold text-center mt-3">Los campos marcados con <span
+                                class="text-oxido font-black">*</span> son obligatorios</p>
                     </div>
 
-                    <!-- Confirmación de envío -->
+                    <!-- CONFIRMACIÓN DE ENVÍO -->
                     <div v-else class="text-center py-10">
-                        <div class="text-[80px] mb-5">🐾</div>
-                        <h3 class="font-lilita text-[28px] text-negro mb-3">
-                            ¡Mensaje enviado!</h3>
-                        <p class="text-[15px] text-marron font-semibold leading-relaxed mb-6">
-                            Gracias {{ formulario.nombre }}. Te respondemos a la brevedad en <strong
-                                class="text-negro font-black">{{ formulario.email
-                                }}</strong>.
+                        <div class="text-[5rem] mb-5">🐾</div>
+                        <h3 class="font-lilita text-[1.75rem] text-negro mb-3">
+                            ¡Solicitud enviada!</h3>
+                        <p class="text-[0.9375rem] text-marron font-semibold leading-relaxed mb-2">
+                            Gracias <strong class="text-negro font-black">{{ formulario.nombre }} {{ formulario.apellido
+                                }}</strong>. Te respondemos a la brevedad en <strong class="text-negro font-black">{{
+                                formulario.email }}</strong>.
+                        </p>
+                        <p v-if="gatoSeleccionado" class="text-sm text-gris font-semibold mb-8">
+                            Tu solicitud para adoptar a <strong class="text-negro">{{ gatoSeleccionado.nombre
+                                }}</strong> fue recibida. ✅
                         </p>
                         <button @click="reiniciarFormulario"
-                            class="inline-block bg-crema text-negro border-[3px] border-negro rounded-xl py-3 px-5 font-nunito font-black text-[16px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 text-center hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-miel truncate">Enviar
-                            otro mensaje</button>
+                            class="inline-block bg-crema text-negro border-[3px] border-negro rounded-xl py-3 px-5 font-nunito font-black text-base cursor-pointer shadow-[4px_4px_0_#1C1410] transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-miel">
+                            Enviar otra solicitud
+                        </button>
                     </div>
                 </section>
             </div>
@@ -163,7 +353,6 @@
 
         <componente-footer></componente-footer>
     </div>
-
 </body>
 
 </html>

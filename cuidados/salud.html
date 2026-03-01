@@ -28,13 +28,13 @@
         <componente-navbar></componente-navbar>
 
         <header
-            class="bg-[linear-gradient(135deg,#2196F3,#1565C0)] py-14 px-6 md:py-20 md:px-10 pb-[60px] relative overflow-hidden text-center">
+            class="bg-[linear-gradient(135deg,#2196F3,#1565C0)] py-14 px-6 md:py-20 md:px-10 pb-[3.75rem] relative overflow-hidden text-center">
             <div
-                class="absolute text-[300px] opacity-[0.06] -top-10 -right-[30px] pointer-events-none rotate-[20deg] select-none">
+                class="absolute text-[18.75rem] opacity-[0.06] -top-10 -right-[30px] pointer-events-none rotate-[20deg] select-none">
                 💊</div>
-            <h1 class="font-lilita text-[clamp(40px,6vw,72px)] text-blanco mb-4 relative z-10 leading-tight">Salud y
+            <h1 class="font-lilita text-[clamp(2.5rem,6vw,4.5rem)] text-blanco mb-4 relative z-10 leading-tight">Salud y
                 Vacunas 💊</h1>
-            <p class="text-[18px] text-white/85 max-w-[650px] mx-auto mb-8 font-semibold leading-relaxed relative z-10">
+            <p class="text-lg text-white/85 max-w-[40.625rem] mx-auto mb-8 font-semibold leading-relaxed relative z-10">
                 Un gato sano es un gato feliz. Conocé el calendario de vacunación y los cuidados preventivos esenciales.
             </p>
         </header>
@@ -42,43 +42,43 @@
         <!-- CALENDARIO DE VACUNAS -->
         <section class="py-14 md:py-20 px-6 md:px-10 bg-blanco overflow-x-auto">
             <div class="text-center mb-14 relative z-10">
-                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-oxido text-shadow-negro">Calendario de
+                <h2 class="font-lilita text-[clamp(2rem,5vw,3.5rem)] text-oxido text-shadow-negro">Calendario de
                     vacunación</h2>
-                <p class="text-[16px] text-gris font-semibold mt-3">Las vacunas esenciales según la edad del gatito</p>
-                <span class="block text-center text-[24px] mt-2.5 tracking-[6px]">💉 💉 💉</span>
+                <p class="text-base text-gris font-semibold mt-3">Las vacunas esenciales según la edad del gatito</p>
+                <span class="block text-center text-2xl mt-2.5 tracking-[6px]">💉 💉 💉</span>
             </div>
 
-            <div class="min-w-[600px]">
-                <table class="w-full max-w-[800px] mx-auto border-separate border-spacing-y-3">
+            <div class="min-w-[37.5rem]">
+                <table class="w-full max-w-[50rem] mx-auto border-separate border-spacing-y-3">
                     <thead>
                         <tr>
                             <th
-                                class="bg-negro text-miel font-nunito font-black text-[13px] uppercase tracking-widest px-5 py-3.5 rounded-l-xl text-left">
+                                class="bg-negro text-miel font-nunito font-black text-[0.8125rem] uppercase tracking-widest px-5 py-3.5 rounded-l-xl text-left">
                                 Edad</th>
                             <th
-                                class="bg-negro text-miel font-nunito font-black text-[13px] uppercase tracking-widest px-5 py-3.5 text-left">
+                                class="bg-negro text-miel font-nunito font-black text-[0.8125rem] uppercase tracking-widest px-5 py-3.5 text-left">
                                 Vacuna</th>
                             <th
-                                class="bg-negro text-miel font-nunito font-black text-[13px] uppercase tracking-widest px-5 py-3.5 text-left">
+                                class="bg-negro text-miel font-nunito font-black text-[0.8125rem] uppercase tracking-widest px-5 py-3.5 text-left">
                                 Descripción</th>
                             <th
-                                class="bg-negro text-miel font-nunito font-black text-[13px] uppercase tracking-widest px-5 py-3.5 rounded-r-xl text-left">
+                                class="bg-negro text-miel font-nunito font-black text-[0.8125rem] uppercase tracking-widest px-5 py-3.5 rounded-r-xl text-left">
                                 Frecuencia</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="(vac, i) in vacunas" :key="i">
                             <td
-                                class="bg-blanco px-5 py-3.5 border-y-[3px] border-l-[3px] border-y-negro border-l-negro rounded-l-xl font-black text-negro text-[14px] align-middle">
+                                class="bg-blanco px-5 py-3.5 border-y-[3px] border-l-[3px] border-y-negro border-l-negro rounded-l-xl font-black text-negro text-sm align-middle">
                                 {{ vac.edad }}</td>
                             <td
-                                class="bg-blanco px-5 py-3.5 border-y-[3px] border-negro text-marron font-semibold text-[14px] align-middle">
+                                class="bg-blanco px-5 py-3.5 border-y-[3px] border-negro text-marron font-semibold text-sm align-middle">
                                 {{ vac.vacuna }}</td>
                             <td
-                                class="bg-blanco px-5 py-3.5 border-y-[3px] border-negro text-marron font-semibold text-[14px] align-middle">
+                                class="bg-blanco px-5 py-3.5 border-y-[3px] border-negro text-marron font-semibold text-sm align-middle">
                                 {{ vac.descripcion }}</td>
                             <td
-                                class="bg-blanco px-5 py-3.5 border-y-[3px] border-r-[3px] border-y-negro border-r-negro rounded-r-xl text-marron font-semibold text-[14px] align-middle">
+                                class="bg-blanco px-5 py-3.5 border-y-[3px] border-r-[3px] border-y-negro border-r-negro rounded-r-xl text-marron font-semibold text-sm align-middle">
                                 {{ vac.frecuencia }}</td>
                         </tr>
                     </tbody>
@@ -89,40 +89,40 @@
         <!-- DESPARASITACIÓN -->
         <section class="py-14 md:py-20 px-6 md:px-10 bg-crema">
             <div class="text-center mb-14 relative z-10">
-                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-oxido text-shadow-negro">Desparasitación</h2>
-                <p class="text-[16px] text-gris font-semibold mt-3">Tan importante como las vacunas, y muchas veces más
+                <h2 class="font-lilita text-[clamp(2rem,5vw,3.5rem)] text-oxido text-shadow-negro">Desparasitación</h2>
+                <p class="text-base text-gris font-semibold mt-3">Tan importante como las vacunas, y muchas veces más
                     olvidada</p>
-                <span class="block text-center text-[24px] mt-2.5 tracking-[6px]">🪱 🪱 🪱</span>
+                <span class="block text-center text-2xl mt-2.5 tracking-[6px]">🩱 🩱 🩱</span>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[800px] mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[50rem] mx-auto">
                 <article v-for="(paso, i) in pasos_desparasitacion"
                     class="bg-blanco border-[4px] border-negro rounded-2xl p-6 text-center shadow-[5px_5px_0_#1C1410] relative pt-10">
                     <div
-                        class="absolute -top-[20px] left-1/2 -translate-x-1/2 bg-durazno border-[4px] border-negro rounded-full w-10 h-10 flex items-center justify-center font-lilita text-[20px] text-negro shadow-[3px_3px_0_#1C1410] z-10">
+                        class="absolute -top-[20px] left-1/2 -translate-x-1/2 bg-durazno border-[4px] border-negro rounded-full w-10 h-10 flex items-center justify-center font-lilita text-xl text-negro shadow-[3px_3px_0_#1C1410] z-10">
                         {{ i+1 }}</div>
-                    <span class="text-[40px] block mb-3">{{ paso.icono }}</span>
-                    <h3 class="font-lilita text-[20px] text-negro mb-2">{{ paso.titulo }}</h3>
-                    <p class="text-[14px] text-marron leading-relaxed font-semibold">{{ paso.descripcion }}</p>
+                    <span class="text-[2.5rem] block mb-3">{{ paso.icono }}</span>
+                    <h3 class="font-lilita text-xl text-negro mb-2">{{ paso.titulo }}</h3>
+                    <p class="text-sm text-marron leading-relaxed font-semibold">{{ paso.descripcion }}</p>
                 </article>
             </div>
         </section>
 
         <!-- SEÑALES DE ALERTA -->
-        <section class="py-16 md:py-[70px] px-6 md:px-10 bg-negro">
+        <section class="py-16 md:py-[4.375rem] px-6 md:px-10 bg-negro">
             <div class="text-center mb-14 relative z-10">
-                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-miel text-shadow-negro">Señales de alarma</h2>
-                <p class="text-[16px] text-gris font-semibold mt-3">Cuándo llevar urgente al veterinario</p>
-                <span class="block text-center text-[24px] mt-2.5 tracking-[6px] text-gris">⚠️ ⚠️ ⚠️</span>
+                <h2 class="font-lilita text-[clamp(2rem,5vw,3.5rem)] text-miel text-shadow-negro">Señales de alarma</h2>
+                <p class="text-base text-gris font-semibold mt-3">Cuándo llevar urgente al veterinario</p>
+                <span class="block text-center text-2xl mt-2.5 tracking-[6px] text-gris">⚠️ ⚠️ ⚠️</span>
             </div>
             <div
-                class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-7 max-w-[1000px] mx-auto">
+                class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(18.75rem,1fr))] gap-7 max-w-[62.5rem] mx-auto">
                 <article v-for="(alerta, i) in alertas" :key="i"
                     class="bg-marron border-[3px] border-oxido rounded-[20px] p-7 shadow-[5px_5px_0_var(--oxido)] relative transition-all duration-200 hover:-translate-y-1 hover:rotate-0"
                     :class="[i % 2 === 0 ? '-rotate-[1.5deg]' : 'rotate-[1deg]']">
-                    <div class="text-[36px] mb-2">{{ alerta.icono }}</div>
-                    <h4 class="font-lilita text-miel text-[18px] mb-2">
+                    <div class="text-[2.25rem] mb-2">{{ alerta.icono }}</div>
+                    <h4 class="font-lilita text-miel text-lg mb-2">
                         {{ alerta.titulo }}</h4>
-                    <p class="text-[15px] text-[#F3EFE0] leading-relaxed not-italic">{{ alerta.descripcion }}</p>
+                    <p class="text-[0.9375rem] text-[#F3EFE0] leading-relaxed not-italic">{{ alerta.descripcion }}</p>
                 </article>
             </div>
         </section>

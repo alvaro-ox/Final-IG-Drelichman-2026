@@ -29,41 +29,42 @@
         <componente-navbar></componente-navbar>
 
         <header
-            class="py-14 px-6 md:py-20 md:px-10 pb-[60px] relative overflow-hidden text-center bg-[linear-gradient(135deg,var(--marron),var(--negro))]">
-            <h1 class="font-lilita text-[clamp(40px,6vw,72px)] text-miel mb-4 relative z-10 leading-tight">Adultos y
+            class="py-14 px-6 md:py-20 md:px-10 pb-[3.75rem] relative overflow-hidden text-center bg-[linear-gradient(135deg,var(--marron),var(--negro))]">
+            <h1 class="font-lilita text-[clamp(2.5rem,6vw,4.5rem)] text-miel mb-4 relative z-10 leading-tight">Adultos y
                 Seniors 🐱</h1>
-            <p class="text-[18px] text-white/85 max-w-[650px] mx-auto mb-8 font-semibold leading-relaxed relative z-10">
+            <p class="text-lg text-white/85 max-w-[40.625rem] mx-auto mb-8 font-semibold leading-relaxed relative z-10">
                 Los más olvidados, los más agradecidos. Un gato adulto ya sabe quién es y te va a elegir con todo el
                 corazón.</p>
         </header>
 
         <!-- BENEFICIOS ADOPTAR ADULTOS -->
         <div class="bg-miel border-y-[4px] border-negro py-7 px-10">
-            <div class="max-w-[900px] mx-auto grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] gap-5 text-center">
+            <div
+                class="max-w-[56.25rem] mx-auto grid grid-cols-[repeat(auto-fill,minmax(8.75rem,1fr))] gap-5 text-center">
                 <div v-for="ben in beneficios" :key="ben.titulo"
                     class="bg-crema border-[3px] border-negro rounded-2xl p-4 shadow-[3px_3px_0_#1C1410] transition-all duration-200 hover:-translate-y-1 hover:shadow-[5px_5px_0_#1C1410]">
-                    <div class="text-[36px] mb-2">{{ ben.icono }}</div>
-                    <div class="font-lilita text-[15px] text-negro">{{ ben.titulo }}</div>
+                    <div class="text-[2.25rem] mb-2">{{ ben.icono }}</div>
+                    <div class="font-lilita text-[0.9375rem] text-negro">{{ ben.titulo }}</div>
                 </div>
             </div>
         </div>
 
         <section class="py-14 md:py-20 px-6 md:px-10 bg-blanco">
             <div class="text-center mb-14 relative z-10">
-                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-oxido text-shadow-negro">Adultos disponibles
+                <h2 class="font-lilita text-[clamp(2rem,5vw,3.5rem)] text-oxido text-shadow-negro">Adultos disponibles
                 </h2>
-                <p class="text-[16px] text-gris font-semibold mt-3">Más de un año de vida, pero todos los años de amor
+                <p class="text-base text-gris font-semibold mt-3">Más de un año de vida, pero todos los años de amor
                     por delante</p>
-                <span class="block text-center text-[24px] mt-2.5 tracking-[6px]">🐾 🐾 🐾</span>
+                <span class="block text-center text-2xl mt-2.5 tracking-[6px]">🐾 🐾 🐾</span>
             </div>
 
             <div
-                class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-8 max-w-[1200px] mx-auto relative z-10">
+                class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(17.5rem,1fr))] gap-8 max-w-[75rem] mx-auto relative z-10">
                 <article v-for="(gato, i) in gatosAdultos" :key="gato.nombre"
                     class="bg-crema border-[4px] border-negro rounded-[20px] overflow-hidden shadow-[6px_6px_0_#1C1410] transition-all duration-200 relative hover:rotate-0 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_#1C1410] hover:z-20"
                     :class="[i % 2 === 0 ? 'rotate-[1deg]' : '-rotate-[1.5deg]']">
                     <div
-                        class="h-[220px] relative overflow-hidden bg-crema group text-[80px] flex items-center justify-center">
+                        class="h-[13.75rem] relative overflow-hidden bg-crema group text-[5rem] flex items-center justify-center">
                         <template v-if="gato.imagen">
                             <img :src="PREFIJO_RUTA_GLOBAL + gato.imagen" :alt="gato.nombre"
                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
@@ -73,19 +74,18 @@
                         </template>
                     </div>
                     <section class="p-5">
-                        <p class="font-lilita text-[24px] text-negro mb-1.5 flex items-center gap-2">{{ gato.nombre }}
+                        <p class="font-lilita text-2xl text-negro mb-1.5 flex items-center gap-2">{{ gato.nombre }}
                         </p>
-                        <p class="text-[13px] text-gris font-bold mb-2.5">{{ gato.meta }}</p>
-                        <p class="text-[14px] text-marron leading-relaxed mb-4">{{ gato.descripcion }}</p>
+                        <p class="text-[0.8125rem] text-gris font-bold mb-2.5">{{ gato.meta }}</p>
+                        <p class="text-sm text-marron leading-relaxed mb-4">{{ gato.descripcion }}</p>
                         <div class="flex gap-1.5 flex-wrap mb-4">
-                            <span
-                                class="bg-durazno border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-black"
+                            <span class="bg-durazno border-2 border-negro rounded-md px-2.5 py-0.5 text-xs font-black"
                                 v-for="tag in gato.tags" :key="tag"
                                 :class="{ 'bg-negro text-miel': tag === 'Interior' || tag === 'Tranquila' || tag === 'Tímido' || tag === 'Leal' }">{{
                                 tag }}</span>
                         </div>
                         <a href="contacto.html"
-                            class="block text-center w-full bg-oxido text-blanco border-[3px] border-negro rounded-xl p-3 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro max-w-full truncate">¡Quiero
+                            class="block text-center w-full bg-oxido text-blanco border-[3px] border-negro rounded-xl p-3 font-nunito font-black text-[0.9375rem] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro max-w-full truncate">¡Quiero
                             adoptarlo! 🐾</a>
                     </section>
                 </article>
@@ -93,20 +93,20 @@
         </section>
 
         <!-- SECCIÓN SENIOR -->
-        <section class="py-16 md:py-[70px] px-6 md:px-10 bg-negro">
+        <section class="py-16 md:py-[4.375rem] px-6 md:px-10 bg-negro">
             <div class="text-center mb-14 relative z-10">
-                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-durazno text-shadow-negro">Gatos Senior</h2>
-                <p class="text-[16px] text-gris font-semibold mt-3">7 años o más. Con más calma, más sabiduría y el
+                <h2 class="font-lilita text-[clamp(2rem,5vw,3.5rem)] text-durazno text-shadow-negro">Gatos Senior</h2>
+                <p class="text-base text-gris font-semibold mt-3">7 años o más. Con más calma, más sabiduría y el
                     mismo amor de siempre</p>
-                <span class="block text-center text-[24px] mt-2.5 tracking-[6px] text-gris">⭐ ⭐ ⭐</span>
+                <span class="block text-center text-2xl mt-2.5 tracking-[6px] text-gris">⭐ ⭐ ⭐</span>
             </div>
             <div
-                class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-8 max-w-[900px] mx-auto relative z-10">
+                class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(17.5rem,1fr))] gap-8 max-w-[56.25rem] mx-auto relative z-10">
                 <article v-for="(gato, i) in gatosSenior" :key="gato.nombre"
                     class="bg-crema border-[4px] border-negro rounded-[20px] overflow-hidden shadow-[6px_6px_0_#1C1410] transition-all duration-200 relative hover:rotate-0 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_#1C1410] hover:z-20"
                     :class="[i % 2 === 0 ? '-rotate-[1.5deg]' : 'rotate-[1deg]']">
                     <div
-                        class="h-[220px] relative overflow-hidden bg-crema group text-[80px] flex items-center justify-center">
+                        class="h-[13.75rem] relative overflow-hidden bg-crema group text-[5rem] flex items-center justify-center">
                         <template v-if="gato.imagen">
                             <img :src="PREFIJO_RUTA_GLOBAL + gato.imagen" :alt="gato.nombre"
                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
@@ -115,21 +115,20 @@
                             {{ gato.emoji }}
                         </template>
                         <div
-                            class="absolute top-3 left-3 text-[11px] font-black uppercase tracking-[0.08em] px-3 py-1 border-[2.5px] border-negro rounded-full shadow-[2px_2px_0_#1C1410] z-10 bg-[#4CAF50] text-white">
+                            class="absolute top-3 left-3 text-[0.6875rem] font-black uppercase tracking-[0.08em] px-3 py-1 border-[2.5px] border-negro rounded-full shadow-[2px_2px_0_#1C1410] z-10 bg-[#4CAF50] text-white">
                             Disponible</div>
                     </div>
                     <section class="p-5">
-                        <p class="font-lilita text-[24px] text-negro mb-1.5 flex items-center gap-2">{{ gato.nombre }}
+                        <p class="font-lilita text-2xl text-negro mb-1.5 flex items-center gap-2">{{ gato.nombre }}
                         </p>
-                        <p class="text-[13px] text-gris font-bold mb-2.5">{{ gato.meta }}</p>
-                        <p class="text-[14px] text-marron leading-relaxed mb-4">{{ gato.descripcion }}</p>
+                        <p class="text-[0.8125rem] text-gris font-bold mb-2.5">{{ gato.meta }}</p>
+                        <p class="text-sm text-marron leading-relaxed mb-4">{{ gato.descripcion }}</p>
                         <div class="flex gap-1.5 flex-wrap mb-4">
-                            <span
-                                class="bg-durazno border-2 border-negro rounded-md px-2.5 py-0.5 text-[12px] font-black"
+                            <span class="bg-durazno border-2 border-negro rounded-md px-2.5 py-0.5 text-xs font-black"
                                 v-for="tag in gato.tags" :key="tag">{{ tag }}</span>
                         </div>
                         <a href="..//"
-                            class="block text-center w-full bg-oxido text-blanco border-[3px] border-negro rounded-xl p-3 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro max-w-full truncate">¡Quiero
+                            class="block text-center w-full bg-oxido text-blanco border-[3px] border-negro rounded-xl p-3 font-nunito font-black text-[0.9375rem] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro max-w-full truncate">¡Quiero
                             adoptarlo! 🐾</a>
                     </section>
                 </article>

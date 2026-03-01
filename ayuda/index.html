@@ -27,48 +27,50 @@
         <componente-navbar></componente-navbar>
 
         <header
-            class="bg-[linear-gradient(135deg,var(--oxido),var(--marron))] py-14 px-6 md:py-20 md:px-10 pb-[60px] relative overflow-hidden text-center">
+            class="bg-[linear-gradient(135deg,var(--oxido),var(--marron))] py-14 px-6 md:py-20 md:px-10 pb-[3.75rem] relative overflow-hidden text-center">
             <div
-                class="absolute text-[300px] opacity-[0.06] -top-10 -right-[30px] pointer-events-none rotate-[20deg] select-none">
+                class="absolute text-[18.75rem] opacity-[0.06] -top-10 -right-[30px] pointer-events-none rotate-[20deg] select-none">
                 ❤️</div>
-            <h1 class="font-lilita text-[clamp(40px,6vw,72px)] text-blanco mb-4 relative z-10 leading-tight">¡Ayudá a
+            <h1 class="font-lilita text-[clamp(2.5rem,6vw,4.5rem)] text-blanco mb-4 relative z-10 leading-tight">¡Ayudá
+                a
                 los Gatos! ❤️</h1>
-            <p class="text-[18px] text-white/85 max-w-[650px] mx-auto mb-8 font-semibold leading-relaxed relative z-10">
+            <p class="text-lg text-white/85 max-w-[40.625rem] mx-auto mb-8 font-semibold leading-relaxed relative z-10">
                 No podés adoptar, pero podés marcar la diferencia de muchas otras formas. Cada gesto cuenta.</p>
         </header>
 
         <!-- FORMAS DE AYUDAR -->
-        <section class="py-14 md:py-[80px] px-6 md:px-10 bg-blanco">
+        <section class="py-14 md:py-20 px-6 md:px-10 bg-blanco">
             <div class="text-center mb-14 relative z-10">
-                <h2 class="font-lilita text-[clamp(32px,5vw,56px)] text-oxido text-shadow-negro">Formas de ayudar</h2>
-                <p class="text-[16px] text-gris font-semibold mt-3">Elegí cómo querés sumarte a la causa</p>
-                <span class="block text-center text-[24px] mt-2.5 tracking-[6px]">❤️ ❤️ ❤️</span>
+                <h2 class="font-lilita text-[clamp(2rem,5vw,3.5rem)] text-oxido text-shadow-negro">Formas de ayudar</h2>
+                <p class="text-base text-gris font-semibold mt-3">Elegí cómo querés sumarte a la causa</p>
+                <span class="block text-center text-2xl mt-2.5 tracking-[6px]">❤️ ❤️ ❤️</span>
             </div>
 
             <div
-                class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-7 max-w-[1000px] mx-auto">
+                class="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(18.75rem,1fr))] gap-7 max-w-[62.5rem] mx-auto">
                 <!-- DONACIÓN -->
                 <article
                     class="bg-crema border-[4px] border-negro rounded-[20px] py-9 px-7 shadow-[7px_7px_0_#1C1410] text-center transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[11px_11px_0_#1C1410]">
-                    <span class="text-[60px] mb-4 block">💰</span>
-                    <h2 class="font-lilita text-[24px] text-negro mb-3">Donación monetaria</h2>
-                    <p class="text-[14px] text-marron leading-relaxed font-semibold mb-5">Tu aporte se destina
+                    <span class="text-[3.75rem] mb-4 block">💰</span>
+                    <h2 class="font-lilita text-2xl text-negro mb-3">Donación monetaria</h2>
+                    <p class="text-sm text-marron leading-relaxed font-semibold mb-5">Tu aporte se destina
                         directamente a gastos veterinarios, alimento y el cuidado de los gatitos en tránsito.</p>
 
                     <!-- Barra de progreso del mes -->
-                    <p class="text-[13px] font-black text-left text-negro mb-1.5">Meta del mes: $80.000</p>
+                    <p class="text-[0.8125rem] font-black text-left text-negro mb-1.5">Meta del mes: $80.000</p>
                     <section
                         class="bg-crema border-[3px] border-negro rounded-full h-6 overflow-hidden my-3 shadow-[3px_3px_0_#1C1410]">
                         <div class="h-full bg-oxido rounded-full transition-[width] duration-1500 ease-out"
                             :style="'width:' + progresoDonacion + '%'"></div>
                     </section>
-                    <p class="text-[13px] font-black text-gris text-right">{{ donacionRecaudada | moneda }} recaudados
+                    <p class="text-[0.8125rem] font-black text-gris text-right">{{ donacionRecaudada | moneda }}
+                        recaudados
                         ({{ progresoDonacion }}%)</p>
 
                     <!-- Montos rápidos -->
                     <section class="flex gap-2.5 justify-center flex-wrap mt-4 mb-5">
                         <button v-for="monto in montos" :key="monto"
-                            class="border-[3px] border-negro rounded-xl py-2.5 px-5 font-nunito font-black text-[16px] cursor-pointer shadow-[3px_3px_0_#1C1410] transition-all duration-150 text-negro hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#1C1410]"
+                            class="border-[3px] border-negro rounded-xl py-2.5 px-5 font-nunito font-black text-base cursor-pointer shadow-[3px_3px_0_#1C1410] transition-all duration-150 text-negro hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#1C1410]"
                             :class="[montoSeleccionado === monto ? 'bg-miel -translate-x-0.5 -translate-y-0.5 shadow-[5px_5px_0_#1C1410]' : 'bg-crema']"
                             @click="montoSeleccionado = monto">
                             ${{ monto.toLocaleString('es-AR') }}
@@ -76,11 +78,11 @@
                     </section>
 
                     <button v-if="!donado"
-                        class="block w-full bg-oxido text-blanco border-[3px] border-negro rounded-xl py-3 px-5 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro truncate"
+                        class="block w-full bg-oxido text-blanco border-[3px] border-negro rounded-xl py-3 px-5 font-nunito font-black text-[0.9375rem] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro truncate"
                         @click="donar">
                         Donar ${{ montoSeleccionado.toLocaleString('es-AR') }} ❤️
                     </button>
-                    <div v-else class="font-lilita text-[20px] text-oxido py-3">
+                    <div v-else class="font-lilita text-xl text-oxido py-3">
                         ¡Gracias por tu donación! 🐾✨
                     </div>
                 </article>
@@ -88,36 +90,36 @@
                 <!-- VOLUNTARIADO -->
                 <article
                     class="bg-crema border-[4px] border-negro rounded-[20px] py-9 px-7 shadow-[7px_7px_0_#1C1410] text-center transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[11px_11px_0_#1C1410]">
-                    <span class="text-[60px] mb-4 block">🙋</span>
-                    <h2 class="font-lilita text-[24px] text-negro mb-3">Voluntariado</h2>
-                    <p class="text-[14px] text-marron leading-relaxed font-semibold mb-5">Sumate como voluntario y ayudá
+                    <span class="text-[3.75rem] mb-4 block">🙋</span>
+                    <h2 class="font-lilita text-2xl text-negro mb-3">Voluntariado</h2>
+                    <p class="text-sm text-marron leading-relaxed font-semibold mb-5">Sumáte como voluntario y ayudá
                         con la socialización de gatitos, traslados, eventos de adopción y difusión.</p>
                     <ul class="text-left mb-5">
                         <li v-for="act in actividades" :key="act"
-                            class="mb-2 text-[14px] text-marron font-semibold flex gap-2 items-start">
+                            class="mb-2 text-sm text-marron font-semibold flex gap-2 items-start">
                             <span class="shrink-0">🐾</span> {{ act }}
                         </li>
                     </ul>
                     <a href="../complementarias/contacto.html"
-                        class="block w-full text-center bg-oxido text-blanco border-[3px] border-negro rounded-xl py-3 px-5 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro truncate">Quiero
+                        class="block w-full text-center bg-oxido text-blanco border-[3px] border-negro rounded-xl py-3 px-5 font-nunito font-black text-[0.9375rem] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro truncate">Quiero
                         ser voluntario 🙋</a>
                 </article>
 
                 <!-- APADRINAMIENTO -->
                 <article
                     class="bg-crema border-[4px] border-negro rounded-[20px] py-9 px-7 shadow-[7px_7px_0_#1C1410] text-center transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[11px_11px_0_#1C1410]">
-                    <span class="text-[60px] mb-4 block">🌟</span>
-                    <h2 class="font-lilita text-[24px] text-negro mb-3">Apadrinamiento</h2>
-                    <p class="text-[14px] text-marron leading-relaxed font-semibold mb-5">Elegí un gatito que todavía no
+                    <span class="text-[3.75rem] mb-4 block">🌟</span>
+                    <h2 class="font-lilita text-2xl text-negro mb-3">Apadrinamiento</h2>
+                    <p class="text-sm text-marron leading-relaxed font-semibold mb-5">Elegí un gatito que todavía no
                         tiene familia y cubrí sus gastos mensuales mientras espera su hogar definitivo.</p>
                     <div class="bg-blanco border-[3px] border-negro rounded-xl p-5 mb-5 shadow-[3px_3px_0_#1C1410]">
-                        <div class="text-[48px] text-center mb-2">🙀</div>
-                        <p class="font-lilita text-[18px] text-center text-negro">Sombra 🖤</p>
-                        <p class="text-[12px] text-gris text-center font-bold">Macho · 5 años · Lleva 3 meses en
+                        <div class="text-[3rem] text-center mb-2">🙀</div>
+                        <p class="font-lilita text-lg text-center text-negro">Sombra 🖤</p>
+                        <p class="text-xs text-gris text-center font-bold">Macho · 5 años · Lleva 3 meses en
                             tránsito</p>
                     </div>
                     <a href="../catalogo/index.html"
-                        class="block w-full text-center bg-oxido text-blanco border-[3px] border-negro rounded-xl py-3 px-5 font-nunito font-black text-[15px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro truncate">Apadrinar
+                        class="block w-full text-center bg-oxido text-blanco border-[3px] border-negro rounded-xl py-3 px-5 font-nunito font-black text-[0.9375rem] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro truncate">Apadrinar
                         a Sombra 💙</a>
                 </article>
             </div>

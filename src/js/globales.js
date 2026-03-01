@@ -68,35 +68,34 @@ const Navbar = {
       <!-- Barra marquee -->
       <div class="bg-negro text-miel py-2.5 overflow-hidden whitespace-nowrap relative z-10">
         <div class="inline-block animate-[marquee_22s_linear_infinite]">
-          <span class="font-marker text-[16px] mx-8 text-ambar">🐈</span><span class="font-marker text-[16px] mx-8">Adoptá · No compres</span>
-          <span class="font-marker text-[16px] mx-8 text-ambar">🐾</span><span class="font-marker text-[16px] mx-8">Más de 200 gatitos esperándote</span>
-          <span class="font-marker text-[16px] mx-8 text-ambar">🐱</span><span class="font-marker text-[16px] mx-8">La adopción salva vidas</span>
-          <span class="font-marker text-[16px] mx-8 text-ambar">❤️</span><span class="font-marker text-[16px] mx-8">Cada gato merece un hogar</span>
-          <span class="font-marker text-[16px] mx-8 text-ambar">🐈‍⬛</span><span class="font-marker text-[16px] mx-8">Adoptá · No compres</span>
-          <span class="font-marker text-[16px] mx-8 text-ambar">🐾</span><span class="font-marker text-[16px] mx-8">Más de 200 gatitos esperándote</span>
-          <span class="font-marker text-[16px] mx-8 text-ambar">🐱</span><span class="font-marker text-[16px] mx-8">La adopción salva vidas</span>
-          <span class="font-marker text-[16px] mx-8 text-ambar">❤️</span><span class="font-marker text-[16px] mx-8">Cada gato merece un hogar</span>
-          <span class="font-marker text-[16px] mx-8 text-ambar">🐈</span><span class="font-marker text-[16px] mx-8">Adoptá · No compres</span>
-          <span class="font-marker text-[16px] mx-8 text-ambar">🐾</span><span class="font-marker text-[16px] mx-8">Más de 200 gatitos esperándote</span>
-          <span class="font-marker text-[16px] mx-8 text-ambar">🐱</span><span class="font-marker text-[16px] mx-8">La adopción salva vidas</span>
-          <span class="font-marker text-[16px] mx-8 text-ambar">❤️</span><span class="font-marker text-[16px] mx-8">Cada gato merece un hogar</span>
+          <span class="font-marker text-base mx-8 text-ambar">🐈</span><span class="font-marker text-base mx-8">Adoptá · No compres</span>
+          <span class="font-marker text-base mx-8 text-ambar">🐾</span><span class="font-marker text-base mx-8">Más de 200 gatitos esperándote</span>
+          <span class="font-marker text-base mx-8 text-ambar">🐱</span><span class="font-marker text-base mx-8">La adopción salva vidas</span>
+          <span class="font-marker text-base mx-8 text-ambar">❤️</span><span class="font-marker text-base mx-8">Cada gato merece un hogar</span>
+          <span class="font-marker text-base mx-8 text-ambar">🐈‍⬛</span><span class="font-marker text-base mx-8">Adoptá · No compres</span>
+          <span class="font-marker text-base mx-8 text-ambar">🐾</span><span class="font-marker text-base mx-8">Más de 200 gatitos esperándote</span>
+          <span class="font-marker text-base mx-8 text-ambar">🐱</span><span class="font-marker text-base mx-8">La adopción salva vidas</span>
+          <span class="font-marker text-base mx-8 text-ambar">❤️</span><span class="font-marker text-base mx-8">Cada gato merece un hogar</span>
+          <span class="font-marker text-base mx-8 text-ambar">🐈</span><span class="font-marker text-base mx-8">Adoptá · No compres</span>
+          <span class="font-marker text-base mx-8 text-ambar">🐾</span><span class="font-marker text-base mx-8">Más de 200 gatitos esperándote</span>
+          <span class="font-marker text-base mx-8 text-ambar">🐱</span><span class="font-marker text-base mx-8">La adopción salva vidas</span>
+          <span class="font-marker text-base mx-8 text-ambar">❤️</span><span class="font-marker text-base mx-8">Cada gato merece un hogar</span>
         </div>
       </div>
 
       <!-- Barra de navegación -->
       <nav class="bg-blanco border-b-[4px] border-negro py-4 px-5 md:px-10 flex items-center justify-between sticky top-0 z-[100] shadow-[4px_4px_0_#1C1410]">
-        <a :href="prefijoRuta + 'index.html'" class="font-lilita text-[28px] text-oxido no-underline after:content-['\\00a0🐱']">GatoHogar</a>
+        <a :href="prefijoRuta + 'index.html'" class="font-lilita text-[1.75rem] text-oxido no-underline after:content-['\\00a0🐱']">GatoHogar</a>
 
-        <button class="md:hidden bg-transparent border-[3px] border-negro rounded-[10px] px-3 py-2 text-[20px] cursor-pointer text-negro" @click="alternarMenu" aria-label="Menú">☰</button>
+        <button class="md:hidden bg-transparent border-[3px] border-negro rounded-[10px] px-3 py-2 text-xl cursor-pointer text-negro" @click="alternarMenu" aria-label="Menú">☰</button>
 
         <ul class="hidden md:flex gap-2 list-none items-center m-0 p-0" :class="{ '!flex absolute top-full left-0 right-0 flex-col bg-blanco border-b-[4px] border-negro p-5 gap-1 shadow-[0_6px_0_#1C1410]': menuAbierto }">
-          <li><a :href="prefijoRuta + 'adopcion/index.html'" class="font-nunito font-extrabold text-[14px] text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('adopcion') }">Adoptá</a></li>
-          <li><a :href="prefijoRuta + 'catalogo/index.html'" class="font-nunito font-extrabold text-[14px] text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('catalogo') }">Gatálogo</a></li>
-          <li><a :href="prefijoRuta + 'cuidados/index.html'" class="font-nunito font-extrabold text-[14px] text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('cuidados') }">Cuidados</a></li>
-          <li><a :href="prefijoRuta + 'historias/index.html'" class="font-nunito font-extrabold text-[14px] text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('historias') }">Historias</a></li>
-          <li><a :href="prefijoRuta + 'ayuda/index.html'" class="font-nunito font-extrabold text-[14px] text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('ayuda') }">Ayuda</a></li>
-          <li><a :href="prefijoRuta + 'juego/index.html'" class="font-nunito font-extrabold text-[14px] text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('juego') }">¡Juega!</a></li>
-          <li class="hidden sm:block"><a :href="prefijoRuta + 'catalogo/index.html'" class="font-nunito font-black text-[14px] text-blanco bg-oxido no-underline py-2 px-5 border-[3px] border-negro rounded-full shadow-[3px_3px_0_#1C1410] transition-all duration-150 inline-block hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[5px_5px_0_#1C1410] hover:bg-ambar hover:text-negro">¡Quiero adoptar! 🐾</a></li>
+          <li><a :href="prefijoRuta + 'adopcion/index.html'" class="font-nunito font-extrabold text-base text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('adopcion') }">Adoptá</a></li>
+          <li><a :href="prefijoRuta + 'catalogo/index.html'" class="font-nunito font-extrabold text-base text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('catalogo') }">Gatálogo</a></li>
+          <li><a :href="prefijoRuta + 'cuidados/index.html'" class="font-nunito font-extrabold text-base text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('cuidados') }">Cuidados</a></li>
+          <li><a :href="prefijoRuta + 'ayuda/index.html'" class="font-nunito font-extrabold text-base text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('ayuda') }">Ayuda</a></li>
+          <li><a :href="prefijoRuta + 'juego/index.html'" class="font-nunito font-extrabold text-base text-marron no-underline py-2 px-4 border-[3px] border-transparent rounded-full transition-all duration-150 inline-block hover:border-negro hover:bg-miel hover:-rotate-2" :class="{ 'border-negro bg-miel -rotate-2': esActivo('juego') }">¡Juega!</a></li>
+          <li class="hidden sm:block"><a :href="prefijoRuta + 'catalogo/index.html'" class="font-nunito font-black text-base text-blanco bg-oxido no-underline py-2 px-5 border-[3px] border-negro rounded-full shadow-[3px_3px_0_#1C1410] transition-all duration-150 inline-block hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[5px_5px_0_#1C1410] hover:bg-ambar hover:text-negro">¡Quiero adoptar! 🐾</a></li>
         </ul>
       </nav>
     </div>
@@ -111,44 +110,42 @@ const Footer = {
     return { prefijoRuta };
   },
   template: `
-    <footer class="bg-negro pt-[60px] pb-8 px-6 md:px-10 text-crema md:pt-12 md:px-6">
+    <footer class="bg-negro pt-[3.75rem] pb-8 px-6 md:px-10 text-crema md:pt-12 md:px-6">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-10 mb-12">
         <div>
-          <div class="font-lilita text-[36px] text-miel mb-3">GatoHogar 🐱</div>
-          <p class="text-[14px] text-gris leading-relaxed mb-5 max-w-[260px]">Conectamos gatos con sus familias para siempre. Porque cada gatito merece un hogar lleno de amor, snacks y sol en la ventana.</p>
+          <div class="font-lilita text-4xl text-miel mb-3">GatoHogar 🐱</div>
+          <p class="text-[0.969rem] text-gris leading-relaxed mb-5 max-w-[17.5rem]">Conectamos gatos con sus familias para siempre. Porque cada gatito merece un hogar lleno de amor, snacks y sol en la ventana.</p>
         </div>
         <div>
-          <h4 class="font-nunito font-black text-[14px] tracking-widest uppercase text-miel mb-4">Adoptar</h4>
+          <h4 class="font-nunito font-black text-base tracking-widest uppercase text-miel mb-4">Adoptar</h4>
           <ul class="list-none p-0 m-0">
-            <li class="mb-2"><a :href="prefijoRuta + 'catalogo/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Ver gatitos</a></li>
-            <li class="mb-2"><a :href="prefijoRuta + 'adopcion/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Cómo funciona</a></li>
-            <li class="mb-2"><a :href="prefijoRuta + 'adopcion/requisitos.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Requisitos</a></li>
-            <li class="mb-2"><a :href="prefijoRuta + 'adopcion/proceso.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Paso a paso</a></li>
-            <li class="mb-2"><a :href="prefijoRuta + 'contacto/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Contacto</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'catalogo/index.html'" class="text-gris no-underline text-[0.969rem] font-semibold transition-colors duration-150 hover:text-blanco">Ver gatitos</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'adopcion/index.html'" class="text-gris no-underline text-[0.969rem] font-semibold transition-colors duration-150 hover:text-blanco">Cómo funciona</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'adopcion/requisitos.html'" class="text-gris no-underline text-[0.969rem] font-semibold transition-colors duration-150 hover:text-blanco">Requisitos</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'adopcion/proceso.html'" class="text-gris no-underline text-[0.969rem] font-semibold transition-colors duration-150 hover:text-blanco">Paso a paso</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'complementarias/contacto.html'" class="text-gris no-underline text-[0.969rem] font-semibold transition-colors duration-150 hover:text-blanco">Contacto</a></li>
           </ul>
         </div>
         <div>
-          <h4 class="font-nunito font-black text-[14px] tracking-widest uppercase text-miel mb-4">Ayudar</h4>
+          <h4 class="font-nunito font-black text-base tracking-widest uppercase text-miel mb-4">Ayudar</h4>
           <ul class="list-none p-0 m-0">
-            <li class="mb-2"><a :href="prefijoRuta + 'ayuda/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Donar</a></li>
-            <li class="mb-2"><a :href="prefijoRuta + 'ayuda/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Voluntariado</a></li>
-            <li class="mb-2"><a :href="prefijoRuta + 'contacto/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Reportar un gato</a></li>
-            <li class="mb-2"><a :href="prefijoRuta + 'ayuda/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Apadrinar</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'ayuda/index.html'" class="text-gris no-underline text-[0.969rem] font-semibold transition-colors duration-150 hover:text-blanco">Donar</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'ayuda/index.html'" class="text-gris no-underline text-[0.969rem] font-semibold transition-colors duration-150 hover:text-blanco">Voluntariado</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'ayuda/index.html'" class="text-gris no-underline text-[0.969rem] font-semibold transition-colors duration-150 hover:text-blanco">Apadrinar</a></li>
           </ul>
         </div>
         <div>
-          <h4 class="font-nunito font-black text-[14px] tracking-widest uppercase text-miel mb-4">GatoHogar</h4>
+          <h4 class="font-nunito font-black text-base tracking-widest uppercase text-miel mb-4">GatoHogar</h4>
           <ul class="list-none p-0 m-0">
-            <li class="mb-2"><a :href="prefijoRuta + 'historias/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Historias</a></li>
-            <li class="mb-2"><a :href="prefijoRuta + 'juego/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">¡Juega!</a></li>
-            <li class="mb-2"><a :href="prefijoRuta + 'contacto/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Contacto</a></li>
-            <li class="mb-2"><a :href="prefijoRuta + 'creditos/index.html'" class="text-gris no-underline text-[14px] font-semibold transition-colors duration-150 hover:text-blanco">Créditos</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'juego/index.html'" class="text-gris no-underline text-[0.969rem] font-semibold transition-colors duration-150 hover:text-blanco">¡Juega!</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'complementarias/landing-contacto.html'" class="text-gris no-underline text-[0.969rem] font-semibold transition-colors duration-150 hover:text-blanco">Contacto</a></li>
+            <li class="mb-2"><a :href="prefijoRuta + 'creditos/index.html'" class="text-gris no-underline text-[0.969rem] font-semibold transition-colors duration-150 hover:text-blanco">Créditos</a></li>
           </ul>
         </div>
       </div>
       <div class="border-t border-marron pt-6 flex justify-between items-center gap-3 flex-wrap">
-        <p class="text-[13px] text-gris m-0">© \${new Date().getFullYear()} GatoHogar · Hecho con <span class="text-oxido">❤️</span> por personas que aman a los gatos</p>
-        <p class="text-[13px] text-gris m-0">Adoptá · No compres 🐾</p>
+        <p class="text-sm text-gris m-0">© \${new Date().getFullYear()} GatoHogar · Hecho con <span class="text-oxido">❤️</span> por personas que aman a los gatos</p>
+        <p class="text-sm text-gris m-0">Adoptá · No compres 🐾</p>
       </div>
     </footer>
   `,
@@ -184,9 +181,9 @@ const GaleriaModal = {
         <!-- Fondo oscuro -->
         <div class="absolute inset-0 bg-negro/80 backdrop-blur-sm"></div>
         <!-- Tarjeta modal -->
-        <div class="relative z-10 bg-crema border-[4px] border-negro rounded-[24px] shadow-[12px_12px_0_#1C1410] w-[95vw] max-w-[860px] mx-2 overflow-hidden flex flex-col" style="max-height:92vh">
+        <div class="relative z-10 bg-crema border-[4px] border-negro rounded-[1.5rem] shadow-[12px_12px_0_#1C1410] w-[95vw] max-w-[53.75rem] mx-2 overflow-hidden flex flex-col" style="max-height:92vh">
           <!-- Imagen -->
-          <div class="relative bg-negro w-full overflow-hidden flex-1" style="min-height:240px;max-height:70vh">
+          <div class="relative bg-negro w-full overflow-hidden flex-1" style="min-height:15rem;max-height:70vh">
             <img
               :src="PREFIJO_RUTA_GLOBAL + gatoActual.imagen"
               :alt="gatoActual.nombre"
@@ -195,28 +192,28 @@ const GaleriaModal = {
             <!-- Botón cerrar -->
             <button
               @click="$emit('cerrar')"
-              class="absolute top-3 right-3 bg-blanco border-[3px] border-negro rounded-full w-10 h-10 flex items-center justify-center font-black text-[18px] cursor-pointer shadow-[3px_3px_0_#1C1410] hover:bg-ambar transition-all duration-150 z-10">
+              class="absolute top-3 right-3 bg-blanco border-[3px] border-negro rounded-full w-10 h-10 flex items-center justify-center font-black text-lg cursor-pointer shadow-[3px_3px_0_#1C1410] hover:bg-ambar transition-all duration-150 z-10">
               ✕
             </button>
             <!-- Navegación: Anterior -->
             <button
               v-if="hayAnterior"
               @click="$emit('anterior')"
-              class="absolute left-4 top-1/2 -translate-y-1/2 bg-miel text-negro border-[4px] border-negro rounded-2xl w-14 h-14 flex items-center justify-center font-black text-[24px] cursor-pointer shadow-[5px_5px_0_#1C1410] hover:bg-ambar hover:-translate-x-1 hover:-translate-y-[calc(50%+4px)] hover:shadow-[8px_8px_0_#1C1410] transition-all duration-150 z-10">
+              class="absolute left-4 top-1/2 -translate-y-1/2 bg-miel text-negro border-[4px] border-negro rounded-2xl w-14 h-14 flex items-center justify-center font-black text-2xl cursor-pointer shadow-[5px_5px_0_#1C1410] hover:bg-ambar hover:-translate-x-1 hover:-translate-y-[calc(50%+4px)] hover:shadow-[8px_8px_0_#1C1410] transition-all duration-150 z-10">
               ‹
             </button>
             <!-- Navegación: Siguiente -->
             <button
               v-if="haySiguiente"
               @click="$emit('siguiente')"
-              class="absolute right-4 top-1/2 -translate-y-1/2 bg-miel text-negro border-[4px] border-negro rounded-2xl w-14 h-14 flex items-center justify-center font-black text-[24px] cursor-pointer shadow-[5px_5px_0_#1C1410] hover:bg-ambar hover:translate-x-1 hover:-translate-y-[calc(50%-4px)] hover:shadow-[8px_8px_0_#1C1410] transition-all duration-150 z-10">
+              class="absolute right-4 top-1/2 -translate-y-1/2 bg-miel text-negro border-[4px] border-negro rounded-2xl w-14 h-14 flex items-center justify-center font-black text-2xl cursor-pointer shadow-[5px_5px_0_#1C1410] hover:bg-ambar hover:translate-x-1 hover:-translate-y-[calc(50%-4px)] hover:shadow-[8px_8px_0_#1C1410] transition-all duration-150 z-10">
               ›
             </button>
           </div>
           <!-- Info del gato -->
           <div class="p-4 md:p-6 text-center">
-            <h2 class="font-lilita text-[30px] text-negro mb-1">{{ gatoActual.nombre }}</h2>
-            <p class="text-[13px] text-gris font-bold mb-3">{{ gatoActual.meta }}</p>
+            <h2 class="font-lilita text-[1.875rem] text-negro mb-1">{{ gatoActual.nombre }}</h2>
+            <p class="text-[0.8125rem] text-gris font-bold mb-3">{{ gatoActual.meta }}</p>
             <!-- Indicadores de posición -->
             <div class="flex justify-center gap-2">
               <span

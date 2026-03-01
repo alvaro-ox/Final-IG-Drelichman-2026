@@ -36,6 +36,8 @@ body {
   background-color: var(--crema);
   font-family: 'Nunito', sans-serif;
   overflow-x: hidden;
+  min-width: 320px;
+  /* Ancho mínimo para evitar quiebre en pantallas muy pequeñas */
 }
 
 /* Textura de ruido sutil */

@@ -5,12 +5,10 @@ createApp({
     components: {
         'componente-navbar': Navbar,
         'componente-footer': Footer,
-        'componente-galeria': GaleriaModal,
     },
     data() {
         return {
             filtroActivo: 'todos',
-            gatoSeleccionado: null,
             // Opciones de filtrado
             filtros: [
                 { valor: 'todos', etiqueta: '🐾 Todos' },
@@ -21,9 +19,6 @@ createApp({
                 { valor: 'hembra', etiqueta: '♀ Hembras' },
             ],
             gatos: GATOS,
-            // Galería modal
-            galeriaVisible: false,
-            galeriaIndice: 0,
             PREFIJO_RUTA_GLOBAL,
         };
     },
@@ -31,16 +26,6 @@ createApp({
         gatosFiltrados() {
             if (this.filtroActivo === 'todos') return this.gatos;
             return this.gatos.filter(g => g.edad === this.filtroActivo || g.sexo === this.filtroActivo);
-        },
-    },
-    methods: {
-        consultarAdopcion(gato) {
-            this.gatoSeleccionado = gato;
-        },
-        abrirGaleria(indice) {
-            // En catálogo usamos el índice dentro de gatosFiltrados
-            this.galeriaIndice = indice;
-            this.galeriaVisible = true;
         },
     },
 }).mount('#app');

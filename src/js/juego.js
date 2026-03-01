@@ -1,28 +1,30 @@
 window.evitarAutoInicio = true;
 
-//   — "Wordle" 
+// ─── Wordle Felino — Usa GATOS de datos-gatos.js ───────────────────
 
-
-// Función helper para elegir una palabra al azar (fuera del componente)
-function elegirPalabraAleatoria() {
-    return PALABRAS[Math.floor(Math.random() * PALABRAS.length)];
+// Elimina emojis y espacios extra, devuelve solo letras en mayúscula
+function extraerNombre(nombreConEmoji) {
+    return nombreConEmoji
+        .replace(/\p{Emoji}/gu, '')   // elimina emojis y selectores de variante (U+FE0F)
+        .replace(/[^\p{L}]/gu, '')    // elimina cualquier carácter que no sea letra
+        .trim()
+        .toUpperCase();
 }
 
-// Banco de palabras (nombres de gatos del refugio, en mayúsculas)
-const PALABRAS = [
-    { palabra: 'NARANJA', categoria: ' Gato famoso del refugio' },
-    { palabra: 'CANELA', categoria: ' Calico adorada' },
-    { palabra: 'NOCHE', categoria: ' La misteriosa' },
-    { palabra: 'SOMBRA', categoria: ' El tímido leal' },
-    { palabra: 'PIRATA', categoria: ' El veterano con parche' },
-    { palabra: 'GALLETA', categoria: ' La más sociable' },
-    { palabra: 'TORMENTA', categoria: ' Energía pura' },
-    { palabra: 'LUNA', categoria: ' La senior zen' },
-    { palabra: 'MENTA', categoria: ' Juguetón atigrado' },
-    { palabra: 'FRIDA', categoria: ' La traviesa creativa' },
-    { palabra: 'THOR', categoria: ' El musculoso' },
-    { palabra: 'TORTILLA', categoria: ' La bolita pequeña' },
-];
+// Construye la lista de palabras a partir del array global GATOS
+function construirPalabras() {
+    return GATOS.map(gato => ({
+        palabra: extraerNombre(gato.nombre),
+        categoria: gato.meta,
+        gatoObjeto: gato,
+    })).filter(p => p.palabra.length >= 2);
+}
+
+// Elige un gato al azar del array construido
+function elegirGatoAleatorio() {
+    const palabras = construirPalabras();
+    return palabras[Math.floor(Math.random() * palabras.length)];
+}
 
 // Filas del teclado virtual
 const FILAS_TECLADO = [
@@ -31,54 +33,44 @@ const FILAS_TECLADO = [
     ['Z', 'X', 'C', 'V', 'B', 'N', 'M'],
 ];
 
-// Longitudes de palabras aceptadas (entre 5 y 8 letras)
-const LONGITUDES_VALIDAS = new Set(PALABRAS.map(p => p.palabra.length));
-
 createApp({
     components: {
         'componente-navbar': Navbar,
         'componente-footer': Footer,
     },
     data() {
-        // Elegimos palabra antes de que los métodos estén disponibles
-        const seleccion = elegirPalabraAleatoria();
+        const seleccion = elegirGatoAleatorio();
         return {
             // Estado del juego
             palabraSecreta: seleccion.palabra,
             categoriaActual: seleccion.categoria,
+            gatoActual: seleccion.gatoObjeto,
             longitud: seleccion.palabra.length,
             maxIntentos: 6,
             intentoActual: 0,
             letraActual: 0,
             juegoTerminado: false,
             ganado: false,
-            // Estructura de la grilla (letra + estado)
+            // Grilla y teclado
             grilla: [],
-            // Estado de cada tecla del teclado
             estadosTeclas: {},
-            // Filas del teclado virtual
             filasletras: FILAS_TECLADO,
-            // Mensaje al usuario
+            // Mensajes
             mensaje: '',
             tipoMensaje: 'info',
+            // Prefijo de ruta global (definido en globales.js)
+            PREFIJO_RUTA_GLOBAL,
         };
     },
     created() {
-        // Inicializa la grilla vacía al crear el componente
         this.inicializarGrilla();
-        // Escucha el teclado físico
         window.addEventListener('keydown', this.manejarTecla);
     },
     beforeUnmount() {
         window.removeEventListener('keydown', this.manejarTecla);
     },
     methods: {
-        // Elige una nueva palabra al azar al reiniciar
-        elegirPalabra() {
-            return elegirPalabraAleatoria();
-        },
-
-        // Inicializa la grilla con celdas vacías
+        // Inicializa la grilla con celdas vacías según la longitud dinámica
         inicializarGrilla() {
             this.grilla = [];
             for (let f = 0; f < this.maxIntentos; f++) {
@@ -90,7 +82,7 @@ createApp({
             }
         },
 
-        // Maneja el teclado físico del dispositivo
+        // Maneja el teclado físico
         manejarTecla(e) {
             if (this.juegoTerminado) return;
             const tecla = e.key.toUpperCase();
@@ -116,7 +108,7 @@ createApp({
             this.mensaje = '';
         },
 
-        // Confirma el intento actual y evalúa la palabra
+        // Confirma el intento actual
         confirmarIntento() {
             if (this.letraActual < this.longitud) {
                 this.mostrarMensaje('¡Completá todas las letras! 🐾', 'info');
@@ -124,41 +116,33 @@ createApp({
             }
 
             const intento = this.grilla[this.intentoActual].map(c => c.letra).join('');
-
-            // Evalúa cada letra según su posición en la palabra secreta
             const resultado = this.evaluarIntento(intento);
 
-            // Actualiza el estado de las celdas
             resultado.forEach((est, i) => {
                 this.grilla[this.intentoActual][i].estado = est;
             });
 
-            // Actualiza el estado de las teclas del teclado
             this.actualizarTeclas(intento, resultado);
 
             if (intento === this.palabraSecreta) {
-                // El jugador ganó
                 this.juegoTerminado = true;
                 this.ganado = true;
                 const felicitaciones = ['¡INCREÍBLE! 🐾', '¡Lo lograste! 🎉', '¡Sos un experto felino! 🐱', '¡El gatito te elige! ❤️'];
                 this.mostrarMensaje(felicitaciones[Math.floor(Math.random() * felicitaciones.length)], 'ganaste');
             } else if (this.intentoActual >= this.maxIntentos - 1) {
-                // Se acabaron los intentos
                 this.juegoTerminado = true;
                 this.mostrarMensaje('Era: ' + this.palabraSecreta + ' 😿', 'perdiste');
             } else {
-                // Siguiente intento
                 this.intentoActual++;
                 this.letraActual = 0;
             }
         },
 
-        // Evalúa el intento letra por letra
+        // Evalúa el intento letra por letra (algoritmo Wordle estándar)
         evaluarIntento(intento) {
             const resultado = new Array(this.longitud).fill('ausente');
             const letrasRestantes = this.palabraSecreta.split('');
 
-            // Primera pasada: letras en posición correcta
             for (let i = 0; i < this.longitud; i++) {
                 if (intento[i] === this.palabraSecreta[i]) {
                     resultado[i] = 'correcta';
@@ -166,7 +150,6 @@ createApp({
                 }
             }
 
-            // Segunda pasada: letras presentes en otro lugar
             for (let i = 0; i < this.longitud; i++) {
                 if (resultado[i] !== 'correcta') {
                     const pos = letrasRestantes.indexOf(intento[i]);
@@ -180,7 +163,7 @@ createApp({
             return resultado;
         },
 
-        // Actualiza el estado visual de cada tecla del teclado
+        // Actualiza el estado visual de cada tecla
         actualizarTeclas(intento, resultado) {
             const prioridad = { correcta: 3, presente: 2, ausente: 1 };
             resultado.forEach((est, i) => {
@@ -192,17 +175,18 @@ createApp({
             });
         },
 
-        // Muestra un mensaje temporal al usuario
+        // Muestra un mensaje al usuario
         mostrarMensaje(texto, tipo) {
             this.mensaje = texto;
             this.tipoMensaje = tipo;
         },
 
-        // Reinicia el juego con una nueva palabra
+        // Reinicia el juego con un gato nuevo al azar
         reiniciarJuego() {
-            const seleccion = this.elegirPalabra();
+            const seleccion = elegirGatoAleatorio();
             this.palabraSecreta = seleccion.palabra;
             this.categoriaActual = seleccion.categoria;
+            this.gatoActual = seleccion.gatoObjeto;
             this.longitud = seleccion.palabra.length;
             this.intentoActual = 0;
             this.letraActual = 0;

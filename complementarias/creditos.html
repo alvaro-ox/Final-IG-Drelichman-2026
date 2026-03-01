@@ -26,74 +26,75 @@
         <!-- Navbar oculta para darle todo el protagonismo a la tarjeta -->
         <componente-navbar></componente-navbar>
 
-        <main class="min-h-screen bg-negro flex items-center justify-center py-[60px] px-6 relative overflow-hidden">
+        <main class="min-h-screen bg-negro flex items-center justify-center py-[3.75rem] px-6 relative overflow-hidden">
             <div
-                class="absolute text-[500px] opacity-[0.03] -top-[100px] -right-[100px] pointer-events-none rotate-[25deg] select-none">
+                class="absolute text-[31.25rem] opacity-[0.03] -top-[6.25rem] -right-[6.25rem] pointer-events-none rotate-[25deg] select-none">
                 🐾</div>
             <!-- Stickers de fondo -->
             <span class="sticker st1 text-miel opacity-15">⭐</span>
             <span class="sticker st3 text-ambar opacity-15">🌿</span>
 
             <article
-                class="bg-blanco border-[5px] border-negro rounded-[28px] py-10 px-7 sm:py-[60px] sm:px-12 shadow-[12px_12px_0_var(--miel)] max-w-[600px] w-full text-center relative">
+                class="bg-blanco border-[5px] border-negro rounded-[1.75rem] py-10 px-7 sm:py-[3.75rem] sm:px-12 shadow-[12px_12px_0_var(--miel)] max-w-[37.5rem] w-full text-center relative">
                 <!-- Sello -->
                 <div
-                    class="hidden sm:flex absolute -top-6 -right-6 bg-oxido text-blanco border-[4px] border-negro rounded-full w-[88px] h-[88px] items-center justify-center font-[Permanent_Marker] text-[11px] text-center rotate-[15deg] shadow-[4px_4px_0_#1C1410] leading-tight">
+                    class="hidden sm:flex absolute -top-6 -right-6 bg-oxido text-blanco border-[4px] border-negro rounded-full w-[5.5rem] h-[5.5rem] items-center justify-center font-[Permanent_Marker] text-[0.6875rem] text-center rotate-[15deg] shadow-[4px_4px_0_#1C1410] leading-tight">
                     Trabajo<br>Final<br>2026</div>
 
                 <!-- Logo del proyecto -->
                 <header class="mb-1">
-                    <p class="font-lilita text-[40px] sm:text-[52px] text-oxido flex items-center justify-center gap-2">
+                    <p
+                        class="font-lilita text-[2.5rem] sm:text-[3.25rem] text-oxido flex items-center justify-center gap-2">
                         GatoHogar <span>🐱</span>
                     </p>
-                    <p class="font-[Permanent_Marker] text-[18px] text-gris mb-9">Adoptá · No compres</p>
+                    <p class="font-[Permanent_Marker] text-lg text-gris mb-9">Adoptá · No compres</p>
                 </header>
 
                 <hr class="border-none border-t-[3px] border-dashed border-durazno my-8">
 
                 <!-- Datos del autor -->
-                <p class="font-lilita text-[30px] sm:text-[40px] text-negro mb-2">{{ nombre }}</p>
+                <p class="font-lilita text-[1.875rem] sm:text-[2.5rem] text-negro mb-2">{{ nombre }}</p>
 
-                <p class="text-[16px] text-marron font-bold mb-1.5"><strong
+                <p class="text-base text-marron font-bold mb-1.5"><strong
                         class="text-negro font-black">Materia:</strong> {{ materia }}</p>
-                <p class="text-[16px] text-marron font-bold mb-1.5"><strong
+                <p class="text-base text-marron font-bold mb-1.5"><strong
                         class="text-negro font-black">Comisión:</strong> {{ comision }}</p>
-                <p class="text-[16px] text-marron font-bold mb-1.5"><strong class="text-negro font-black">Año:</strong>
+                <p class="text-base text-marron font-bold mb-1.5"><strong class="text-negro font-black">Año:</strong>
                     {{ anio }} &nbsp;·&nbsp; <strong class="text-negro font-black">Turno:</strong> {{ turno }}</p>
-                <p class="text-[16px] text-marron font-bold mb-1.5"><strong
+                <p class="text-base text-marron font-bold mb-1.5"><strong
                         class="text-negro font-black">Docente:</strong> {{ docente }}</p>
 
                 <hr class="border-none border-t-[3px] border-dashed border-durazno my-8">
 
                 <!-- Tecnologías utilizadas -->
-                <p class="text-[13px] font-black uppercase tracking-[0.1em] text-gris mb-3">Hecho con</p>
+                <p class="text-[0.8125rem] font-black uppercase tracking-[0.1em] text-gris mb-3">Hecho con</p>
                 <section class="flex gap-2.5 justify-center flex-wrap mt-7 mb-8">
                     <span
-                        class="bg-crema border-[3px] border-negro rounded-full py-1.5 px-4 text-[13px] font-black text-negro shadow-[3px_3px_0_#1C1410]">📝
+                        class="bg-crema border-[3px] border-negro rounded-full py-1.5 px-4 text-[0.8125rem] font-black text-negro shadow-[3px_3px_0_#1C1410]">📝
                         HTML5</span>
                     <span
-                        class="bg-crema border-[3px] border-negro rounded-full py-1.5 px-4 text-[13px] font-black text-negro shadow-[3px_3px_0_#1C1410]">🎨
+                        class="bg-crema border-[3px] border-negro rounded-full py-1.5 px-4 text-[0.8125rem] font-black text-negro shadow-[3px_3px_0_#1C1410]">🎨
                         CSS3</span>
                     <span
-                        class="bg-crema border-[3px] border-negro rounded-full py-1.5 px-4 text-[13px] font-black text-negro shadow-[3px_3px_0_#1C1410]">⚡
+                        class="bg-crema border-[3px] border-negro rounded-full py-1.5 px-4 text-[0.8125rem] font-black text-negro shadow-[3px_3px_0_#1C1410]">⚡
                         Vue.js 3</span>
                     <span
-                        class="bg-crema border-[3px] border-negro rounded-full py-1.5 px-4 text-[13px] font-black text-negro shadow-[3px_3px_0_#1C1410]">💨
+                        class="bg-crema border-[3px] border-negro rounded-full py-1.5 px-4 text-[0.8125rem] font-black text-negro shadow-[3px_3px_0_#1C1410]">💨
                         Tailwind CSS</span>
                     <span
-                        class="bg-crema border-[3px] border-negro rounded-full py-1.5 px-4 text-[13px] font-black text-negro shadow-[3px_3px_0_#1C1410]">📛
+                        class="bg-crema border-[3px] border-negro rounded-full py-1.5 px-4 text-[0.8125rem] font-black text-negro shadow-[3px_3px_0_#1C1410]">📛
                         JavaScript</span>
                 </section>
 
-                <p class="text-[16px] font-bold mb-1.5 text-gris text-sm">Todos los frameworks vía CDN · Sin Node.js</p>
+                <p class="text-base font-bold mb-1.5 text-gris text-sm">Todos los frameworks vía CDN · Sin Node.js</p>
 
                 <hr class="border-none border-t-[3px] border-dashed border-durazno my-8">
 
-                <p class="font-[Permanent_Marker] text-[20px] text-oxido italic mt-2">"Cada gato merece un hogar" 🐾
+                <p class="font-[Permanent_Marker] text-xl text-oxido italic mt-2">"Cada gato merece un hogar" 🐾
                 </p>
 
                 <a href="../index.html"
-                    class="inline-block bg-oxido text-blanco border-[3px] border-negro rounded-xl py-3 px-6 font-nunito font-black text-[16px] cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 text-center hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro truncate mt-7">Ver
+                    class="inline-block bg-oxido text-blanco border-[3px] border-negro rounded-xl py-3 px-6 font-nunito font-black text-base cursor-pointer shadow-[4px_4px_0_#1C1410] no-underline transition-all duration-150 text-center hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#1C1410] hover:bg-ambar hover:text-negro truncate mt-7">Ver
                     el sitio 🐈</a>
             </article>
         </main>
