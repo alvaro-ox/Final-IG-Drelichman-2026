@@ -5,7 +5,7 @@ createApp({
     components: {
         'componente-navbar': Navbar,
         'componente-footer': Footer,
-        },
+    },
     data() {
         return {
             donado: false,
@@ -22,6 +22,20 @@ createApp({
                 'Difusión en redes sociales',
                 'Fotografía de los gatitos',
                 'Visitas de seguimiento post-adopción',
+            ],
+            // Gato seleccionado para apadrinamiento (ej: Seibo)
+            gatoParaApadrinar: GATOS[2],
+            PREFIJO_RUTA_GLOBAL,
+            // Perfiles de Instagram para compartir
+            perfilesInstagram: [
+                {
+                    usuario: '@mascotasenadopcionargentina',
+                    link: 'https://www.instagram.com/mascotasenadopcionargentina?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
+                },
+                {
+                    usuario: '@ungatitoadopta',
+                    link: 'https://www.instagram.com/ungatitoadopta?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
+                },
             ],
         };
     },
